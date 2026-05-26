@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoverCloud Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/favicon.ico" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    /* Full-screen mobile overlay */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: #ffffff;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .mobile-overlay.open {
+      display: flex;
+    }
+
+    /* Nav links */
+    .mobile-nav-link {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0d0d0d;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #e5e7eb;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mobile-nav-link:hover { color: #29ABE2; }
+
+    /* Social links */
+    .mobile-social-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #374151;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mobile-social-link:hover { color: #29ABE2; }
+
+    /* Scroll-aware sticky navbar */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: #ffffff;
+      border-bottom: 1px solid #f3f4f6;
+      transform: translateY(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sticky-nav.visible {
+      transform: translateY(0);
+    }
+    .sticky-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sticky-nav-logo {
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: #0d0d0d;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .sticky-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: auto;
+    }
+    .sticky-nav-links a {
+      font-size: 0.875rem;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      background: #f3f4f6;
+      border-radius: 9999px;
+      padding: 0.45rem 1.1rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sticky-nav-links a:hover {
+      background: #e5e7eb;
+      color: #0d0d0d;
+    }
+    .sticky-hamburger {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0d0d0d;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0;
+    }
+    @media (max-width: 639px) {
+      .sticky-nav-links { display: none; }
+      .sticky-hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body class="text-white overflow-x-hidden">
+
+  <!-- ── Scroll-aware sticky navbar ──────────────────────────────────── -->
+  <header id="sticky-nav" class="sticky-nav" aria-hidden="true">
+    <div class="sticky-nav-inner">
+      <a href="#" class="sticky-nav-logo">CoverCloud</a>
+      <nav class="sticky-nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#articles">Articles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="sticky-hamburger" type="button" class="sticky-hamburger" aria-label="Open menu">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        MENU
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Announcement Bar ───────────────────────────────────────────── -->
+  <div class="announcement-bar text-center py-2.5">
+    <span class="text-[10px] sm:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.18em] text-white/90">
+      &bull;&nbsp; NEW COVERCLOUD PRICING &nbsp;&bull;&nbsp; LEARN MORE &nbsp;&bull;
+    </span>
+  </div>
+
+  <!-- ── Hero Section ──────────────────────────────────────────────── -->
+  <section class="hero-section relative w-full overflow-hidden">
+
+    <!-- Background -->
+    <div class="absolute inset-0 hero-gradient-bg">
+      <img
+        src="hero-bg.jpg"
+        alt=""
+        class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center"
+        onerror="this.style.display='none'"
+      />
+      <!-- Horizontal vignette -->
+      <div class="hero-vignette-h absolute inset-0"></div>
+      <!-- Bottom vignette -->
+      <div class="hero-vignette-v absolute inset-0"></div>
+    </div>
+
+    <!-- ── Desktop nav (sm+) ─────────────────────────────────────── -->
+    <nav class="absolute top-5 right-5 z-30 hidden sm:flex items-center gap-2">
+      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">About</a>
+      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">Projects</a>
+      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">Articles</a>
+      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">Contact</a>
+    </nav>
+
+    <!-- ── Mobile "≡ MENU" trigger (< sm) ─────────────────────── -->
+    <button
+      id="hamburger"
+      type="button"
+      class="absolute top-4 right-4 z-50 sm:hidden flex items-center gap-1.5 text-white text-xs font-bold tracking-widest"
+      aria-label="Open menu"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      MENU
+    </button>
+
+    <!-- Full-screen mobile overlay -->
+    <div id="mobile-menu" class="mobile-overlay sm:hidden" aria-hidden="true">
+
+      <!-- Overlay top bar -->
+      <div class="flex items-start justify-between px-5 pt-4 pb-6">
+        <div>
+          <p class="text-zinc-900 font-black text-lg leading-tight tracking-tight">CoverCloud</p>
+          <p class="text-zinc-400 text-xs font-light mt-0.5">Growing with you.</p>
+        </div>
+        <button id="menu-close" type="button" class="flex items-center gap-1.5 text-zinc-900 text-xs font-bold tracking-widest mt-1" aria-label="Close menu">
+          <span class="text-base leading-none">×</span> MENU
+        </button>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="px-5">
+        <a href="#" class="mobile-nav-link" id="mnav-home">Home</a>
+        <a href="#about" class="mobile-nav-link" id="mnav-about">About</a>
+        <a href="#projects" class="mobile-nav-link" id="mnav-projects">Projects</a>
+        <a href="#articles" class="mobile-nav-link" id="mnav-articles">Articles</a>
+        <a href="#contact" class="mobile-nav-link" id="mnav-contact">Contact</a>
+      </nav>
+
+      <!-- Social section at bottom -->
+      <div class="px-5 mt-auto pb-8">
+        <p class="text-xs text-zinc-400 font-medium mb-4">Social</p>
+        <a href="#" class="mobile-social-link">Twitter <span>→</span></a>
+        <a href="#" class="mobile-social-link">Instagram <span>→</span></a>
+        <a href="#" class="mobile-social-link">Behance <span>→</span></a>
+        <a href="#" class="mobile-social-link">Dribbble <span>→</span></a>
+      </div>
+
+    </div>
+
+    <!-- ── Brand / Logo (top-left) ──────────────────────────────── -->
+    <div class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30">
+      <h1 class="brand-title font-black leading-none tracking-tight">
+        CoverCloud
+      </h1>
+      <p class="text-zinc-400 text-xs sm:text-sm font-light mt-1 tracking-wide">
+        Growing with you.
+      </p>
+    </div>
+
+    <!-- ── Bottom content (hero copy + projects card) ────────────── -->
+    <!--
+      Mobile/tablet: only show hero copy, stacked at bottom left
+      Desktop (lg+): side-by-side — copy left, projects card right
+    -->
+    <div
+      class="absolute bottom-0 left-0 right-0 z-30
+             flex flex-col lg:flex-row lg:items-end lg:justify-between
+             px-4 sm:px-7 lg:px-8
+             pb-8 sm:pb-12 lg:pb-14
+             gap-6 lg:gap-0"
+    >
+
+      <!-- Left: hero copy + CTA -->
+      <div class="w-full max-w-[340px]">
+        <h2 class="text-base sm:text-[1.2rem] lg:text-[1.35rem] font-bold leading-snug text-white mb-2 sm:mb-3">
+          Award-winning IT.<br />
+          East African roots. Global reach.
+        </h2>
+        <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6">
+          CoverCloud Limited is an IT development & consulting company with a global network of solution experts and architects.
+        </p>
+        <button
+          type="button"
+          class="cta-btn px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm"
+        >
+          Book a meeting
+        </button>
+      </div>
+
+      <!-- Right: projects card — hidden below lg -->
+      <div class="hidden lg:block w-[280px] xl:w-[310px]">
+        <h3 class="projects-title font-bold leading-tight text-white mb-4">
+          Projects<br /><span>made easy.</span>
+        </h3>
+
+        <!-- Card -->
+        <div class="project-card relative rounded-2xl overflow-hidden">
+          <div class="w-full h-full project-card-gradient">
+            <img
+              src="project-hectic.jpg"
+              alt="Hectic x CoverCloud"
+              class="w-full h-full object-cover object-center"
+              onerror="this.style.display='none'"
+            />
+          </div>
+          <div class="card-overlay absolute inset-0"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <p class="font-bold text-white text-[0.9rem] leading-tight">Hectic x CoverCloud</p>
+            <p class="text-zinc-300 text-xs mt-0.5">A brand built to grow</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ── About Section ──────────────────────────────────────────────── -->
+  <section id="about" class="about-bg">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-20 lg:pt-28 pb-32 lg:pb-40">
+
+      <!-- Label + all right-column content -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20">
+
+        <!-- "About us" label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            About us
+          </span>
+        </div>
+
+        <!-- Right column: headline + link + cards -->
+        <div class="flex-1">
+          <p
+            id="about-headline"
+            class="text-xl sm:text-2xl lg:text-[1.65rem] xl:text-3xl font-bold leading-snug mb-8"
+            aria-label="We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations."
+          ></p>
+          <a href="#" class="about-link inline-flex items-center gap-2 text-sm sm:text-base">
+            More About Us <span aria-hidden="true">→</span>
+          </a>
+
+          <!-- Cards row — aligned with headline above -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-12 lg:mt-16">
+
+            <!-- Empty slot with crosshair markers (desktop only) -->
+            <div class="relative flex-1 hidden lg:block">
+              <span class="about-cross about-cross--top" aria-hidden="true">+</span>
+              <span class="about-cross about-cross--bottom" aria-hidden="true">+</span>
+            </div>
+
+            <!-- Testimonial card -->
+            <div class="about-card flex flex-col justify-between">
+              <div>
+                <!-- 4.5 stars -->
+                <div class="flex items-center gap-0.5 mb-5" aria-label="4.5 out of 5 stars">
+                  <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <defs>
+                      <linearGradient id="star-half">
+                        <stop offset="50%" stop-color="#F5C200"/>
+                        <stop offset="50%" stop-color="#e5e7eb"/>
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#star-half)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <blockquote class="text-base leading-relaxed">
+                  <span class="font-bold italic text-zinc-800">"Working with CoverCloud felt effortless. The final result wasn't just a website, </span><span class="italic text-zinc-400 font-normal">it was a brand we're proud to show off."</span>
+                </blockquote>
+              </div>
+              <!-- Author -->
+              <div class="flex items-center gap-3 mt-auto pt-5 border-t border-zinc-100">
+                <div class="w-11 h-11 rounded-xl overflow-hidden bg-zinc-100 shrink-0">
+                  <img src="images/denis.jpg" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-zinc-900">Denis Meritei Luke</p>
+                  <p class="text-xs text-zinc-400">CEO at CoverCloud Limited</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project preview card -->
+            <div class="about-card flex flex-col">
+              <div class="flex justify-between items-start">
+                <span class="text-zinc-300 text-lg font-light" aria-hidden="true">+</span>
+                <div class="w-48 h-44 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
+                  <img src="project-hectic.jpg" alt="Hectic x CoverCloud" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+                </div>
+              </div>
+              <div class="flex justify-between items-end mt-auto pt-6">
+                <div>
+                  <p class="font-bold text-zinc-900 text-sm">Hectic x CoverCloud</p>
+                  <p class="text-zinc-400 text-xs mt-0.5">A brand built to grow</p>
+                </div>
+                <a href="#" class="about-arrow" aria-label="View project">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Benefits Section ─────────────────────────────────────────── -->
+  <section class="benefits-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Label + heading (same 2-col layout as About) -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-12 lg:mb-16">
+
+        <!-- Label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+            Benefits
+          </span>
+        </div>
+
+        <!-- Heading + subtext -->
+        <div class="flex-1">
+          <h2 class="text-2xl sm:text-3xl lg:text-[2rem] xl:text-4xl font-bold leading-snug mb-6">
+            <span class="text-zinc-900">We deliver exceptional Web, Mobile, and Cloud solutions built for growth,</span><span class="text-zinc-300"> embracing the latest technologies and industry trends.</span>
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-lg">
+            Our clients come to us because they want a reliable business partner that delivers credible solutions exceeding expectations and improves real value for their customers.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3 benefit cards (full width) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- Card 1: Flexible pricing -->
+        <div class="benefit-card">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <div class="benefit-icon-box">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+              </div>
+              <h3 class="font-bold text-zinc-900 text-sm">Flexible pricing</h3>
+            </div>
+            <p class="benefit-desc">Clear packages for businesses at every stage of growth.</p>
+          </div>
+          <!-- Stat + slider -->
+          <div class="mt-auto">
+            <p class="text-xs text-zinc-400 mb-1">Starting from</p>
+            <p class="text-3xl font-black text-zinc-900 mb-1">$2,500</p>
+            <input
+              type="range"
+              class="benefit-slider"
+              min="2500" max="10000" value="2500"
+              aria-label="Pricing range"
+            />
+            <div class="flex justify-between text-xs text-zinc-400 mt-2">
+              <span>Start simple</span>
+              <span>Expand as you go</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Priority support -->
+        <div class="benefit-card">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <div class="benefit-icon-box">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="font-bold text-zinc-900 text-sm">Expert consultants</h3>
+            </div>
+            <p class="benefit-desc">Competent consultants with deep experience in collaboration, integration, and cloud solutions.</p>
+          </div>
+          <!-- Phone mockup -->
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <p class="text-center text-zinc-300 text-xs font-semibold tracking-widest mb-0.5">24/7</p>
+            <p class="text-center font-black text-2xl text-zinc-900">Support</p>
+            <!-- Trello notification -->
+            <div class="trello-notif">
+              <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-1.5">
+                  <div class="w-4 h-4 rounded bg-white/20 flex items-center justify-center">
+                    <span class="text-[8px] font-black">T</span>
+                  </div>
+                  <span class="text-xs font-bold tracking-wide">TRELLO</span>
+                </div>
+                <span class="text-[10px] opacity-60">1m ago</span>
+              </div>
+              <p class="text-xs opacity-80">[...] Requested design change</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Fast turnarounds -->
+        <div class="benefit-card">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <div class="benefit-icon-box">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-bold text-zinc-900 text-sm">Fast turnarounds</h3>
+            </div>
+            <p class="benefit-desc">Streamlined development approach that guarantees quality and optimum client satisfaction.</p>
+          </div>
+          <!-- Stat -->
+          <div class="mt-auto">
+            <p class="text-xs text-zinc-400 mb-1">Time to complete</p>
+            <p class="text-3xl font-black leading-none">
+              <span class="text-zinc-900">24</span><span class="text-zinc-300">–36h</span>
+            </p>
+          </div>
+          <!-- Clock illustration -->
+          <div class="clock-wrap" aria-hidden="true">
+            <svg viewBox="0 0 220 220" width="200" height="200">
+              <circle cx="110" cy="110" r="107" fill="#e5e7eb" opacity="0.4"/>
+              <circle cx="110" cy="110" r="104" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+              <circle cx="110" cy="110" r="94" fill="none" stroke="#f3f4f6" stroke-width="1"/>
+              <!-- Hour markers -->
+              <line x1="110" y1="18" x2="110" y2="30" stroke="#374151" stroke-width="3" stroke-linecap="round"/>
+              <line x1="202" y1="110" x2="190" y2="110" stroke="#374151" stroke-width="3" stroke-linecap="round"/>
+              <line x1="110" y1="202" x2="110" y2="190" stroke="#374151" stroke-width="3" stroke-linecap="round"/>
+              <line x1="18" y1="110" x2="30" y2="110" stroke="#374151" stroke-width="3" stroke-linecap="round"/>
+              <!-- Minor markers -->
+              <line x1="156" y1="24" x2="150" y2="35" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="196" y1="64" x2="185" y2="70" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="196" y1="156" x2="185" y2="150" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="156" y1="196" x2="150" y2="185" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="64" y1="196" x2="70" y2="185" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="24" y1="156" x2="35" y2="150" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="24" y1="64" x2="35" y2="70" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="64" y1="24" x2="70" y2="35" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Hour hand (pointing ~10) -->
+              <line x1="110" y1="110" x2="110" y2="62" stroke="#111827" stroke-width="6" stroke-linecap="round" transform="rotate(-60 110 110)"/>
+              <!-- Minute hand (pointing ~2) -->
+              <line x1="110" y1="110" x2="110" y2="44" stroke="#111827" stroke-width="4" stroke-linecap="round" transform="rotate(60 110 110)"/>
+              <!-- Second hand (brand blue) -->
+              <line x1="110" y1="110" x2="110" y2="32" stroke="#29ABE2" stroke-width="1.5" stroke-linecap="round" transform="rotate(160 110 110)"/>
+              <line x1="110" y1="110" x2="110" y2="128" stroke="#29ABE2" stroke-width="1.5" stroke-linecap="round" transform="rotate(-20 110 110)"/>
+              <!-- Centre -->
+              <circle cx="110" cy="110" r="5" fill="#111827"/>
+              <circle cx="110" cy="110" r="2.5" fill="#ffffff"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Work / Projects Section ───────────────────────────────────── -->
+  <section id="projects" class="work-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Header: label left, content right -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-16 lg:mb-20">
+
+        <!-- "Work" label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-3">
+          <span class="section-label">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.172a1 1 0 01.707.293l1.414 1.414A1 1 0 0011.172 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>
+            </svg>
+            Work
+          </span>
+        </div>
+
+        <!-- Right content -->
+        <div class="flex-1 min-w-0">
+          <h2 class="work-case-title font-black text-zinc-900 leading-none tracking-tight mb-4">
+            Case Studies
+          </h2>
+          <p class="text-zinc-400 text-base sm:text-lg font-medium mb-6">
+            Featured work between ©2024–25
+          </p>
+          <p class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-sm mb-10">
+            From bespoke web apps and mobile solutions to Salesforce implementations. Explore the work that's helped our clients grow, scale, and stand out across industries.
+          </p>
+          <a href="#" class="work-discover-btn">Discover all projects</a>
+
+          <!-- Decorative plus markers -->
+          <div class="hidden lg:flex justify-between mt-16 text-zinc-300 font-light select-none text-xl" aria-hidden="true">
+            <span>+</span>
+            <span>+</span>
+            <span>+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards row — staggered heights -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
+
+        <!-- Card 1: Korten (tallest) -->
+        <a href="#" class="block group">
+          <div class="work-img-korten relative rounded-2xl overflow-hidden work-card-bg-1">
+            <img src="projects/korten.jpg" alt="Korten" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+            <div class="absolute top-3 left-3 flex gap-1.5">
+              <span class="work-tag">Design</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#29ABE2] transition-colors">Korten</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">Turning tradition into a modern brand</p>
+          </div>
+        </a>
+
+        <!-- Card 2: Everly (offset down) -->
+        <a href="#" class="block group md:pt-20 lg:pt-28">
+          <div class="work-img-everly relative rounded-2xl overflow-hidden work-card-bg-2">
+            <img src="projects/everly.jpg" alt="Everly" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+            <div class="absolute top-3 left-3 flex gap-1.5">
+              <span class="work-tag">Branding</span>
+              <span class="work-tag">Developement</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#29ABE2] transition-colors">Everly</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">A lifestyle brand with a sporting edge</p>
+          </div>
+        </a>
+
+        <!-- Card 3: Peni (slight offset) -->
+        <a href="#" class="block group md:pt-10 lg:pt-14">
+          <div class="work-img-peni relative rounded-2xl overflow-hidden work-card-bg-3">
+            <img src="projects/peni.jpg" alt="Peni" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+            <div class="absolute top-3 left-3 flex gap-1.5">
+              <span class="work-tag">Design</span>
+              <span class="work-tag">Developement</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#29ABE2] transition-colors">Peni</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">A travel brand built to inspire</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Methodology Section ───────────────────────────────────────── -->
+  <section class="method-bg py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Main 2-col content -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-20 lg:mb-28">
+
+        <!-- "Methodology" label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold" style="color: var(--blue)">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+            Methodology
+          </span>
+        </div>
+
+        <!-- Right content -->
+        <div class="flex-1">
+          <!-- Big heading -->
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white leading-tight mb-8 max-w-3xl">
+            The best solutions don't come from guesswork. They come from a streamlined, proven process.
+          </h2>
+
+          <!-- Description -->
+          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-lg mb-12">
+            Our consultants make a unique integration of experience and expertise, tailored to the process and system of each client. From discovery to deployment, we ascertain quality and optimum satisfaction at every step.
+          </p>
+
+          <!-- Text link list -->
+          <div class="space-y-0 max-w-sm">
+            <a href="#contact" class="method-link">
+              <span>Let's work together</span>
+              <span class="text-base">→</span>
+            </a>
+            <a href="#projects" class="method-link">
+              <span>Explore our services</span>
+              <span class="text-base">→</span>
+            </a>
+            <a href="#" class="method-link">
+              <span>Discover our methodology</span>
+              <span class="text-base">→</span>
+            </a>
+          </div>
+
+          <!-- Decorative plus markers -->
+          <div class="flex justify-between mt-20 text-zinc-700 font-light text-xl select-none" aria-hidden="true">
+            <span>+</span>
+            <span>+</span>
+            <span>+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner / client logo strip -->
+      <div class="border-t border-white/10 pt-12">
+        <div class="flex items-center justify-between gap-6 flex-wrap">
+          <span class="method-logo">KORTEN</span>
+          <span class="method-logo">EVERLY</span>
+          <span class="method-logo">PENI&nbsp;LABS</span>
+          <span class="method-logo">HECTIC</span>
+          <span class="method-logo">VANTAGE</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Testimonials Section ──────────────────────────────────────── -->
+  <section class="testimonials-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Header: label left, heading right -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-16 lg:mb-20">
+
+        <!-- "Testimonials" label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="section-label">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Testimonials
+          </span>
+        </div>
+
+        <!-- Heading -->
+        <div class="flex-1">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
+            <span class="text-zinc-900">Our solutions speak through the value they deliver. But here's what our clients say about</span>
+            <span class="text-zinc-300"> working with us.</span>
+          </h2>
+        </div>
+      </div>
+
+      <!-- Two-column body: rating card + active testimonial -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+        <!-- Left: Rating widget card -->
+        <div class="testi-rating-card relative">
+          <!-- Corner plus markers -->
+          <span class="absolute top-4 left-4 text-zinc-300 text-base font-light select-none" aria-hidden="true">+</span>
+          <span class="absolute top-4 right-4 text-zinc-300 text-base font-light select-none" aria-hidden="true">+</span>
+          <span class="absolute bottom-20 left-4 text-zinc-300 text-base font-light select-none" aria-hidden="true">+</span>
+          <span class="absolute bottom-20 right-4 text-zinc-300 text-base font-light select-none" aria-hidden="true">+</span>
+
+          <!-- Rating number -->
+          <div class="text-center py-6">
+            <p class="text-5xl lg:text-6xl font-black" style="color: var(--blue)">4.78<span class="text-2xl text-zinc-300">/5</span></p>
+            <p class="text-zinc-400 text-sm mt-2">Average rating from our clients</p>
+          </div>
+
+          <!-- Avatar cluster -->
+          <div class="flex flex-col items-center gap-2 mb-8">
+            <div class="flex -space-x-2">
+              <div class="w-9 h-9 rounded-full border-2 border-white bg-[#29ABE2] flex items-center justify-center text-white text-xs font-bold">AM</div>
+              <div class="w-9 h-9 rounded-full border-2 border-white bg-[#F5C200] flex items-center justify-center text-white text-xs font-bold">JK</div>
+              <div class="w-9 h-9 rounded-full border-2 border-white bg-zinc-400 flex items-center justify-center text-white text-xs font-bold">PE</div>
+              <div class="w-9 h-9 rounded-full border-2 border-white bg-zinc-600 flex items-center justify-center text-white text-xs font-bold">MP</div>
+              <div class="w-9 h-9 rounded-full border-2 border-white bg-zinc-300 flex items-center justify-center text-white text-xs font-bold">+</div>
+            </div>
+            <p class="text-zinc-400 text-sm">Trusted by 30+ teams</p>
+          </div>
+
+          <!-- CTA -->
+          <a href="#" class="block w-full bg-zinc-900 text-white text-center py-4 rounded-full font-semibold text-sm hover:bg-zinc-700 transition-colors">
+            Leave a review
+          </a>
+        </div>
+
+        <!-- Right: Testimonial display -->
+        <div>
+          <!-- Counter -->
+          <p id="testi-count" class="text-zinc-400 text-sm font-medium mb-6">01 / 04</p>
+
+          <!-- Quote -->
+          <blockquote id="testi-quote" class="text-xl sm:text-2xl font-black italic text-zinc-900 leading-tight mb-8 transition-opacity duration-300">
+            "Working with CoverCloud felt effortless. The final result wasn't just a website, it was a solution we're proud to show off."
+          </blockquote>
+
+          <!-- Author -->
+          <div id="testi-author" class="flex items-center gap-3 mb-10 transition-opacity duration-300">
+            <div class="w-12 h-12 rounded-xl bg-zinc-200 overflow-hidden shrink-0">
+              <img id="testi-photo" src="images/denis.jpg" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+            <div>
+              <p id="testi-name" class="font-semibold text-zinc-900">Denis Meritei Luke</p>
+              <p id="testi-title" class="text-zinc-400 text-sm">CEO at CoverCloud Limited</p>
+            </div>
+          </div>
+
+          <!-- Nav buttons -->
+          <div class="flex items-center gap-3">
+            <button type="button" id="testi-prev" aria-label="Previous testimonial"
+              class="testi-nav w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:border-zinc-400 transition-colors">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button type="button" id="testi-next" aria-label="Next testimonial"
+              class="testi-nav testi-nav-active w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="border-t border-zinc-200 mt-20 pt-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <div>
+          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3">60m+</p>
+          <p class="text-zinc-500 text-sm leading-relaxed">brands and websites<br>built across industries</p>
+        </div>
+        <div>
+          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3">2x faster</p>
+          <p class="text-zinc-500 text-sm leading-relaxed">project delivery compared<br>to traditional agencies</p>
+        </div>
+        <div>
+          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3">90%</p>
+          <p class="text-zinc-500 text-sm leading-relaxed">of clients return<br>for ongoing work</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Pricing Section ───────────────────────────────────────────── -->
+  <section id="pricing" class="pricing-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Header: label left, display heading right -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-16 lg:mb-20">
+
+        <!-- "Pricing" label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-3">
+          <span class="section-label">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 14H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v3m-7 11h7m-7 0v-7m0 7H8m4-7h3a2 2 0 012 2v3a2 2 0 01-2 2h-3"/>
+            </svg>
+            Pricing
+          </span>
+        </div>
+
+        <!-- Right content -->
+        <div class="flex-1 min-w-0">
+          <h2 class="pricing-display-title font-black text-zinc-900 leading-none tracking-tight mb-4">
+            Pricing
+          </h2>
+          <p class="text-zinc-400 text-lg font-medium mb-6">Plans that fit your stage</p>
+          <p class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-sm mb-10">
+            No vague quotes. No surprises. Clear options for Web, Mobile, Salesforce, and full-service IT solutions, designed to match where you are and where you're going.
+          </p>
+          <!-- Decorative plus markers -->
+          <div class="hidden lg:flex justify-between mt-4 text-zinc-300 text-xl select-none" aria-hidden="true">
+            <span>+</span><span>+</span><span>+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 pricing columns -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
+
+        <!-- Mini -->
+        <div class="pricing-tier-card">
+          <!-- Top: info + price + CTA -->
+          <div class="pb-6">
+            <p class="text-sm text-zinc-400 font-medium mb-4">Mini</p>
+            <h3 class="text-2xl font-black text-zinc-900 leading-snug">Need the essentials?</h3>
+            <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll set you up.</p>
+            <p class="mb-5 flex items-baseline gap-1">
+              <span class="text-zinc-400 text-base">$</span>
+              <span class="text-4xl font-black text-zinc-900 tracking-tight">2,500</span>
+              <span class="text-zinc-400 text-sm">/mo</span>
+            </p>
+            <a href="#" class="pricing-tier-btn">Start your project</a>
+          </div>
+          <!-- Divider + features -->
+          <div class="border-t border-zinc-200 pt-6 space-y-3">
+            <p class="text-sm text-zinc-500">Web App Design & Development</p>
+            <p class="text-sm text-zinc-500">UX + UI Design</p>
+            <p class="text-sm text-zinc-500">SEO & Search Engine Submissions</p>
+            <p class="text-sm text-zinc-500">Database Management</p>
+          </div>
+        </div>
+
+        <!-- Premium -->
+        <div class="pricing-tier-card">
+          <div class="pb-6">
+            <p class="text-sm text-zinc-400 font-medium mb-4">Premium</p>
+            <h3 class="text-2xl font-black text-zinc-900 leading-snug">Ready to scale up?</h3>
+            <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll take you further.</p>
+            <p class="mb-5 flex items-baseline gap-1">
+              <span class="text-zinc-400 text-base">$</span>
+              <span class="text-4xl font-black text-zinc-900 tracking-tight">4,500</span>
+              <span class="text-zinc-400 text-sm">/mo</span>
+            </p>
+            <a href="#" class="pricing-tier-btn">Let's do it together</a>
+          </div>
+          <div class="border-t border-zinc-200 pt-6 space-y-3">
+            <p class="text-sm text-zinc-500">Everything in Mini</p>
+            <p class="text-sm text-zinc-500">Mobile App Development (iOS & Android)</p>
+            <p class="text-sm text-zinc-500">Salesforce Implementation & Integration</p>
+            <p class="text-sm text-zinc-500">E-commerce Development</p>
+          </div>
+        </div>
+
+        <!-- A La Carte (dark photo card — spans full height) -->
+        <div class="pricing-alacarte">
+          <div>
+            <p class="text-sm text-white/50 font-medium mb-4">A La Carte</p>
+            <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+              Got big goals?<br>We'll build them.
+            </h3>
+          </div>
+          <a href="#" class="pricing-alacarte-btn">Book a meeting</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ Section ───────────────────────────────────────────────── -->
+  <section class="faq-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Header: label left, big heading right -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-16 lg:mb-20">
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="section-label">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            FAQ
+          </span>
+        </div>
+        <div class="flex-1">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
+            <span class="text-zinc-900">Before you start, here are the things most clients</span>
+            <span class="text-zinc-300"> ask us about.</span>
+          </h2>
+        </div>
+      </div>
+
+      <!-- Body: contact sidebar left, accordion right -->
+      <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+
+        <!-- Left: contact card + link -->
+        <div class="lg:w-64 shrink-0 flex flex-col justify-between lg:min-h-[420px]">
+          <div>
+            <h3 class="font-bold text-zinc-900 text-lg mb-2">Not finding what you need?</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">Reach out anytime. We're happy to answer any questions before you commit to working together.</p>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl overflow-hidden bg-zinc-200 shrink-0">
+                <img src="images/denis.jpg" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+              </div>
+              <div>
+                <p class="font-semibold text-zinc-900 text-sm">Denis Meritei Luke</p>
+                <p class="text-xs text-zinc-400">CEO at CoverCloud Limited</p>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="inline-flex items-center gap-2 font-semibold text-zinc-900 text-sm hover:text-[#29ABE2] transition-colors mt-10 lg:mt-0">
+            Ask a question <span>→</span>
+          </a>
+        </div>
+
+        <!-- Right: accordion — each item is its own white card -->
+        <div class="flex-1 space-y-3">
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              What services does CoverCloud Limited offer?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">We offer Web App Design & Development, Mobile App Development (iOS, Android & Hybrid), Salesforce Implementation, Integration & Development, E-commerce Solutions, SEO, Multimedia, Database Management, and Software Development.</div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              Do you work with international clients?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">Yes. CoverCloud Limited is East African based but operates globally. We deliver Web, Mobile, and Cloud solutions to clients across the world through our global network of solution experts and architects.</div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              Can you handle Salesforce implementation from scratch?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">Absolutely. We provide Salesforce Implementation, Consulting, and Integration with ERP systems. Whether you're starting fresh or migrating existing data, our certified consultants guide you through every step.</div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              How long does a typical project take?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">Timelines vary depending on scope. A bespoke web app can take 4–8 weeks; mobile apps and Salesforce implementations typically range from 6–16 weeks. We follow a streamlined approach to keep projects on track.</div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              What's your development approach?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">We follow a streamlined development process: Discovery → Strategy → Design → Development → Testing → Launch. Our consultants integrate their expertise with each client's unique process and system, ensuring quality at every stage.</div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              Do you offer post-launch support?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">Yes. We are a reliable long-term business partner. We offer ongoing maintenance, updates, and consulting support. Most clients continue working with us well beyond initial project delivery.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Insights / Articles Section ──────────────────────────────── -->
+  <section id="articles" class="insights-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+
+        <!-- Left sidebar: label, plus markers, description, CTA -->
+        <div class="lg:w-60 shrink-0 flex flex-col lg:min-h-[580px]">
+          <div>
+            <span class="section-label mb-16 lg:mb-28 block">
+              <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+              Insights
+            </span>
+            <!-- Decorative plus markers -->
+            <div class="flex justify-between text-zinc-300 text-xl select-none mb-auto" aria-hidden="true">
+              <span>+</span>
+              <span>+</span>
+            </div>
+          </div>
+          <div class="mt-auto">
+            <p class="text-zinc-500 text-sm leading-relaxed mb-8">
+              From practical advice on Salesforce best practices to honest takes on common mistakes in web and mobile app development.
+            </p>
+            <a href="#" class="insight-discover-btn">Discover all articles</a>
+          </div>
+        </div>
+
+        <!-- Right: heading + staggered article cards -->
+        <div class="flex-1 min-w-0">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 leading-tight mb-10 lg:mb-14">
+            Our blog shares insights on web development, mobile solutions, cloud technology, and digital strategy.
+          </h2>
+
+          <!-- Two staggered article image cards -->
+          <div class="grid grid-cols-2 gap-4 items-start">
+
+            <!-- Article 1: tall portrait (starts at top) -->
+            <a href="#" class="block group">
+              <div class="insight-img-tall rounded-2xl overflow-hidden">
+                <img src="articles/article-1.jpg" alt="Brand Identity" class="w-full h-full object-cover" onerror="this.style.display='none'">
+              </div>
+              <h3 class="font-bold text-zinc-900 text-base mt-4 leading-snug group-hover:text-[#29ABE2] transition-colors">
+                Why Bespoke Web Apps Outperform Off-the-Shelf Solutions
+              </h3>
+            </a>
+
+            <!-- Article 2: shorter, offset down -->
+            <a href="#" class="block group pt-14 lg:pt-20">
+              <div class="insight-img-short rounded-2xl overflow-hidden">
+                <img src="articles/article-2.jpg" alt="Storytelling in Branding" class="w-full h-full object-cover" onerror="this.style.display='none'">
+              </div>
+              <h3 class="font-bold text-zinc-900 text-base mt-4 leading-snug group-hover:text-[#29ABE2] transition-colors">
+                How Salesforce Integration Transforms Business Operations
+              </h3>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact Section ──────────────────────────────────────────── -->
+  <section id="contact" class="contact-bg py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Header: label left, heading right -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20 mb-12 lg:mb-16">
+
+        <!-- "Contact" label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold" style="color: var(--blue)">
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 10l9-7 9 7v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10z"/>
+              <polyline stroke-linecap="round" stroke-linejoin="round" points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Contact
+          </span>
+        </div>
+
+        <!-- Heading + description -->
+        <div class="flex-1">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black text-white leading-tight mb-8">
+            Whether you need a web app, a mobile solution, Salesforce expertise, or a full-service IT partner, CoverCloud is ready.
+          </h2>
+          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+            Reach out today and you'll get a clear plan, honest advice, and a team that cares about your outcome as much as you do. Getting started is easy and we're with you every step of the way.
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-white/10 mb-12 lg:mb-16"></div>
+
+      <!-- Form (aligned to right column) -->
+      <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20">
+        <div class="sm:w-36 lg:w-44 shrink-0"></div>
+        <form class="flex-1 space-y-10" onsubmit="return false">
+
+          <!-- Name -->
+          <div class="contact-field">
+            <label class="contact-label" for="cf-name">Name *</label>
+            <input id="cf-name" type="text" placeholder="Jane Foster" class="contact-input" required />
+          </div>
+
+          <!-- Email -->
+          <div class="contact-field">
+            <label class="contact-label" for="cf-email">E-mail *</label>
+            <input id="cf-email" type="email" placeholder="you@example.com" class="contact-input" required />
+          </div>
+
+          <!-- Project -->
+          <div class="contact-field">
+            <label class="contact-label" for="cf-project">Project and goals *</label>
+            <input id="cf-project" type="text" placeholder="Tell us more" class="contact-input" required />
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="contact-submit">
+            Send message <span aria-hidden="true">→</span>
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────────── -->
+  <footer class="footer-bg pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Top: logo + nav + contact -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16 lg:mb-20">
+
+        <!-- Brand -->
+        <div class="lg:col-span-1">
+          <img src="images/logo.png" alt="CoverCloud Limited" class="h-10 w-auto object-contain mb-4">
+          <p class="text-zinc-400 text-sm leading-relaxed">Growing with you. Award-winning IT development & consulting. Web, Mobile, Cloud & Salesforce solutions for businesses worldwide.</p>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Navigate</p>
+          <ul class="space-y-3">
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#projects" class="footer-link">Projects</a></li>
+            <li><a href="#articles" class="footer-link">Articles</a></li>
+            <li><a href="#pricing" class="footer-link">Pricing</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Get in touch</p>
+          <ul class="space-y-3">
+            <li><a href="mailto:hello@covercloud.com" class="footer-link">hello@covercloud.com</a></li>
+            <li><a href="tel:+1234567890" class="footer-link">+1 234 567 890</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Follow us</p>
+          <ul class="space-y-3">
+            <li><a href="#" class="footer-link">Twitter</a></li>
+            <li><a href="#" class="footer-link">Instagram</a></li>
+            <li><a href="#" class="footer-link">Behance</a></li>
+            <li><a href="#" class="footer-link">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t footer-divider pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <p class="text-zinc-500 text-xs">© 2025 CoverCloud Limited. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="footer-link text-xs">Terms of Service</a>
+          <a href="#" class="footer-link text-xs">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger  = document.getElementById('hamburger');
+    const menuClose  = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+
+    // Close when a nav link is tapped
+    mobileMenu.querySelectorAll('.mobile-nav-link, .mobile-social-link').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // ── Testimonial switcher ────────────────────────────────
+    (function () {
+      const testimonials = [
+        { quote: '"Working with CoverCloud felt effortless. The final result wasn\'t just a website, it was a solution we\'re proud to show off."', name: 'Denis Meritei Luke', title: 'CEO at CoverCloud Limited', photo: 'images/denis.jpg' },
+        { quote: '"CoverCloud delivered a brand system that exceeded every expectation. Our conversion rate jumped 40% within the first month of launch."', name: 'James Korten', title: 'Founder at Korten Studio', photo: '' },
+        { quote: '"The team at CoverCloud understood our vision immediately. Smooth process, sharp results, and genuinely great people to work with."', name: 'Priya Everly', title: 'CMO at Everly', photo: '' },
+        { quote: '"Best investment we made this year. Our new brand identity opened doors with enterprise clients that felt out of reach before."', name: 'Marcus Peni', title: 'CEO at Peni Labs', photo: '' }
+      ];
+
+      const countEl = document.getElementById('testi-count');
+      const quoteEl = document.getElementById('testi-quote');
+      const nameEl  = document.getElementById('testi-name');
+      const titleEl = document.getElementById('testi-title');
+      const photoEl = document.getElementById('testi-photo');
+      const prevBtn = document.getElementById('testi-prev');
+      const nextBtn = document.getElementById('testi-next');
+      if (!quoteEl) return;
+
+      let current = 0;
+      const total = testimonials.length;
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        const t = testimonials[current];
+        quoteEl.style.opacity = '0';
+        setTimeout(function () {
+          quoteEl.textContent = t.quote;
+          nameEl.textContent  = t.name;
+          titleEl.textContent = t.title;
+          if (photoEl) { photoEl.src = t.photo; photoEl.style.display = t.photo ? '' : 'none'; }
+          countEl.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+          quoteEl.style.opacity = '1';
+        }, 150);
+      }
+
+      prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      nextBtn.addEventListener('click', function () { goTo(current + 1); });
+    }());
+
+    // ── FAQ accordion ───────────────────────────────────────
+    (function () {
+      document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const item   = btn.closest('.faq-item');
+          const answer = item.querySelector('.faq-answer');
+          const isOpen = item.classList.contains('open');
+
+          document.querySelectorAll('.faq-item').forEach(function (i) {
+            i.classList.remove('open');
+            i.querySelector('.faq-answer').classList.remove('open');
+          });
+
+          if (!isOpen) {
+            item.classList.add('open');
+            answer.classList.add('open');
+          }
+        });
+      });
+    }());
+
+    // ── Benefit card: pricing slider fill ──────────────────
+    (function () {
+      const slider = document.querySelector('.benefit-slider');
+      if (!slider) return;
+      function updateFill() {
+        const min = +slider.min, max = +slider.max, val = +slider.value;
+        const pct = ((val - min) / (max - min) * 100).toFixed(1) + '%';
+        slider.style.setProperty('--fill', pct);
+        const label = slider.closest('.benefit-card').querySelector('.text-3xl');
+        if (label) label.textContent = '$' + Number(val).toLocaleString();
+      }
+      slider.addEventListener('input', updateFill);
+      updateFill();
+    }());
+
+    // ── Scroll-aware sticky navbar ──────────────────────────
+    (function () {
+      const stickyNav       = document.getElementById('sticky-nav');
+      const heroDesktopNav  = document.querySelector('.hero-section nav');
+      const heroHamburger   = document.getElementById('hamburger');
+      const stickyHamburger = document.getElementById('sticky-hamburger');
+      let lastScrollY = 0;
+
+      // Wire sticky hamburger to open the same mobile overlay
+      if (stickyHamburger) {
+        stickyHamburger.addEventListener('click', openMenu);
+      }
+
+      function originalHeaderVisible() {
+        // Desktop: check the hero inline nav
+        if (heroDesktopNav && window.getComputedStyle(heroDesktopNav).display !== 'none') {
+          return heroDesktopNav.getBoundingClientRect().bottom > 0;
+        }
+        // Mobile: check the hamburger button in the hero
+        if (heroHamburger) {
+          return heroHamburger.getBoundingClientRect().bottom > 0;
+        }
+        return window.scrollY < 80;
+      }
+
+      window.addEventListener('scroll', function () {
+        const currentY = window.scrollY;
+
+        if (originalHeaderVisible()) {
+          // Original nav still visible — hide sticky
+          stickyNav.classList.remove('visible');
+          stickyNav.setAttribute('aria-hidden', 'true');
+        } else if (currentY < lastScrollY) {
+          // Scrolling UP — show sticky
+          stickyNav.classList.add('visible');
+          stickyNav.setAttribute('aria-hidden', 'false');
+        } else {
+          // Scrolling DOWN — hide sticky
+          stickyNav.classList.remove('visible');
+          stickyNav.setAttribute('aria-hidden', 'true');
+        }
+
+        lastScrollY = currentY;
+      }, { passive: true });
+    }());
+
+    // ── About section: scroll-reveal text ──────────────────
+    (function () {
+      const el = document.getElementById('about-headline');
+      if (!el) return;
+
+      const text = 'We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations.';
+      el.innerHTML = text.split(' ').map(w => `<span class="aword">${w}</span>`).join(' ');
+
+      const words = el.querySelectorAll('.aword');
+
+      function revealWords() {
+        const cutoff = window.innerHeight * 0.62;
+        words.forEach(function (w) {
+          if (w.getBoundingClientRect().top < cutoff) {
+            w.classList.add('lit');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', revealWords, { passive: true });
+      revealWords();
+    }());
+  </script>
+</body>
+</html>

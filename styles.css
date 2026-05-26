@@ -1,0 +1,627 @@
+/* ── Base ────────────────────────────────────────────── */
+body {
+  background: #070e18;
+}
+
+/* ── Brand tokens ────────────────────────────────────── */
+:root {
+  --blue:  #29ABE2;
+  --yellow: #F5C200;
+  --dark:  #070e18;
+}
+
+/* ── Hero Section ─────────────────────────────────────── */
+.hero-section {
+  height: calc(100svh - 40px);
+  min-height: 520px;
+}
+
+/* ── Background gradient (brand blue lighting) ───────── */
+.hero-gradient-bg {
+  background:
+    radial-gradient(ellipse at 58% 40%, rgba(41,171,226,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 25%, rgba(41,171,226,0.25) 0%, transparent 45%),
+    radial-gradient(ellipse at 30% 65%, rgba(7,14,24,0.8)    0%, transparent 60%),
+    linear-gradient(135deg, #070e18 0%, #0b1a2e 45%, #0f2440 70%, #070e18 100%);
+}
+
+/* ── Background image ────────────────────────────────── */
+.hero-bg-img {
+  mix-blend-mode: luminosity;
+  opacity: 0.6;
+}
+
+/* ── Vignettes ───────────────────────────────────────── */
+.hero-vignette-h {
+  background: linear-gradient(
+    to right,
+    rgba(7, 14, 24, 0.75) 0%,
+    rgba(7, 14, 24, 0.05) 50%,
+    rgba(7, 14, 24, 0.55) 100%
+  );
+}
+
+.hero-vignette-v {
+  background: linear-gradient(to top, rgba(7, 14, 24, 0.85) 0%, transparent 50%);
+}
+
+/* ── Typography ──────────────────────────────────────── */
+.brand-title {
+  font-size: clamp(1.4rem, 3.5vw, 4.5rem);
+  background-image: url('images/logo.png');
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.projects-title {
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+}
+
+/* ── Nav pills ───────────────────────────────────────── */
+.nav-pill {
+  background: rgba(7, 14, 24, 0.8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(41, 171, 226, 0.2);
+  transition: background 0.2s, border-color 0.2s;
+}
+.nav-pill:hover {
+  background: rgba(41, 171, 226, 0.15);
+  border-color: rgba(41, 171, 226, 0.5);
+}
+
+/* ── Announcement bar ────────────────────────────────── */
+.announcement-bar {
+  background: var(--dark);
+  border-bottom: 1px solid rgba(41, 171, 226, 0.15);
+}
+
+/* ── CTA button ──────────────────────────────────────── */
+.cta-btn {
+  background: var(--yellow);
+  color: #0a0a0a;
+  transition: filter 0.2s, transform 0.15s;
+}
+.cta-btn:hover  { filter: brightness(1.08); }
+.cta-btn:active { transform: scale(0.96); }
+
+/* ── Project card ────────────────────────────────────── */
+.project-card-gradient {
+  background: linear-gradient(135deg, #1a6ea3 0%, var(--blue) 50%, #0e4e78 100%);
+}
+
+.project-card {
+  height: 210px;
+}
+
+@media (min-width: 1280px) {
+  .project-card {
+    height: 225px;
+  }
+}
+
+.card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(7, 14, 24, 0.85) 0%,
+    rgba(7, 14, 24, 0.08) 55%,
+    transparent 100%
+  );
+}
+
+/* ── Section shared utilities ────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Benefits ─────────────────────────────────────────── */
+.benefits-bg { background: #f0f1f3; }
+
+.benefit-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefit-icon-box {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.45rem;
+  background: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.benefit-desc {
+  font-size: 1.05rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+/* Pricing slider */
+.benefit-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  background: linear-gradient(
+    to right,
+    var(--blue) 0%,
+    var(--blue) var(--fill, 20%),
+    #e5e7eb var(--fill, 20%),
+    #e5e7eb 100%
+  );
+}
+.benefit-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid var(--blue);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.benefit-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid var(--blue);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* Phone mockup (card 2) */
+.phone-frame {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 1.75rem;
+  padding: 1.25rem 1rem 0;
+  background: #f9fafb;
+  margin-top: 1.5rem;
+  position: relative;
+}
+.phone-notch {
+  width: 2.5rem;
+  height: 0.3rem;
+  border-radius: 1rem;
+  background: #d1d5db;
+  margin: 0 auto 1.25rem;
+}
+.trello-notif {
+  background: var(--blue);
+  border-radius: 0.875rem;
+  padding: 0.65rem 0.85rem;
+  color: #ffffff;
+  margin-top: 0.75rem;
+  box-shadow: 0 6px 20px rgba(41, 171, 226, 0.4);
+  position: relative;
+  bottom: -1px;
+}
+
+/* Clock (card 3) */
+.clock-wrap {
+  position: absolute;
+  bottom: -2.5rem;
+  right: -2.5rem;
+  pointer-events: none;
+}
+
+/* ── Work / Projects ─────────────────────────────────── */
+.work-bg { background: #f0f1f3; }
+
+/* "Case Studies" display heading */
+.work-case-title {
+  font-size: clamp(2rem, 5vw, 6rem);
+}
+
+/* "Discover all projects" pill button */
+.work-discover-btn {
+  display: inline-block;
+  background: #0d0d0d;
+  color: #ffffff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.work-discover-btn:hover { background: #2a2a2a; }
+
+/* Frosted-glass tag pills on card images */
+.work-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 9999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Card image containers — staggered heights */
+.work-img-korten {
+  aspect-ratio: 3 / 5;
+}
+.work-img-everly {
+  aspect-ratio: 3 / 4;
+}
+.work-img-peni {
+  aspect-ratio: 3 / 4;
+}
+
+.work-card-bg-1 { background: linear-gradient(135deg, #0e4e78, #29ABE2); }
+.work-card-bg-2 { background: linear-gradient(135deg, #a87c00, #F5C200); }
+.work-card-bg-3 { background: linear-gradient(135deg, #0e4e78, #1a8fc0, #F5C200); }
+
+/* ── Methodology ─────────────────────────────────────── */
+.method-bg { background: var(--dark); }
+
+/* Inline text links with arrows */
+.method-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #ffffff;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: color 0.2s;
+}
+.method-link:hover { color: var(--blue); }
+
+/* Partner logo strip */
+.method-logo {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: default;
+}
+.method-logo:hover { color: rgba(255, 255, 255, 0.5); }
+
+/* ── Services ────────────────────────────────────────── */
+.services-bg { background: var(--dark); }
+
+.service-tag {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.2rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.service-tag:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ── Testimonials ────────────────────────────────────── */
+.testimonials-bg { background: #f0f1f3; }
+
+/* Rating widget card */
+.testi-rating-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2rem 2rem 1.75rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Nav arrow buttons */
+.testi-nav {
+  flex-shrink: 0;
+}
+.testi-nav-active {
+  background: #0d0d0d;
+  color: #ffffff;
+  border: none;
+}
+.testi-nav-active:hover { background: #333; }
+
+/* ── Pricing ─────────────────────────────────────────── */
+.pricing-bg { background: #ffffff; }
+
+/* Display-size "Pricing" heading */
+.pricing-display-title {
+  font-size: clamp(2rem, 5vw, 6rem);
+}
+
+/* Mini / Premium tier card — features inside, divided by a border */
+.pricing-tier-card {
+  background: #f0f1f3;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CTA button inside tier card */
+.pricing-tier-btn {
+  display: inline-block;
+  background: #0d0d0d;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.pricing-tier-btn:hover { background: #333333; }
+
+/* A La Carte dark card */
+.pricing-alacarte {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(0,0,0,0.45) 0%, rgba(20,8,5,0.65) 50%, rgba(0,0,0,0.88) 100%),
+    linear-gradient(135deg, #2a0e05, #4a1a0a, #0d0d0d);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 440px;
+}
+
+/* "Book a meeting" white pill */
+.pricing-alacarte-btn {
+  display: block;
+  background: #ffffff;
+  color: #0d0d0d;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-top: 2.5rem;
+  transition: background 0.2s;
+}
+.pricing-alacarte-btn:hover { background: #f3f4f6; }
+
+/* ── FAQ ─────────────────────────────────────────────── */
+.faq-bg { background: #f0f1f3; }
+
+/* Each item is a standalone white card */
+.faq-item {
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0d0d0d;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--blue); }
+
+/* Dark filled circle icon */
+.faq-icon {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #0d0d0d;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.faq-icon-minus { display: none; }
+.faq-item.open .faq-icon-plus  { display: none; }
+.faq-item.open .faq-icon-minus { display: block; }
+.faq-item.open .faq-icon { background: #374151; }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.75;
+  padding: 0 1.5rem;
+  transition: max-height 0.4s ease, padding-bottom 0.2s;
+}
+.faq-answer.open {
+  max-height: 300px;
+  padding-bottom: 1.5rem;
+}
+
+/* ── Insights ────────────────────────────────────────── */
+.insights-bg { background: #f0f1f3; }
+
+/* "Discover all articles" pill button */
+.insight-discover-btn {
+  display: inline-block;
+  background: #0d0d0d;
+  color: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.insight-discover-btn:hover { background: #333333; }
+
+/* Article image containers */
+.insight-img-tall {
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(160deg, #1a1a1a, #2d2d2d);
+}
+.insight-img-short {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(160deg, #2a1a10, #1a1010);
+}
+
+/* ── Contact ─────────────────────────────────────────── */
+.contact-bg {
+  background:
+    radial-gradient(ellipse at 65% 40%, rgba(41,171,226,0.06) 0%, transparent 60%),
+    var(--dark);
+}
+
+.contact-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.contact-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  padding: 0.5rem 0 0.75rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.contact-input:focus { border-bottom-color: rgba(255, 255, 255, 0.5); }
+.contact-input::placeholder { color: rgba(255, 255, 255, 0.2); }
+
+.contact-submit {
+  display: inline-block;
+  background: var(--blue);
+  color: #ffffff;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.15s;
+}
+.contact-submit:hover  { filter: brightness(1.1); }
+.contact-submit:active { transform: scale(0.97); }
+
+/* ── Footer ──────────────────────────────────────────── */
+.footer-bg { background: var(--dark); }
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--blue); }
+
+.footer-divider { border-color: rgba(255, 255, 255, 0.08); }
+
+/* ── "Projects made easy" accent line ────────────────── */
+.projects-title span {
+  color: var(--yellow);
+}
+
+/* ────────────────────────────────────────────────────────
+   About Section
+   ──────────────────────────────────────────────────────── */
+.about-bg {
+  background: #f0f1f3;
+}
+
+/* Scroll-reveal words */
+.aword {
+  color: #c8c8c8;
+  transition: color 0.35s ease;
+}
+.aword.lit {
+  color: #0d0d0d;
+}
+
+.about-link {
+  color: var(--blue);
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+.about-link:hover { opacity: 0.75; }
+
+/* Cards */
+.about-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  min-height: 420px;
+}
+
+@media (min-width: 640px) {
+  .about-card {
+    width: 340px;
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-card { width: 360px; }
+}
+
+/* Crosshair markers */
+.about-cross {
+  position: absolute;
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1;
+  left: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.about-cross--top    { top: -14px; }
+.about-cross--bottom { bottom: -14px; }
+
+/* Arrow link on project card */
+.about-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(41, 171, 226, 0.12);
+  color: var(--blue);
+  transition: background 0.2s;
+}
+.about-arrow:hover { background: rgba(41, 171, 226, 0.25); }
