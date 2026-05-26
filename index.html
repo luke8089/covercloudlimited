@@ -19,13 +19,17 @@
       position: fixed;
       inset: 0;
       z-index: 999;
-      background: #ffffff;
-      display: none;
+      background: #d4d6d9;
+      display: flex;
       flex-direction: column;
       overflow-y: auto;
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
     }
     .mobile-overlay.open {
-      display: flex;
+      clip-path: inset(0 0 0% 0);
+      pointer-events: all;
     }
 
     /* Nav links */
@@ -35,7 +39,7 @@
       font-weight: 700;
       color: #0d0d0d;
       padding: 1.1rem 0;
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid #d1d5db;
       text-decoration: none;
       transition: color 0.15s;
     }
@@ -55,6 +59,22 @@
       transition: color 0.15s;
     }
     .mobile-social-link:hover { color: #29ABE2; }
+
+    /* Keep brand-title small inside the mobile overlay */
+    .mobile-overlay .brand-title { font-size: 1.125rem; }
+
+    /* Staggered nav + social animations on open */
+    .mobile-overlay.open #mnav-home     { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.08s; }
+    .mobile-overlay.open #mnav-about    { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.2s; }
+    .mobile-overlay.open #mnav-projects { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.32s; }
+    .mobile-overlay.open #mnav-articles { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.44s; }
+    .mobile-overlay.open #mnav-contact  { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.56s; }
+
+    .mobile-overlay.open .mobile-social-label { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.7s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(2) { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.78s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(3) { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.86s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(4) { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.94s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(5) { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 1.02s; }
 
     /* Scroll-aware sticky navbar */
     .sticky-nav {
@@ -130,7 +150,10 @@
   <!-- ── Scroll-aware sticky navbar ──────────────────────────────────── -->
   <header id="sticky-nav" class="sticky-nav" aria-hidden="true">
     <div class="sticky-nav-inner">
-      <a href="#" class="sticky-nav-logo">CoverCloud</a>
+      <a href="#" class="sticky-nav-logo flex items-center gap-2">
+        <img src="images/logo.png" alt="CoverCloud" class="h-7 w-auto object-contain" onerror="this.style.display='none'">
+        CoverCloud
+      </a>
       <nav class="sticky-nav-links">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
@@ -147,10 +170,15 @@
   </header>
 
   <!-- ── Announcement Bar ───────────────────────────────────────────── -->
-  <div class="announcement-bar text-center py-2.5">
-    <span class="text-[10px] sm:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.18em] text-white/90">
-      &bull;&nbsp; NEW COVERCLOUD PRICING &nbsp;&bull;&nbsp; LEARN MORE &nbsp;&bull;
-    </span>
+  <div class="announcement-bar py-2.5 flex items-center gap-3 px-4 sm:px-6 overflow-hidden">
+    <!-- Logo far left -->
+    <img src="images/logo.png" alt="CoverCloud" class="h-5 w-auto object-contain shrink-0 opacity-90" onerror="this.style.display='none'">
+    <!-- Marquee ticker -->
+    <div class="announcement-ticker flex-1 overflow-hidden">
+      <div class="announcement-track">
+        <span class="announcement-item">&bull;&nbsp; NEW COVERCLOUD PRICING &nbsp;&bull;&nbsp; LEARN MORE &nbsp;&bull;&nbsp; AWARD-WINNING IT &nbsp;&bull;&nbsp; EAST AFRICAN ROOTS. GLOBAL REACH &nbsp;&bull;&nbsp; NEW COVERCLOUD PRICING &nbsp;&bull;&nbsp; LEARN MORE &nbsp;&bull;&nbsp; AWARD-WINNING IT &nbsp;&bull;&nbsp; EAST AFRICAN ROOTS. GLOBAL REACH &nbsp;</span>
+      </div>
+    </div>
   </div>
 
   <!-- ── Hero Section ──────────────────────────────────────────────── -->
@@ -159,7 +187,7 @@
     <!-- Background -->
     <div class="absolute inset-0 hero-gradient-bg">
       <img
-        src="hero-bg.jpg"
+        src="images/hero_section.png"
         alt=""
         class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center"
         onerror="this.style.display='none'"
@@ -172,10 +200,10 @@
 
     <!-- ── Desktop nav (sm+) ─────────────────────────────────────── -->
     <nav class="absolute top-5 right-5 z-30 hidden sm:flex items-center gap-2">
-      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">About</a>
-      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">Projects</a>
-      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">Articles</a>
-      <a href="#" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium">Contact</a>
+      <a href="#about"    class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up" style="animation-delay:0.2s">About</a>
+      <a href="#projects" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up" style="animation-delay:0.32s">Projects</a>
+      <a href="#articles" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up" style="animation-delay:0.44s">Articles</a>
+      <a href="#contact"  class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up" style="animation-delay:0.56s">Contact</a>
     </nav>
 
     <!-- ── Mobile "≡ MENU" trigger (< sm) ─────────────────────── -->
@@ -191,45 +219,13 @@
       MENU
     </button>
 
-    <!-- Full-screen mobile overlay -->
-    <div id="mobile-menu" class="mobile-overlay sm:hidden" aria-hidden="true">
-
-      <!-- Overlay top bar -->
-      <div class="flex items-start justify-between px-5 pt-4 pb-6">
-        <div>
-          <p class="text-zinc-900 font-black text-lg leading-tight tracking-tight">CoverCloud</p>
-          <p class="text-zinc-400 text-xs font-light mt-0.5">Growing with you.</p>
-        </div>
-        <button id="menu-close" type="button" class="flex items-center gap-1.5 text-zinc-900 text-xs font-bold tracking-widest mt-1" aria-label="Close menu">
-          <span class="text-base leading-none">×</span> MENU
-        </button>
-      </div>
-
-      <!-- Nav links -->
-      <nav class="px-5">
-        <a href="#" class="mobile-nav-link" id="mnav-home">Home</a>
-        <a href="#about" class="mobile-nav-link" id="mnav-about">About</a>
-        <a href="#projects" class="mobile-nav-link" id="mnav-projects">Projects</a>
-        <a href="#articles" class="mobile-nav-link" id="mnav-articles">Articles</a>
-        <a href="#contact" class="mobile-nav-link" id="mnav-contact">Contact</a>
-      </nav>
-
-      <!-- Social section at bottom -->
-      <div class="px-5 mt-auto pb-8">
-        <p class="text-xs text-zinc-400 font-medium mb-4">Social</p>
-        <a href="#" class="mobile-social-link">Twitter <span>→</span></a>
-        <a href="#" class="mobile-social-link">Instagram <span>→</span></a>
-        <a href="#" class="mobile-social-link">Behance <span>→</span></a>
-        <a href="#" class="mobile-social-link">Dribbble <span>→</span></a>
-      </div>
-
-    </div>
-
     <!-- ── Brand / Logo (top-left) ──────────────────────────────── -->
     <div class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30">
-      <h1 class="brand-title font-black leading-none tracking-tight">
-        CoverCloud
-      </h1>
+      <div class="brand-title-wrap">
+        <h1 class="brand-title font-black leading-none tracking-tight">
+          CoverCloud
+        </h1>
+      </div>
       <p class="text-zinc-400 text-xs sm:text-sm font-light mt-1 tracking-wide">
         Growing with you.
       </p>
@@ -251,22 +247,22 @@
       <!-- Left: hero copy + CTA -->
       <div class="w-full max-w-[340px]">
         <h2 class="text-base sm:text-[1.2rem] lg:text-[1.35rem] font-bold leading-snug text-white mb-2 sm:mb-3">
-          Award-winning IT.<br />
-          East African roots. Global reach.
+          <span class="hero-line-wrap"><span class="hero-line hero-line--1">Award-winning IT.</span></span>
+          <span class="hero-line-wrap"><span class="hero-line hero-line--2">East African roots. Global reach.</span></span>
         </h2>
-        <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6">
+        <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6 hero-fade-up hero-fade-up--3">
           CoverCloud Limited is an IT development & consulting company with a global network of solution experts and architects.
         </p>
         <button
           type="button"
-          class="cta-btn px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm"
+          class="cta-btn px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm hero-fade-up hero-fade-up--4"
         >
           Book a meeting
         </button>
       </div>
 
       <!-- Right: projects card — hidden below lg -->
-      <div class="hidden lg:block w-[280px] xl:w-[310px]">
+      <div class="hidden lg:block w-[360px] xl:w-[400px]">
         <h3 class="projects-title font-bold leading-tight text-white mb-4">
           Projects<br /><span>made easy.</span>
         </h3>
@@ -275,7 +271,7 @@
         <div class="project-card relative rounded-2xl overflow-hidden">
           <div class="w-full h-full project-card-gradient">
             <img
-              src="project-hectic.jpg"
+              src="images/hero projects card.png"
               alt="Hectic x CoverCloud"
               class="w-full h-full object-cover object-center"
               onerror="this.style.display='none'"
@@ -293,6 +289,40 @@
 
   </section>
 
+  <!-- ── Mobile overlay (outside hero so z-index is in root context) ── -->
+  <div id="mobile-menu" class="mobile-overlay sm:hidden" aria-hidden="true">
+
+    <!-- Overlay top bar -->
+    <div class="flex items-start justify-between px-5 pt-4 pb-6">
+      <div>
+        <p class="brand-title font-black text-lg leading-tight tracking-tight">CoverCloud</p>
+        <p class="text-zinc-400 text-xs font-light mt-0.5">Growing with you.</p>
+      </div>
+      <button id="menu-close" type="button" class="flex items-center gap-1.5 text-zinc-900 text-xs font-bold tracking-widest mt-1" aria-label="Close menu">
+        <span class="text-base leading-none">×</span> MENU
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="px-5">
+      <a href="#" class="mobile-nav-link" id="mnav-home">Home</a>
+      <a href="#about" class="mobile-nav-link" id="mnav-about">About</a>
+      <a href="#projects" class="mobile-nav-link" id="mnav-projects">Projects</a>
+      <a href="#articles" class="mobile-nav-link" id="mnav-articles">Articles</a>
+      <a href="#contact" class="mobile-nav-link" id="mnav-contact">Contact</a>
+    </nav>
+
+    <!-- Social section at bottom -->
+    <div class="px-5 mt-auto pb-8">
+      <p class="mobile-social-label text-xs text-zinc-400 font-medium mb-4">Social</p>
+      <a href="#" class="mobile-social-link">Facebook <span>→</span></a>
+      <a href="#" class="mobile-social-link">Instagram <span>→</span></a>
+      <a href="#" class="mobile-social-link">Twitter <span>→</span></a>
+      <a href="#" class="mobile-social-link">WhatsApp <span>→</span></a>
+    </div>
+
+  </div>
+
   <!-- ── About Section ──────────────────────────────────────────────── -->
   <section id="about" class="about-bg">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-20 lg:pt-28 pb-32 lg:pb-40">
@@ -302,7 +332,7 @@
 
         <!-- "About us" label -->
         <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
-          <span class="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 scroll-reveal" data-delay="0">
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
             </svg>
@@ -317,37 +347,23 @@
             class="text-xl sm:text-2xl lg:text-[1.65rem] xl:text-3xl font-bold leading-snug mb-8"
             aria-label="We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations."
           ></p>
-          <a href="#" class="about-link inline-flex items-center gap-2 text-sm sm:text-base">
+          <a href="#" class="about-link inline-flex items-center gap-2 text-sm sm:text-base scroll-reveal" data-delay="150">
             More About Us <span aria-hidden="true">→</span>
           </a>
 
           <!-- Cards row — aligned with headline above -->
-          <div class="flex flex-col sm:flex-row gap-4 mt-12 lg:mt-16">
-
-            <!-- Empty slot with crosshair markers (desktop only) -->
-            <div class="relative flex-1 hidden lg:block">
-              <span class="about-cross about-cross--top" aria-hidden="true">+</span>
-              <span class="about-cross about-cross--bottom" aria-hidden="true">+</span>
-            </div>
+          <div id="about-cards" class="flex flex-col sm:flex-row gap-4 mt-12 lg:mt-16">
 
             <!-- Testimonial card -->
-            <div class="about-card flex flex-col justify-between">
+            <div class="about-card about-card--testimonial flex flex-col justify-between sm:w-72 lg:w-80 sm:shrink-0">
               <div>
-                <!-- 4.5 stars -->
-                <div class="flex items-center gap-0.5 mb-5" aria-label="4.5 out of 5 stars">
+                <!-- 5 stars -->
+                <div class="flex items-center gap-0.5 mb-5" aria-label="5 out of 5 stars">
                   <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg class="w-5 h-5" viewBox="0 0 24 24">
-                    <defs>
-                      <linearGradient id="star-half">
-                        <stop offset="50%" stop-color="#F5C200"/>
-                        <stop offset="50%" stop-color="#e5e7eb"/>
-                      </linearGradient>
-                    </defs>
-                    <path fill="url(#star-half)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
+                  <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 </div>
                 <blockquote class="text-base leading-relaxed">
                   <span class="font-bold italic text-zinc-800">"Working with CoverCloud felt effortless. The final result wasn't just a website, </span><span class="italic text-zinc-400 font-normal">it was a brand we're proud to show off."</span>
@@ -360,18 +376,19 @@
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-zinc-900">Denis Meritei Luke</p>
-                  <p class="text-xs text-zinc-400">CEO at CoverCloud Limited</p>
+                  <p class="text-xs text-zinc-400">Founder & CEO, CoverCloud Limited</p>
                 </div>
               </div>
             </div>
 
             <!-- Project preview card -->
-            <div class="about-card flex flex-col">
+            <div class="about-card-clip flex-1">
+            <div class="about-card about-card--project flex flex-col h-full">
               <div class="flex justify-between items-start">
-                <span class="text-zinc-300 text-lg font-light" aria-hidden="true">+</span>
-                <div class="w-48 h-44 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
-                  <img src="project-hectic.jpg" alt="Hectic x CoverCloud" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+                <div class="w-44 h-44 sm:w-48 sm:h-44 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
+                  <img src="images/hero projects card.png" alt="Hectic x CoverCloud" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
                 </div>
+                <span class="text-zinc-300 text-lg font-light" aria-hidden="true">+</span>
               </div>
               <div class="flex justify-between items-end mt-auto pt-6">
                 <div>
@@ -379,11 +396,12 @@
                   <p class="text-zinc-400 text-xs mt-0.5">A brand built to grow</p>
                 </div>
                 <a href="#" class="about-arrow" aria-label="View project">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/>
                   </svg>
                 </a>
               </div>
+            </div>
             </div>
 
           </div>
@@ -409,7 +427,7 @@
 
         <!-- Heading + subtext -->
         <div class="flex-1">
-          <h2 class="text-2xl sm:text-3xl lg:text-[2rem] xl:text-4xl font-bold leading-snug mb-6">
+          <h2 id="benefits-headline" class="text-2xl sm:text-3xl lg:text-[2rem] xl:text-4xl font-bold leading-snug mb-6">
             <span class="text-zinc-900">We deliver exceptional Web, Mobile, and Cloud solutions built for growth,</span><span class="text-zinc-300"> embracing the latest technologies and industry trends.</span>
           </h2>
           <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-lg">
@@ -647,7 +665,7 @@
         <!-- Right content -->
         <div class="flex-1">
           <!-- Big heading -->
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white leading-tight mb-8 max-w-3xl">
+          <h2 id="process-headline" data-word-dark class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white leading-tight mb-8 max-w-3xl">
             The best solutions don't come from guesswork. They come from a streamlined, proven process.
           </h2>
 
@@ -714,7 +732,7 @@
 
         <!-- Heading -->
         <div class="flex-1">
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
+          <h2 id="testimonials-headline" class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
             <span class="text-zinc-900">Our solutions speak through the value they deliver. But here's what our clients say about</span>
             <span class="text-zinc-300"> working with us.</span>
           </h2>
@@ -920,7 +938,7 @@
           </span>
         </div>
         <div class="flex-1">
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
+          <h2 id="faq-headline" class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
             <span class="text-zinc-900">Before you start, here are the things most clients</span>
             <span class="text-zinc-300"> ask us about.</span>
           </h2>
@@ -1054,7 +1072,7 @@
 
         <!-- Right: heading + staggered article cards -->
         <div class="flex-1 min-w-0">
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 leading-tight mb-10 lg:mb-14">
+          <h2 id="blog-headline" class="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 leading-tight mb-10 lg:mb-14">
             Our blog shares insights on web development, mobile solutions, cloud technology, and digital strategy.
           </h2>
 
@@ -1107,7 +1125,7 @@
 
         <!-- Heading + description -->
         <div class="flex-1">
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black text-white leading-tight mb-8">
+          <h2 id="contact-headline" data-word-dark class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black text-white leading-tight mb-8">
             Whether you need a web app, a mobile solution, Salesforce expertise, or a full-service IT partner, CoverCloud is ready.
           </h2>
           <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl">
@@ -1191,10 +1209,10 @@
         <div>
           <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Follow us</p>
           <ul class="space-y-3">
-            <li><a href="#" class="footer-link">Twitter</a></li>
+            <li><a href="#" class="footer-link">Facebook</a></li>
             <li><a href="#" class="footer-link">Instagram</a></li>
-            <li><a href="#" class="footer-link">Behance</a></li>
-            <li><a href="#" class="footer-link">LinkedIn</a></li>
+            <li><a href="#" class="footer-link">Twitter</a></li>
+            <li><a href="#" class="footer-link">WhatsApp</a></li>
           </ul>
         </div>
       </div>
@@ -1309,6 +1327,18 @@
       updateFill();
     }());
 
+    // ── Hero fade-out + scale on scroll ────────────────────
+    (function () {
+      const hero = document.querySelector('.hero-section');
+      if (!hero) return;
+      window.addEventListener('scroll', function () {
+        const progress = Math.min(window.scrollY / (hero.offsetHeight * 0.6), 1);
+        hero.style.opacity = 1 - progress * 0.5;
+        hero.style.transform = 'scale(' + (1 - progress * 0.06) + ')';
+        hero.style.borderRadius = (progress * 1.5) + 'rem';
+      }, { passive: true });
+    }());
+
     // ── Scroll-aware sticky navbar ──────────────────────────
     (function () {
       const stickyNav       = document.getElementById('sticky-nav');
@@ -1355,26 +1385,117 @@
       }, { passive: true });
     }());
 
-    // ── About section: scroll-reveal text ──────────────────
+    // ── Generic scroll-reveal (IntersectionObserver) ───────
     (function () {
-      const el = document.getElementById('about-headline');
-      if (!el) return;
-
-      const text = 'We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations.';
-      el.innerHTML = text.split(' ').map(w => `<span class="aword">${w}</span>`).join(' ');
-
-      const words = el.querySelectorAll('.aword');
-
-      function revealWords() {
-        const cutoff = window.innerHeight * 0.62;
-        words.forEach(function (w) {
-          if (w.getBoundingClientRect().top < cutoff) {
-            w.classList.add('lit');
+      const items = document.querySelectorAll('.scroll-reveal');
+      if (!items.length) return;
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const delay = entry.target.dataset.delay || 0;
+          if (entry.isIntersecting) {
+            setTimeout(function () {
+              entry.target.classList.add('revealed');
+            }, Number(delay));
+          } else {
+            entry.target.classList.remove('revealed');
           }
+        });
+      }, { threshold: 0.2 });
+      items.forEach(function (el) { observer.observe(el); });
+    }());
+
+    // ── About cards: second card slides out from first ───────
+    (function () {
+      var aboutCards = document.getElementById('about-cards');
+      if (!aboutCards) return;
+      var cardsObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          aboutCards.classList.add('cards-in');
+          cardsObserver.disconnect();
+        }
+      }, { threshold: 0.25 });
+      cardsObserver.observe(aboutCards);
+    }());
+
+    // ── Word-by-word scroll reveal (all sections) ──────────
+    (function () {
+      var aboutEl = document.getElementById('about-headline');
+      if (aboutEl) {
+        var aboutText = 'We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations.';
+        aboutEl.innerHTML = aboutText.split(' ').map(function (w) {
+          return '<span class="aword">' + w + '</span>';
+        }).join(' ');
+      }
+
+      function wrapWords(el) {
+        var isDark = el.hasAttribute('data-word-dark');
+        var cls = isDark ? 'aword-dark' : 'aword';
+        var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        var nodes = [];
+        var node;
+        while ((node = walker.nextNode())) {
+          if (node.textContent.trim()) nodes.push(node);
+        }
+        nodes.forEach(function (tn) {
+          var parts = tn.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (part) {
+            if (/\S/.test(part)) {
+              var span = document.createElement('span');
+              span.className = cls;
+              span.textContent = part;
+              frag.appendChild(span);
+            } else {
+              frag.appendChild(document.createTextNode(part));
+            }
+          });
+          tn.parentNode.replaceChild(frag, tn);
         });
       }
 
+      var otherIds = ['benefits-headline', 'process-headline', 'testimonials-headline', 'faq-headline', 'blog-headline', 'contact-headline'];
+      otherIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) wrapWords(el);
+      });
+
+      var allIds = ['about-headline'].concat(otherIds);
+      var groups = allIds.map(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return null;
+        var isDark = el.hasAttribute('data-word-dark');
+        var cls = isDark ? 'aword-dark' : 'aword';
+        return { words: Array.from(el.querySelectorAll('.' + cls)), triggers: [] };
+      }).filter(Boolean);
+
+      if (!groups.length) return;
+
+      function calcTriggers() {
+        var scrollY = window.scrollY;
+        groups.forEach(function (g) {
+          g.triggers = g.words.map(function (w, i) {
+            var rect = w.getBoundingClientRect();
+            return (rect.top + scrollY) - window.innerHeight * 0.75 + i * 9;
+          });
+        });
+      }
+
+      function revealWords() {
+        var scrollY = window.scrollY;
+        groups.forEach(function (g) {
+          g.words.forEach(function (w, i) {
+            if (scrollY >= g.triggers[i]) {
+              w.classList.add('lit');
+            } else {
+              w.classList.remove('lit');
+            }
+          });
+        });
+      }
+
+      calcTriggers();
       window.addEventListener('scroll', revealWords, { passive: true });
+      window.addEventListener('resize', function () { calcTriggers(); revealWords(); });
       revealWords();
     }());
   </script>
