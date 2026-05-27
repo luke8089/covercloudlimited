@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — CoverCloud Limited</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/favicon.ico" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    /* ── Mobile overlay (identical to index.html) ─────────── */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: #d4d6d9;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+    .mobile-overlay.open {
+      clip-path: inset(0 0 0% 0);
+      pointer-events: all;
+    }
+    .mobile-nav-link {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0d0d0d;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #d1d5db;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mobile-nav-link:hover { color: #29ABE2; }
+    .mobile-social-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #374151;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mobile-social-link:hover { color: #29ABE2; }
+    .mobile-overlay .brand-title { font-size: 1.125rem; }
+
+    /* Staggered mobile nav animations on open (identical to index.html) */
+    .mobile-overlay.open #mnav-home     { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.08s; }
+    .mobile-overlay.open #mnav-about    { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.2s; }
+    .mobile-overlay.open #mnav-projects { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.32s; }
+    .mobile-overlay.open #mnav-articles { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.44s; }
+    .mobile-overlay.open #mnav-contact  { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.56s; }
+    .mobile-overlay.open .mobile-social-label              { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.7s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(2)  { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.78s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(3)  { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.86s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(4)  { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 0.94s; }
+    .mobile-overlay.open .mobile-social-link:nth-child(5)  { animation: heroFadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; animation-delay: 1.02s; }
+
+    /* ── Sticky navbar (identical to index.html) ──────────── */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: #ffffff;
+      border-bottom: 1px solid #f3f4f6;
+      transform: translateY(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sticky-nav.visible { transform: translateY(0); }
+    .sticky-nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sticky-nav-logo {
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: #0d0d0d;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sticky-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: auto;
+    }
+    .sticky-nav-links a {
+      font-size: 0.875rem;
+      color: #374151;
+      text-decoration: none;
+      font-weight: 500;
+      background: #f3f4f6;
+      border-radius: 9999px;
+      padding: 0.45rem 1.1rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sticky-nav-links a:hover    { background: #e5e7eb; color: #0d0d0d; }
+    .sticky-nav-links a.active   { background: #0d0d0d; color: #fff; }
+    .sticky-hamburger {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #0d0d0d;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0;
+    }
+    @media (max-width: 639px) {
+      .sticky-nav-links  { display: none; }
+      .sticky-hamburger  { display: flex; }
+    }
+
+    /* ── About hero (light-themed) ────────────────────────── */
+    .about-hero {
+      background: #f2f2f0;
+      position: relative;
+      min-height: calc(100svh - 40px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* Nav pills adapted for a light background */
+    .nav-pill-light {
+      background: rgba(13, 13, 13, 0.07);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0,0,0,0.12);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-pill-light:hover {
+      background: rgba(13, 13, 13, 0.14);
+      border-color: rgba(0,0,0,0.22);
+    }
+    .nav-pill-light.active-pill {
+      background: #0d0d0d;
+      border-color: transparent;
+      color: #fff !important;
+    }
+
+    /* Plus grid decorators */
+    .plus-marker {
+      position: absolute;
+      color: rgba(0,0,0,0.15);
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1;
+      -webkit-user-select: none;
+      user-select: none;
+      pointer-events: none;
+    }
+    .pm-1 { top:  9%; left:  39%;   }
+    .pm-2 { top:  9%; left:  67%;   }
+    .pm-3 { top:  9%; right:  2.5%; }
+    .pm-4 { top: 51%; left:  39%;   }
+    .pm-5 { top: 51%; left:  67%;   }
+    .pm-6 { top: 51%; right:  2.5%; }
+
+    /* "About us" giant heading */
+    .about-hero-heading {
+      font-size: clamp(4.5rem, 13vw, 11rem);
+      font-weight: 900;
+      color: #0d0d0d;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      overflow: hidden;
+    }
+    .about-hero-heading .hero-line-wrap { line-height: 1; }
+
+    /* Hero nav pill animation delays */
+    .about-hero nav a:nth-child(1) { animation-delay: 0.2s; }
+    .about-hero nav a:nth-child(2) { animation-delay: 0.32s; }
+    .about-hero nav a:nth-child(3) { animation-delay: 0.44s; }
+    .about-hero nav a:nth-child(4) { animation-delay: 0.56s; }
+    .about-hero nav a:nth-child(5) { animation-delay: 0.68s; }
+
+    /* Tight letter-spacing for section headings */
+    #values-headline,
+    #team-headline { letter-spacing: -0.04em; }
+
+    /* CTA pill on light bg */
+    .hero-cta-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0d0d0d;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .hero-cta-dark:hover { background: #333; }
+
+    /* ── Section label ────────────────────────────────────── */
+    .sec-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Full-bleed image break ───────────────────────────── */
+    .about-image-break {
+      width: 100%;
+      height: 91vh;
+      overflow: hidden;
+    }
+    .about-image-break__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ── Who we are ───────────────────────────────────────── */
+    .who-section { background: #f2f2f0; padding: 7rem 0; }
+    .who-statement {
+      font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+      font-weight: 800;
+      color: #0d0d0d;
+      line-height: 1.3;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+    }
+    .who-sub {
+      font-size: 0.9rem;
+      color: #6b7280;
+      line-height: 1.75;
+      max-width: 38ch;
+    }
+
+    /* Team photo cards */
+    .who-team-card {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      max-height: 340px;
+      background: #d1d5db;
+    }
+    .who-team-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .who-team-plus {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .who-team-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.1rem;
+    }
+    .who-team-name { font-size: 0.9rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .who-team-role { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-top: 0.2rem; }
+    .who-team-card { cursor: pointer; }
+
+    /* ── Card expand overlay ──────────────────────────────── */
+    .card-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: center center;
+    }
+    .card-overlay__img {
+      flex: 0 0 55%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      width: 55%;
+    }
+    .card-overlay__body {
+      flex: 1;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem 2.5rem;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.4s 0.35s ease, transform 0.4s 0.35s ease;
+    }
+    .card-overlay.is-open .card-overlay__body {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card-overlay__name {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .card-overlay__role {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.75rem;
+    }
+    .card-overlay__bio {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+      max-width: 32ch;
+    }
+    .card-overlay__close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s 0.4s ease, background 0.2s ease;
+    }
+    .card-overlay.is-open .card-overlay__close { opacity: 1; }
+    .card-overlay__close:hover { background: rgba(255,255,255,0.2); }
+
+    @media (max-width: 639px) {
+      .card-overlay { flex-direction: column; }
+      .card-overlay__img { flex: 0 0 45%; width: 100%; height: 45%; }
+    }
+
+    /* ── Awards section ───────────────────────────────────── */
+    .awards-section { background: #f2f2f0; padding: 7rem 0; }
+    .awards-heading {
+      font-size: clamp(1.75rem, 3.2vw, 3rem);
+      font-weight: 900;
+      color: #0d0d0d;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .awards-sub {
+      font-size: 0.83rem;
+      color: #9ca3af;
+      line-height: 1.75;
+      max-width: 38ch;
+    }
+    .award-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      transition: box-shadow 0.2s ease;
+    }
+    .award-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .award-dots { font-size: 1rem; color: #0d0d0d; letter-spacing: 0.2em; line-height: 1; }
+    .award-plus { color: rgba(0,0,0,0.22); font-size: 1rem; font-weight: 300; }
+    .award-stat {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 900;
+      color: #0d0d0d;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin: 0.75rem 0;
+    }
+    .award-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.6; max-width: 22ch; }
+
+    /* ── Values ───────────────────────────────────────────── */
+    .values-section { background: #f2f2f0; padding: 7rem 0; }
+    .value-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2rem 1.75rem;
+      border: 1px solid rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .value-card.revealed { opacity: 1; transform: translateY(0); }
+    .value-num  { font-size: 0.65rem; font-weight: 700; color: #bbb; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .value-title { font-size: 1.1rem; font-weight: 800; color: #0d0d0d; margin-bottom: 0.65rem; letter-spacing: -0.02em; }
+    .value-body  { font-size: 0.875rem; color: #6b7280; line-height: 1.72; }
+
+    /* ── Team ─────────────────────────────────────────────── */
+    .team-section { background: #0d0d0d; padding: 7rem 0; }
+    .team-card {
+      background: #111827;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .team-card.revealed { opacity: 1; transform: translateY(0); }
+    .team-avatar { width: 60px; height: 60px; border-radius: 0.875rem; overflow: hidden; background: #1f2937; margin-bottom: 1.2rem; }
+    .team-name  { font-size: 1rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 0.2rem; }
+    .team-role  { font-size: 0.75rem; color: rgba(255,255,255,0.35); font-weight: 500; margin-bottom: 0.9rem; }
+    .team-bio   { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+    /* ── CTA ──────────────────────────────────────────────── */
+    .about-cta-section {
+      background: #f2f2f0;
+      padding: 8rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .about-cta-heading {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      color: #0d0d0d;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- ── Scroll-aware sticky navbar (identical to index.html) ─────── -->
+  <header id="sticky-nav" class="sticky-nav" aria-hidden="true">
+    <div class="sticky-nav-inner">
+      <a href="index.html" class="sticky-nav-logo">
+        <img src="images/logo.png" alt="CoverCloud" class="h-7 w-auto object-contain" onerror="this.style.display='none'">
+        CoverCloud
+      </a>
+      <nav class="sticky-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="index.html#articles">Articles</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button id="sticky-hamburger" type="button" class="sticky-hamburger" aria-label="Open menu">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        MENU
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Announcement bar (identical to index.html) ────────────────── -->
+  <div class="announcement-bar py-2.5 flex items-center justify-center gap-3 px-4 sm:px-6">
+    <img src="images/logo.png" alt="CoverCloud" class="h-5 w-auto object-contain shrink-0 opacity-90" onerror="this.style.display='none'">
+    <span class="text-xs font-semibold tracking-widest text-white/80 uppercase">CoverCloud Limited</span>
+  </div>
+
+  <!-- ── About Hero (light, with inline nav like index.html) ──────── -->
+  <section class="about-hero">
+
+    <!-- Plus grid markers -->
+    <span class="plus-marker pm-1">+</span>
+    <span class="plus-marker pm-2">+</span>
+    <span class="plus-marker pm-3">+</span>
+    <span class="plus-marker pm-4">+</span>
+    <span class="plus-marker pm-5">+</span>
+    <span class="plus-marker pm-6">+</span>
+
+    <!-- Desktop nav (sm+) — mirrors index.html hero nav position -->
+    <nav class="absolute top-5 right-5 z-30 hidden sm:flex items-center gap-2">
+      <a href="index.html"          class="nav-pill-light text-zinc-800 px-4 py-2 rounded-full text-sm font-medium hero-fade-up">Home</a>
+      <a href="about.html"          class="nav-pill-light active-pill text-zinc-900 px-4 py-2 rounded-full text-sm font-medium hero-fade-up">About</a>
+      <a href="projects.html" class="nav-pill-light text-zinc-800 px-4 py-2 rounded-full text-sm font-medium hero-fade-up">Projects</a>
+      <a href="index.html#articles" class="nav-pill-light text-zinc-800 px-4 py-2 rounded-full text-sm font-medium hero-fade-up">Articles</a>
+      <a href="index.html#contact"  class="nav-pill-light text-zinc-800 px-4 py-2 rounded-full text-sm font-medium hero-fade-up">Contact</a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="hamburger"
+      type="button"
+      class="absolute top-4 right-4 z-50 sm:hidden flex items-center gap-1.5 text-zinc-900 text-xs font-bold tracking-widest"
+      aria-label="Open menu"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      MENU
+    </button>
+
+    <!-- Brand / Logo (top-left) -->
+    <div class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30">
+      <div class="brand-title-wrap">
+        <h1 class="brand-title font-black leading-none tracking-tight">
+          CoverCloud
+        </h1>
+      </div>
+      <p class="text-zinc-400 text-xs sm:text-sm font-light mt-1 tracking-wide">
+        Growing with you.
+      </p>
+    </div>
+
+    <!-- Bottom content -->
+    <div class="absolute bottom-0 left-0 right-0 z-30 px-4 sm:px-7 lg:px-8 pb-8 sm:pb-12 lg:pb-14">
+
+      <!-- Giant heading -->
+      <h2 class="about-hero-heading mb-8 sm:mb-10">
+        <span class="hero-line-wrap"><span class="hero-line hero-line--1">About us</span></span>
+      </h2>
+
+      <!-- Subtitle + CTA row -->
+      <div class="flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-16 max-w-4xl">
+        <div class="max-w-sm hero-fade-up hero-fade-up--3">
+          <p class="text-lg sm:text-xl font-bold text-zinc-800 mb-2 leading-snug">Technology with purpose, always.</p>
+          <p class="text-sm text-zinc-500 leading-relaxed">
+            An award-winning IT development &amp; consulting company with East African roots and a global network of solution experts and architects.
+          </p>
+        </div>
+        <a href="index.html#contact" class="hero-cta-dark hero-fade-up hero-fade-up--4">
+          Work with us &nbsp;→
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Mobile overlay (identical to index.html) ──────────────────── -->
+  <div id="mobile-menu" class="mobile-overlay sm:hidden" aria-hidden="true">
+
+    <div class="flex items-start justify-between px-5 pt-4 pb-6">
+      <div>
+        <p class="brand-title font-black text-lg leading-tight tracking-tight">CoverCloud</p>
+        <p class="text-zinc-400 text-xs font-light mt-0.5">Growing with you.</p>
+      </div>
+      <button id="menu-close" type="button" class="flex items-center gap-1.5 text-zinc-900 text-xs font-bold tracking-widest mt-1" aria-label="Close menu">
+        <span class="text-base leading-none">&times;</span> MENU
+      </button>
+    </div>
+
+    <nav class="px-5">
+      <a href="index.html"          class="mobile-nav-link" id="mnav-home">Home</a>
+      <a href="about.html"          class="mobile-nav-link" id="mnav-about">About</a>
+      <a href="projects.html" class="mobile-nav-link" id="mnav-projects">Projects</a>
+      <a href="index.html#articles" class="mobile-nav-link" id="mnav-articles">Articles</a>
+      <a href="index.html#contact"  class="mobile-nav-link" id="mnav-contact">Contact</a>
+    </nav>
+
+    <div class="px-5 mt-auto pb-8">
+      <p class="mobile-social-label text-xs text-zinc-400 font-medium mb-4">Social</p>
+      <a href="#" class="mobile-social-link">Facebook <span>→</span></a>
+      <a href="#" class="mobile-social-link">Instagram <span>→</span></a>
+      <a href="#" class="mobile-social-link">Twitter <span>→</span></a>
+      <a href="#" class="mobile-social-link">WhatsApp <span>→</span></a>
+    </div>
+
+  </div>
+
+  <!-- ── Full-bleed image ──────────────────────────────────────────── -->
+  <div class="about-image-break">
+    <img
+      src="images/hero_section.png"
+      alt="CoverCloud workspace"
+      class="about-image-break__img"
+      onerror="this.style.display='none'"
+    />
+  </div>
+
+  <!-- ── Who we are ─────────────────────────────────────────────────── -->
+  <section class="who-section">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex flex-col sm:flex-row gap-8 sm:gap-12 lg:gap-20 items-start">
+
+        <!-- Left: label only -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
+          <span class="sec-label text-zinc-400 scroll-reveal" data-delay="0">Who we are</span>
+        </div>
+
+        <!-- Right: statement → sub-copy → grid stacked -->
+        <div class="flex-1">
+          <p id="who-headline" class="who-statement"
+            aria-label="At CoverCloud, we work with startups, scale-ups, and established businesses across East Africa and beyond. From web and mobile to Salesforce and cloud, we help businesses grow smarter, move faster, and stand out. Every project starts with understanding your goals — and ends with solutions that make a lasting impact."
+          ></p>
+          <p class="who-sub scroll-reveal mb-10 lg:mb-12" data-delay="120">
+            We're more than an IT company. We're a team of engineers, designers, and strategists who believe technology should serve people — not the other way around.
+          </p>
+
+          <!-- 2 × 2 team photo grid -->
+          <div class="grid grid-cols-2 gap-1.5 ml-auto mr-10 w-fit">
+
+            <div class="who-team-card scroll-reveal" data-delay="0"
+              data-bio="Visionary leader and founder of CoverCloud. Denis built the company from the ground up to prove that world-class IT is possible from East Africa.">
+              <img src="images/hero_section.png" alt="Denis Meritei Luke" onerror="this.style.display='none'" />
+              <span class="who-team-plus">+</span>
+              <div class="who-team-overlay">
+                <p class="who-team-name">Denis Meritei Luke</p>
+                <p class="who-team-role">Founder &amp; CEO</p>
+              </div>
+            </div>
+
+            <div class="who-team-card scroll-reveal" data-delay="80"
+              data-bio="Overseeing architecture across web, mobile, and cloud platforms — ensuring every line of code we ship is built to last and scale.">
+              <img src="images/hero_section.png" alt="Head of Engineering" onerror="this.style.display='none'" />
+              <span class="who-team-plus">+</span>
+              <div class="who-team-overlay">
+                <p class="who-team-name">Head of Engineering</p>
+                <p class="who-team-role">Technical Leadership</p>
+              </div>
+            </div>
+
+            <div class="who-team-card scroll-reveal" data-delay="160"
+              data-bio="Bridging beauty and function — leading the design team in crafting experiences that clients and their users love from day one.">
+              <img src="images/hero_section.png" alt="Head of Design" onerror="this.style.display='none'" />
+              <span class="who-team-plus">+</span>
+              <div class="who-team-overlay">
+                <p class="who-team-name">Head of Design</p>
+                <p class="who-team-role">Creative Direction</p>
+              </div>
+            </div>
+
+            <div class="who-team-card scroll-reveal" data-delay="240"
+              data-bio="Driving CoverCloud's growth strategy and forging the global partnerships that expand our reach across new markets and industries.">
+              <img src="images/hero_section.png" alt="Head of Strategy" onerror="this.style.display='none'" />
+              <span class="who-team-plus">+</span>
+              <div class="who-team-overlay">
+                <p class="who-team-name">Head of Strategy</p>
+                <p class="who-team-role">Growth &amp; Partnerships</p>
+              </div>
+            </div>
+
+          </div><!-- end grid -->
+        </div><!-- end right col -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Awards ────────────────────────────────────────────────────── -->
+  <section class="awards-section">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- Top: label + heading + sub -->
+      <div class="flex flex-col sm:flex-row gap-8 sm:gap-12 lg:gap-20 mb-14 lg:mb-16">
+
+        <!-- Label -->
+        <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-1.5">
+          <span class="sec-label text-zinc-400 scroll-reveal inline-flex items-center gap-2" data-delay="0">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+            </svg>
+            Awards
+          </span>
+        </div>
+
+        <!-- Heading + sub-copy -->
+        <div class="flex-1">
+          <h2 id="awards-headline" class="awards-heading"
+            aria-label="The results we've delivered, measured in real numbers that show how technology translates into growth."
+          ></h2>
+          <p class="awards-sub scroll-reveal" data-delay="150">
+            We measure success not just in delivery quality, but in the outcomes our work creates. These are a few numbers that reflect the difference CoverCloud makes.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Three stat cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+        <div class="award-card scroll-reveal" data-delay="0">
+          <div class="flex items-start justify-between">
+            <span class="award-dots">····</span>
+            <span class="award-plus">+</span>
+          </div>
+          <p class="award-stat">50+</p>
+          <div class="flex items-end justify-between">
+            <p class="award-desc">Projects delivered across industries</p>
+            <span class="award-plus">+</span>
+          </div>
+        </div>
+
+        <div class="award-card scroll-reveal" data-delay="110">
+          <div class="flex items-start justify-between">
+            <span class="award-dots">··</span>
+            <span class="award-plus">+</span>
+          </div>
+          <p class="award-stat">2x faster</p>
+          <div class="flex items-end justify-between">
+            <p class="award-desc">Project delivery compared to traditional agencies</p>
+            <span class="award-plus">+</span>
+          </div>
+        </div>
+
+        <div class="award-card scroll-reveal" data-delay="220">
+          <div class="flex items-start justify-between">
+            <span class="award-dots">···</span>
+            <span class="award-plus">+</span>
+          </div>
+          <p class="award-stat">98%</p>
+          <div class="flex items-end justify-between">
+            <p class="award-desc">Of clients return for ongoing work</p>
+            <span class="award-plus">+</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <!-- ── Footer ─────────────────────────────────────────────────────── -->
+  <footer class="footer-bg pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16 lg:mb-20">
+        <div class="lg:col-span-1 scroll-reveal" data-delay="0" data-once="true">
+          <img src="images/logo.png" alt="CoverCloud Limited" class="h-10 w-auto object-contain mb-4" onerror="this.style.display='none'">
+          <p class="text-zinc-400 text-sm leading-relaxed">Growing with you. Award-winning IT development &amp; consulting. Web, Mobile, Cloud &amp; Salesforce solutions for businesses worldwide.</p>
+        </div>
+        <div class="scroll-reveal" data-delay="100" data-once="true">
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Navigate</p>
+          <ul class="space-y-3">
+            <li><a href="about.html"          class="footer-link">About</a></li>
+            <li><a href="projects.html" class="footer-link">Projects</a></li>
+            <li><a href="index.html#articles" class="footer-link">Articles</a></li>
+            <li><a href="index.html#contact"  class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="scroll-reveal" data-delay="200" data-once="true">
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Get in touch</p>
+          <ul class="space-y-3">
+            <li><a href="mailto:hello@covercloud.com" class="footer-link">hello@covercloud.com</a></li>
+            <li><a href="tel:+1234567890" class="footer-link">+1 234 567 890</a></li>
+          </ul>
+        </div>
+        <div class="scroll-reveal" data-delay="300" data-once="true">
+          <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Follow us</p>
+          <ul class="space-y-3">
+            <li><a href="#" class="footer-link">Facebook</a></li>
+            <li><a href="#" class="footer-link">Instagram</a></li>
+            <li><a href="#" class="footer-link">Twitter</a></li>
+            <li><a href="#" class="footer-link">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t footer-divider pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <p class="text-zinc-500 text-xs scroll-reveal" data-delay="420" data-once="true">© <span id="footer-year"></span> CoverCloud Limited. All rights reserved.</p>
+        <div class="flex gap-6 scroll-reveal" data-delay="500" data-once="true">
+          <a href="#" class="footer-link text-xs">Terms of Service</a>
+          <a href="#" class="footer-link text-xs">Privacy Policy</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ── Card expand overlay ────────────────────────────────────────── -->
+  <div id="card-overlay" class="card-overlay" role="dialog" aria-modal="true">
+    <img id="co-img" class="card-overlay__img" src="" alt="" />
+    <div class="card-overlay__body">
+      <p id="co-name" class="card-overlay__name"></p>
+      <p id="co-role" class="card-overlay__role"></p>
+      <p id="co-bio"  class="card-overlay__bio"></p>
+    </div>
+    <button id="co-close" class="card-overlay__close" aria-label="Close">&times;</button>
+  </div>
+
+  <script>
+    // ── Mobile menu (identical logic to index.html) ───────────────────
+    const hamburger  = document.getElementById('hamburger');
+    const menuClose  = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    mobileMenu.querySelectorAll('.mobile-nav-link, .mobile-social-link').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // ── Announcement ticker (identical to index.html) ─────────────────
+    (function () {
+      const track = document.querySelector('.announcement-track');
+      if (!track) return;
+      let pos = 0;
+      function tick() {
+        pos -= 0.4;
+        if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+        track.style.transform = 'translateX(' + pos + 'px)';
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }());
+
+    // ── Scroll-aware sticky navbar (same logic as index.html) ─────────
+    (function () {
+      const stickyNav       = document.getElementById('sticky-nav');
+      const heroDesktopNav  = document.querySelector('.about-hero nav');
+      const heroHamburger   = document.getElementById('hamburger');
+      const stickyHamburger = document.getElementById('sticky-hamburger');
+      let lastScrollY = 0;
+
+      if (stickyHamburger) {
+        stickyHamburger.addEventListener('click', openMenu);
+      }
+
+      function originalHeaderVisible() {
+        if (heroDesktopNav && window.getComputedStyle(heroDesktopNav).display !== 'none') {
+          return heroDesktopNav.getBoundingClientRect().bottom > 0;
+        }
+        if (heroHamburger) {
+          return heroHamburger.getBoundingClientRect().bottom > 0;
+        }
+        return window.scrollY < 80;
+      }
+
+      window.addEventListener('scroll', function () {
+        const currentY = window.scrollY;
+        if (originalHeaderVisible()) {
+          stickyNav.classList.remove('visible');
+          stickyNav.setAttribute('aria-hidden', 'true');
+        } else if (currentY < lastScrollY) {
+          stickyNav.classList.add('visible');
+          stickyNav.setAttribute('aria-hidden', 'false');
+        } else {
+          stickyNav.classList.remove('visible');
+          stickyNav.setAttribute('aria-hidden', 'true');
+        }
+        lastScrollY = currentY;
+      }, { passive: true });
+    }());
+
+    // ── Generic scroll-reveal (identical to index.html) ───────────────
+    (function () {
+      const items = document.querySelectorAll('.scroll-reveal');
+      if (!items.length) return;
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const delay = entry.target.dataset.delay || 0;
+          if (entry.isIntersecting) {
+            setTimeout(function () { entry.target.classList.add('revealed'); }, Number(delay));
+            if (entry.target.dataset.once) observer.unobserve(entry.target);
+          } else {
+            if (!entry.target.dataset.once) entry.target.classList.remove('revealed');
+          }
+        });
+      }, { threshold: 0.2 });
+      items.forEach(function (el) { observer.observe(el); });
+    }());
+
+    // ── Value + team cards staggered reveal ───────────────────────────
+    (function () {
+      function initStaggerCards(selector) {
+        const cards = document.querySelectorAll(selector);
+        if (!cards.length) return;
+        const obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            const idx = parseInt(entry.target.dataset.cardIndex || '0', 10);
+            setTimeout(function () { entry.target.classList.add('revealed'); }, idx * 90);
+            obs.unobserve(entry.target);
+          });
+        }, { threshold: 0.1 });
+        cards.forEach(function (c) { obs.observe(c); });
+      }
+      initStaggerCards('.value-card');
+      initStaggerCards('.team-card');
+    }());
+
+    // ── Word-by-word scroll reveal (identical pattern to index.html) ──
+    (function () {
+      function wrapWords(el) {
+        var isDark = el.hasAttribute('data-word-dark');
+        var cls = isDark ? 'aword-dark' : 'aword';
+        var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        var nodes = [];
+        var node;
+        while ((node = walker.nextNode())) {
+          if (node.textContent.trim()) nodes.push(node);
+        }
+        nodes.forEach(function (tn) {
+          var parts = tn.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (part) {
+            if (/\S/.test(part)) {
+              var span = document.createElement('span');
+              span.className = cls;
+              span.textContent = part;
+              frag.appendChild(span);
+            } else {
+              frag.appendChild(document.createTextNode(part));
+            }
+          });
+          tn.parentNode.replaceChild(frag, tn);
+        });
+      }
+
+      // Populate headings from aria-label then wrap
+      var wordIds = ['who-headline', 'awards-headline', 'values-headline', 'team-headline'];
+      wordIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (el.hasAttribute('aria-label')) {
+          el.textContent = el.getAttribute('aria-label');
+        }
+        wrapWords(el);
+      });
+
+      var groups = wordIds.map(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return null;
+        var isDark = el.hasAttribute('data-word-dark');
+        var cls = isDark ? 'aword-dark' : 'aword';
+        return { words: Array.from(el.querySelectorAll('.' + cls)), triggers: [] };
+      }).filter(Boolean);
+
+      if (!groups.length) return;
+
+      function calcTriggers() {
+        var scrollY = window.scrollY;
+        groups.forEach(function (g) {
+          g.triggers = g.words.map(function (w, i) {
+            var rect = w.getBoundingClientRect();
+            return (rect.top + scrollY) - window.innerHeight * 0.75 + i * 9;
+          });
+        });
+      }
+
+      function revealWords() {
+        var scrollY = window.scrollY;
+        groups.forEach(function (g) {
+          g.words.forEach(function (w, i) {
+            if (scrollY >= g.triggers[i]) {
+              w.classList.add('lit');
+            } else {
+              w.classList.remove('lit');
+            }
+          });
+        });
+      }
+
+      calcTriggers();
+      window.addEventListener('scroll', revealWords, { passive: true });
+      window.addEventListener('resize', function () { calcTriggers(); revealWords(); });
+      revealWords();
+    }());
+
+    // ── Team card expand (FLIP animation) ─────────────────────────────
+    (function () {
+      const overlay     = document.getElementById('card-overlay');
+      const oImg        = document.getElementById('co-img');
+      const oName       = document.getElementById('co-name');
+      const oRole       = document.getElementById('co-role');
+      const oBio        = document.getElementById('co-bio');
+      const closeBtn    = document.getElementById('co-close');
+
+      function openCard(card) {
+        const img  = card.querySelector('img');
+        const name = card.querySelector('.who-team-name').textContent;
+        const role = card.querySelector('.who-team-role').textContent;
+        const bio  = card.dataset.bio || '';
+        const rect = card.getBoundingClientRect();
+
+        oImg.src            = img ? img.src : '';
+        oName.textContent   = name;
+        oRole.textContent   = role;
+        oBio.textContent    = bio;
+
+        // FLIP: set overlay to start from card's exact position/size
+        const scaleX = rect.width  / window.innerWidth;
+        const scaleY = rect.height / window.innerHeight;
+        const tx     = rect.left + rect.width  / 2 - window.innerWidth  / 2;
+        const ty     = rect.top  + rect.height / 2 - window.innerHeight / 2;
+
+        overlay.style.transition    = 'none';
+        overlay.style.transform     = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scaleX + ',' + scaleY + ')';
+        overlay.style.borderRadius  = '1rem';
+        overlay.style.opacity       = '0';
+        overlay.style.pointerEvents = 'all';
+
+        overlay.offsetHeight; // force reflow
+
+        overlay.style.transition   = 'transform 0.55s cubic-bezier(0.4,0,0.2,1), border-radius 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease';
+        overlay.style.transform    = 'translate(0,0) scale(1)';
+        overlay.style.borderRadius = '0';
+        overlay.style.opacity      = '1';
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeOverlay() {
+        overlay.classList.remove('is-open');
+        overlay.style.transition   = 'transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease';
+        overlay.style.transform    = 'scale(0.94)';
+        overlay.style.opacity      = '0';
+        overlay.style.pointerEvents = 'none';
+        setTimeout(function () {
+          overlay.style.transform    = '';
+          overlay.style.borderRadius = '';
+          overlay.style.opacity      = '';
+          overlay.style.transition   = '';
+          document.body.style.overflow = '';
+        }, 420);
+      }
+
+      document.querySelectorAll('.who-team-card').forEach(function (card) {
+        card.addEventListener('click', function () { openCard(card); });
+      });
+
+      closeBtn.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeOverlay();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeOverlay();
+      });
+    }());
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+
+</body>
+</html>
