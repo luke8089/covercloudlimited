@@ -1,13 +1,62 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — CoverCloud Limited</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ── SEO ─────────────────────────────────────────────── -->
+  <title>Projects &amp; Case Studies | CoverCloud Limited</title>
+  <meta name="description" content="Explore CoverCloud Limited's portfolio of bespoke web apps, mobile solutions, Salesforce implementations, and branding projects built for clients across industries." />
+  <meta name="keywords" content="web development projects, mobile app portfolio, Salesforce implementation, case studies, CoverCloud projects, Kenya IT portfolio" />
+  <meta name="author" content="CoverCloud Limited" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#070e18" />
+  <link rel="canonical" href="https://covercloudlimited.com/projects.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoverCloud Limited" />
+  <meta property="og:title" content="Projects &amp; Case Studies | CoverCloud Limited" />
+  <meta property="og:description" content="Explore CoverCloud Limited's portfolio — bespoke web apps, mobile solutions, Salesforce, and branding built for clients globally." />
+  <meta property="og:url" content="https://covercloudlimited.com/projects.html" />
+  <meta property="og:image" content="https://covercloudlimited.com/images/hero_section.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Projects &amp; Case Studies | CoverCloud Limited" />
+  <meta name="twitter:description" content="Explore CoverCloud Limited's portfolio — bespoke web apps, mobile solutions, Salesforce, and branding built for clients globally." />
+  <meta name="twitter:image" content="https://covercloudlimited.com/images/hero_section.png" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projects & Case Studies — CoverCloud Limited",
+    "url": "https://covercloudlimited.com/projects.html",
+    "description": "Portfolio of bespoke web, mobile, and Salesforce projects by CoverCloud Limited.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CoverCloud Limited",
+      "url": "https://covercloudlimited.com"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="tailwind.css" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="images/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="msapplication-TileImage" content="images/logo.png" />
+  <meta name="msapplication-TileColor" content="#070e18" />
   <style>
     * { font-family: 'Inter', sans-serif; }
 
@@ -219,6 +268,15 @@
       margin-bottom: 1.25rem;
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SDKJDJ5TK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2SDKJDJ5TK');
+  </script>
 </head>
 <body class="overflow-x-hidden">
 
@@ -248,7 +306,7 @@
   <!-- ── Announcement bar ──────────────────────────────────────────── -->
   <div class="announcement-bar py-2.5 flex items-center justify-center gap-3 px-4 sm:px-6">
     <img src="images/logo.png" alt="CoverCloud" class="h-5 w-auto object-contain shrink-0 opacity-90" onerror="this.style.display='none'">
-    <span class="text-xs font-semibold tracking-widest text-white/80 uppercase">CoverCloud Limited</span>
+    <span class="text-xs font-semibold tracking-widest text-white/80 uppercase brand-flip">CoverCloud Limited</span>
   </div>
 
   <!-- ── Projects Hero ─────────────────────────────────────────────── -->
@@ -281,12 +339,12 @@
     </button>
 
     <!-- Brand / Logo -->
-    <div class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30">
+    <a href="index.html" class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30 block" style="text-decoration:none">
       <div class="brand-title-wrap">
         <h1 class="brand-title font-black leading-none tracking-tight">CoverCloud</h1>
       </div>
       <p class="text-zinc-400 text-xs sm:text-sm font-light mt-1 tracking-wide">Growing with you.</p>
-    </div>
+    </a>
 
     <!-- Bottom content -->
     <div class="absolute bottom-0 left-0 right-0 z-30 px-4 sm:px-7 lg:px-8 pb-8 sm:pb-12 lg:pb-14">
@@ -540,8 +598,10 @@
         <div class="scroll-reveal" data-delay="200" data-once="true">
           <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Get in touch</p>
           <ul class="space-y-3">
-            <li><a href="mailto:hello@covercloud.com" class="footer-link">hello@covercloud.com</a></li>
-            <li><a href="tel:+1234567890" class="footer-link">+1 234 567 890</a></li>
+            <li><a href="mailto:info@covercloudlimited.com" class="footer-link">info@covercloudlimited.com</a></li>
+            <li><a href="mailto:sales@covercloudlimited.com" class="footer-link">sales@covercloudlimited.com</a></li>
+            <li><a href="tel:+254701998579" class="footer-link">+254 701 998 579</a></li>
+            <li><span class="footer-link" style="cursor:default">Nairobi, Kenya</span></li>
           </ul>
         </div>
         <div class="scroll-reveal" data-delay="300" data-once="true">
@@ -689,6 +749,62 @@
     }());
 
     document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- ── Atmosphere.TV Floating Partner Badge ──────────────────────── -->
+  <div class="atv-float">
+    <div class="atv-bubble" id="atv-bubble">
+      <button class="atv-bubble__close" id="atv-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="atv-bubble__header">
+        <div class="atv-bubble__icon">
+          <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+        </div>
+        <div>
+          <span class="atv-bubble__brand">ATMOSPHERE<span>TV</span></span>
+          <span class="atv-bubble__partner">Proud Partner</span>
+        </div>
+      </div>
+      <p class="atv-bubble__title">Atmosphere TV Improves the Way Businesses Connect with Customers</p>
+      <p class="atv-bubble__body">We believe in spreading positivity and empowerment through entertainment.</p>
+      <a href="https://www.atmosphere.tv/partner/cover-cloud-limited/" target="_blank" rel="noopener noreferrer" class="atv-bubble__cta">Get started as a partner →</a>
+    </div>
+    <span class="atv-label">Featured Partner</span>
+    <a class="atv-badge" id="atv-badge"
+       href="https://www.atmosphere.tv/partner/cover-cloud-limited/"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Atmosphere.TV — CoverCloud Partner">
+      <div class="atv-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+      </div>
+      <div class="atv-text">
+        <span class="atv-text-top">ATMOSPHERE<span>TV</span></span>
+        <span class="atv-text-bottom">Proud Partner</span>
+      </div>
+    </a>
+  </div>
+  <script>
+    (function(){
+      var floatEl = document.querySelector('.atv-float');
+      var badge   = document.getElementById('atv-badge');
+      var bubble  = document.getElementById('atv-bubble');
+      if (!floatEl || !badge || !bubble) return;
+      var timer = null;
+      var closeBtn = document.getElementById('atv-close');
+      function closeBubble(){ bubble.classList.remove('open'); }
+      function startTimer(){ clearTimeout(timer); timer = setTimeout(closeBubble, 5000); }
+      function openBubble(e){ if (e) e.preventDefault(); bubble.classList.add('open'); startTimer(); }
+      if (closeBtn){ closeBtn.addEventListener('click', function(e){ e.stopPropagation(); clearTimeout(timer); closeBubble(); }); }
+      bubble.addEventListener('mouseenter', function(){ clearTimeout(timer); });
+      bubble.addEventListener('mouseleave', startTimer);
+      floatEl.addEventListener('mouseenter', openBubble);
+      badge.addEventListener('click', openBubble);
+      document.addEventListener('click', function(e){
+        if (!e.target.closest('.atv-float')){ clearTimeout(timer); closeBubble(); }
+      });
+    }());
   </script>
 </body>
 </html>

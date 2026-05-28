@@ -1,16 +1,67 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CoverCloud Limited</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
+  <!-- ── SEO ─────────────────────────────────────────────── -->
+  <!-- IMPORTANT: Replace "https://covercloudlimited.com" below with your real domain before going live -->
+  <title>CoverCloud Limited | Award-Winning IT Development &amp; Consulting</title>
+  <meta name="description" content="CoverCloud Limited is an award-winning East African IT development &amp; consulting company. Web, Mobile, Cloud &amp; Salesforce solutions delivered globally. Book a meeting today." />
+  <meta name="keywords" content="IT development, IT consulting, web development Kenya, mobile app development, Salesforce consulting, cloud solutions, East Africa, CoverCloud" />
+  <meta name="author" content="CoverCloud Limited" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#070e18" />
+  <link rel="canonical" href="https://covercloudlimited.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoverCloud Limited" />
+  <meta property="og:title" content="CoverCloud Limited | Award-Winning IT Development &amp; Consulting" />
+  <meta property="og:description" content="Award-winning East African IT development &amp; consulting company delivering Web, Mobile, Cloud &amp; Salesforce solutions globally." />
+  <meta property="og:url" content="https://covercloudlimited.com/" />
+  <meta property="og:image" content="https://covercloudlimited.com/images/hero_section.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CoverCloud Limited | Award-Winning IT Development &amp; Consulting" />
+  <meta name="twitter:description" content="Award-winning East African IT development &amp; consulting company delivering Web, Mobile, Cloud &amp; Salesforce solutions globally." />
+  <meta name="twitter:image" content="https://covercloudlimited.com/images/hero_section.png" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CoverCloud Limited",
+    "url": "https://covercloudlimited.com",
+    "logo": "https://covercloudlimited.com/images/logo.png",
+    "description": "Award-winning East African IT development and consulting company with a global network of solution experts and architects.",
+    "email": "info@covercloudlimited.com",
+    "telephone": "+254701998579",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Nairobi",
+      "addressCountry": "KE"
+    },
+    "sameAs": []
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="tailwind.css" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="images/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="msapplication-TileImage" content="images/logo.png" />
+  <meta name="msapplication-TileColor" content="#070e18" />
   <style>
     * { font-family: 'Inter', sans-serif; }
 
@@ -144,6 +195,15 @@
       .sticky-hamburger { display: flex; }
     }
   </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SDKJDJ5TK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2SDKJDJ5TK');
+  </script>
 </head>
 <body class="text-white overflow-x-hidden">
 
@@ -172,7 +232,7 @@
   <!-- ── Announcement Bar ───────────────────────────────────────────── -->
   <div class="announcement-bar py-2.5 flex items-center justify-center gap-3 px-4 sm:px-6">
     <img src="images/logo.png" alt="CoverCloud" class="h-5 w-auto object-contain shrink-0 opacity-90" onerror="this.style.display='none'">
-    <span class="text-xs font-semibold tracking-widest text-white/80 uppercase">CoverCloud Limited</span>
+    <span class="text-xs font-semibold tracking-widest text-white/80 uppercase brand-flip">CoverCloud Limited</span>
   </div>
 
   <!-- ── Hero Section ──────────────────────────────────────────────── -->
@@ -184,6 +244,7 @@
         src="images/hero_section.png"
         alt=""
         class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center"
+        fetchpriority="high"
         onerror="this.style.display='none'"
       />
       <!-- Horizontal vignette -->
@@ -214,7 +275,7 @@
     </button>
 
     <!-- ── Brand / Logo (top-left) ──────────────────────────────── -->
-    <div class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30">
+    <a href="index.html" class="absolute top-4 left-4 sm:top-7 sm:left-7 lg:top-8 lg:left-8 z-30 block" style="text-decoration:none">
       <div class="brand-title-wrap">
         <h1 class="brand-title font-black leading-none tracking-tight">
           CoverCloud
@@ -223,7 +284,7 @@
       <p class="text-zinc-400 text-xs sm:text-sm font-light mt-1 tracking-wide">
         Growing with you.
       </p>
-    </div>
+    </a>
 
     <!-- ── Bottom content (hero copy + projects card) ────────────── -->
     <!--
@@ -247,12 +308,12 @@
         <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6 hero-fade-up hero-fade-up--3">
           CoverCloud Limited is an IT development & consulting company with a global network of solution experts and architects.
         </p>
-        <button
-          type="button"
+        <a href="#contact"
           class="cta-btn px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm hero-fade-up hero-fade-up--4"
+          style="text-decoration:none;display:inline-block"
         >
           Book a meeting
-        </button>
+        </a>
       </div>
 
       <!-- Right: projects card — hidden below lg -->
@@ -349,7 +410,7 @@
           <div id="about-cards" class="flex flex-col sm:flex-row gap-4 mt-12 lg:mt-16">
 
             <!-- Testimonial card -->
-            <div class="about-card about-card--testimonial flex flex-col justify-between sm:w-72 lg:w-80 sm:shrink-0">
+            <div class="about-card about-card--testimonial flex flex-col justify-between sm:w-72 lg:w-80 sm:shrink-0 scroll-reveal" data-delay="0" data-once="true">
               <div>
                 <!-- 5 stars -->
                 <div class="flex items-center gap-0.5 mb-5" aria-label="5 out of 5 stars">
@@ -366,7 +427,7 @@
               <!-- Author -->
               <div class="flex items-center gap-3 mt-auto pt-5 border-t border-zinc-100">
                 <div class="w-11 h-11 rounded-xl overflow-hidden bg-zinc-100 shrink-0">
-                  <img src="images/denis.jpg" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                  <img src="images/logo.png" alt="CoverCloud Limited" class="w-full h-full object-contain p-1.5" onerror="this.style.display='none'">
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-zinc-900">Denis Meritei Luke</p>
@@ -376,7 +437,7 @@
             </div>
 
             <!-- Project preview card -->
-            <div class="about-card-clip flex-1">
+            <div class="about-card-clip flex-1 scroll-reveal" data-delay="150" data-once="true">
             <div class="about-card about-card--project flex flex-col h-full">
               <div class="flex justify-between items-start">
                 <div class="w-44 h-44 sm:w-48 sm:h-44 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
@@ -422,10 +483,10 @@
         <!-- Heading + subtext -->
         <div class="flex-1">
           <h2 id="benefits-headline" class="text-2xl sm:text-3xl lg:text-[2rem] xl:text-4xl font-bold leading-snug mb-6">
-            <span class="text-zinc-900">We deliver exceptional Web, Mobile, and Cloud solutions built for growth,</span><span class="text-zinc-300"> embracing the latest technologies and industry trends.</span>
+            <span class="text-zinc-900">We deliver exceptional Managed IT, Web, Mobile, and Cloud solutions built for growth,</span><span class="text-zinc-300"> embracing the latest technologies and industry trends.</span>
           </h2>
           <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-lg">
-            Our clients come to us because they want a reliable business partner that delivers credible solutions exceeding expectations and improves real value for their customers.
+            From IT infrastructure maintenance for institutions to bespoke software and web development — our clients choose CoverCloud for reliable, credible solutions that deliver real value.
           </p>
         </div>
       </div>
@@ -434,7 +495,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 
         <!-- Card 1: Flexible pricing -->
-        <div class="benefit-card">
+        <div class="benefit-card scroll-reveal" data-delay="0" data-once="true">
           <div>
             <div class="flex items-center gap-2 mb-2">
               <div class="benefit-icon-box">
@@ -442,16 +503,16 @@
               </div>
               <h3 class="font-bold text-zinc-900 text-sm">Flexible pricing</h3>
             </div>
-            <p class="benefit-desc">Clear packages for businesses at every stage of growth.</p>
+            <p class="benefit-desc">Clear packages for institutions and businesses at every stage of growth.</p>
           </div>
           <!-- Stat + slider -->
           <div class="mt-auto">
             <p class="text-xs text-zinc-400 mb-1">Starting from</p>
-            <p class="text-3xl font-black text-zinc-900 mb-1">KSh 30,000</p>
+            <p class="text-3xl font-black text-zinc-900 mb-1">KSh 20,000</p>
             <input
               type="range"
               class="benefit-slider"
-              min="30000" max="1500000" value="30000"
+              min="20000" max="1500000" value="20000"
               aria-label="Pricing range"
             />
             <div class="flex justify-between text-xs text-zinc-400 mt-2">
@@ -462,7 +523,7 @@
         </div>
 
         <!-- Card 2: Priority support -->
-        <div class="benefit-card benefit-card--img">
+        <div class="benefit-card benefit-card--img scroll-reveal" data-delay="110" data-once="true">
           <div>
             <div class="flex items-center gap-2 mb-2">
               <div class="benefit-icon-box">
@@ -475,7 +536,7 @@
         </div>
 
         <!-- Card 3: Fast turnarounds -->
-        <div class="benefit-card">
+        <div class="benefit-card scroll-reveal" data-delay="220" data-once="true">
           <div>
             <div class="flex items-center gap-2 mb-2">
               <div class="benefit-icon-box">
@@ -572,56 +633,57 @@
       <!-- Cards row — staggered heights -->
       <div id="work-cards" class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
 
-        <!-- Card 1: Korten (tallest) -->
+        <!-- Card 1: St Anne's Girls School (tallest) -->
         <div class="work-proj-item block group cursor-pointer"
-          data-title="Korten"
-          data-tags="Design"
-          data-desc="Turning tradition into a modern brand — a bold visual identity that honours heritage while speaking directly to a modern audience.">
+          data-title="St Anne's Girls Secondary School"
+          data-tags="Web Development · Design"
+          data-desc="A fully custom school website built to connect students, parents, and staff — developed on Laravel 4.2 (PHP) with a responsive Bootstrap frontend. Live at stannesgirlsschool.sc.ke.">
           <div class="work-img-korten relative rounded-2xl overflow-hidden work-card-bg-1">
-            <img src="projects/korten.jpg" alt="Korten" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="St Anne's Girls Secondary School" class="w-full h-full object-cover object-center" loading="lazy">
             <div class="absolute top-3 left-3 flex gap-1.5">
+              <span class="work-tag">Web Development</span>
               <span class="work-tag">Design</span>
             </div>
           </div>
           <div class="mt-4">
-            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Korten</h3>
-            <p class="text-zinc-400 text-sm mt-0.5">Turning tradition into a modern brand</p>
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">St Anne's Girls School</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">A school website built to serve the community</p>
           </div>
         </div>
 
-        <!-- Card 2: Everly (offset down) -->
+        <!-- Card 2: Chill Sport (offset down) -->
         <div class="work-proj-item block group cursor-pointer md:pt-20 lg:pt-28"
-          data-title="Everly"
-          data-tags="Branding · Development"
-          data-desc="A lifestyle brand with a sporting edge — identity, web presence, and campaign assets built to convert browsers into loyal customers.">
+          data-title="Chill Sport — Online Food Ordering"
+          data-tags="Mobile App · Web App"
+          data-desc="A complete online food ordering platform for Chill Sport Restaurant — Android and iOS apps with real-time delivery tracking, Mpesa/card payments, and a full restaurant management web panel.">
           <div class="work-img-everly relative rounded-2xl overflow-hidden work-card-bg-2">
-            <img src="projects/everly.jpg" alt="Everly" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Chill Sport Online Ordering" class="w-full h-full object-cover object-center" loading="lazy">
             <div class="absolute top-3 left-3 flex gap-1.5">
-              <span class="work-tag">Branding</span>
-              <span class="work-tag">Development</span>
+              <span class="work-tag">Mobile App</span>
+              <span class="work-tag">Web App</span>
             </div>
           </div>
           <div class="mt-4">
-            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Everly</h3>
-            <p class="text-zinc-400 text-sm mt-0.5">A lifestyle brand with a sporting edge</p>
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Chill Sport</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">Online food ordering with real-time delivery tracking</p>
           </div>
         </div>
 
-        <!-- Card 3: Peni (slight offset) -->
+        <!-- Card 3: Hospital HMIS (slight offset) -->
         <div class="work-proj-item block group cursor-pointer md:pt-10 lg:pt-14"
-          data-title="Peni"
-          data-tags="Design · Development"
-          data-desc="A travel brand built to inspire — from visual identity to a fully custom web experience that puts destinations front and centre.">
+          data-title="Hospital Management Information System"
+          data-tags="Software Development · Web App"
+          data-desc="A comprehensive web-based Hospital Management Information System spanning OPD, pharmacy, laboratory, billing, radiology, and more — unifying an entire multi-specialist hospital's operations in one platform.">
           <div class="work-img-peni relative rounded-2xl overflow-hidden work-card-bg-3">
-            <img src="projects/peni.jpg" alt="Peni" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Hospital Management Information System" class="w-full h-full object-cover object-center" loading="lazy">
             <div class="absolute top-3 left-3 flex gap-1.5">
-              <span class="work-tag">Design</span>
-              <span class="work-tag">Development</span>
+              <span class="work-tag">Software Dev</span>
+              <span class="work-tag">Web App</span>
             </div>
           </div>
           <div class="mt-4">
-            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Peni</h3>
-            <p class="text-zinc-400 text-sm mt-0.5">A travel brand built to inspire</p>
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Hospital HMIS</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">A full hospital management system from OPD to billing</p>
           </div>
         </div>
 
@@ -801,7 +863,7 @@
           <!-- Author -->
           <div id="testi-author" class="flex items-center gap-3 mb-10 transition-opacity duration-300 scroll-reveal" data-delay="300" data-once="true">
             <div class="w-12 h-12 rounded-xl bg-zinc-200 overflow-hidden shrink-0">
-              <img id="testi-photo" src="images/denis.jpg" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+              <img id="testi-photo" src="images/image%201.png" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
             </div>
             <div>
               <p id="testi-name" class="font-semibold text-zinc-900">Denis Meritei Luke</p>
@@ -866,7 +928,7 @@
           </h2>
           <p class="text-zinc-400 text-lg font-medium mb-6 scroll-reveal" data-delay="120" data-once="true">Plans that fit your stage</p>
           <p class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-sm mb-10 scroll-reveal" data-delay="180" data-once="true">
-            No vague quotes. No surprises. Clear options for Web, Mobile, Salesforce, and full-service IT solutions, designed to match where you are and where you're going.
+            No vague quotes. No surprises. Clear options for Managed IT Institution Packages, Web &amp; Mobile Development, and custom full-service IT solutions — designed to match where you are and where you're going.
           </p>
           <!-- Decorative plus markers -->
           <div class="hidden lg:flex justify-between mt-4 text-zinc-300 text-xl select-none" aria-hidden="true">
@@ -878,51 +940,52 @@
       <!-- 3 pricing columns -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
 
-        <!-- Mini -->
+        <!-- Institution Package -->
         <div class="pricing-tier-card scroll-reveal slide-left" data-delay="80" data-once="true">
           <div class="pb-6">
-            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">Mini</p></div>
+            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">Institution Package</p></div>
             <div class="pricing-row">
-              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Need the essentials?</h3>
-              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll set you up.</p>
+              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Managed IT for schools &amp; institutions.</h3>
+              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We handle it all.</p>
+            </div>
+            <div class="pricing-row">
+              <p class="mb-1 flex items-baseline gap-1">
+                <span class="text-zinc-400 text-sm font-medium">KSh</span>
+                <span class="text-4xl font-black text-zinc-900 tracking-tight">20,000</span>
+              </p>
+              <p class="text-xs text-zinc-400 mb-4">per 3 months · ex. VAT</p>
+            </div>
+            <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Get the package</a></div>
+          </div>
+          <div class="border-t border-zinc-200 pt-6 space-y-3 pricing-row">
+            <p class="text-sm text-zinc-500">IT Infrastructure Maintenance</p>
+            <p class="text-sm text-zinc-500">Computer Maintenance &amp; Repair</p>
+            <p class="text-sm text-zinc-500">Website Maintenance + SEO</p>
+            <p class="text-sm text-zinc-500">Consultancy</p>
+          </div>
+        </div>
+
+        <!-- Development -->
+        <div class="pricing-tier-card scroll-reveal" data-delay="200" data-once="true">
+          <div class="pb-6">
+            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">Development</p></div>
+            <div class="pricing-row">
+              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Ready to build something great?</h3>
+              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll make it happen.</p>
             </div>
             <div class="pricing-row">
               <p class="mb-5 flex items-baseline gap-1">
-                <span class="text-zinc-400 text-sm font-medium">KSh</span>
-                <span class="text-4xl font-black text-zinc-900 tracking-tight">60,000</span>
+                <span class="text-zinc-400 text-sm font-medium">From KSh</span>
+                <span class="text-4xl font-black text-zinc-900 tracking-tight">80,000</span>
               </p>
             </div>
             <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Start your project</a></div>
           </div>
           <div class="border-t border-zinc-200 pt-6 space-y-3 pricing-row">
-            <p class="text-sm text-zinc-500">Web App Design &amp; Development</p>
-            <p class="text-sm text-zinc-500">UX + UI Design</p>
-            <p class="text-sm text-zinc-500">SEO &amp; Search Engine Submissions</p>
-            <p class="text-sm text-zinc-500">Database Management</p>
-          </div>
-        </div>
-
-        <!-- Premium -->
-        <div class="pricing-tier-card scroll-reveal" data-delay="200" data-once="true">
-          <div class="pb-6">
-            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">Premium</p></div>
-            <div class="pricing-row">
-              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Ready to scale up?</h3>
-              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll take you further.</p>
-            </div>
-            <div class="pricing-row">
-              <p class="mb-5 flex items-baseline gap-1">
-                <span class="text-zinc-400 text-sm font-medium">KSh</span>
-                <span class="text-4xl font-black text-zinc-900 tracking-tight">80,000</span>
-              </p>
-            </div>
-            <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Let's do it together</a></div>
-          </div>
-          <div class="border-t border-zinc-200 pt-6 space-y-3 pricing-row">
-            <p class="text-sm text-zinc-500">Everything in Mini</p>
-            <p class="text-sm text-zinc-500">Mobile App Development (iOS &amp; Android)</p>
-            <p class="text-sm text-zinc-500">Salesforce Implementation &amp; Integration</p>
-            <p class="text-sm text-zinc-500">E-commerce Development</p>
+            <p class="text-sm text-zinc-500">Web Design, Development &amp; Maintenance</p>
+            <p class="text-sm text-zinc-500">Software &amp; Mobile App Development</p>
+            <p class="text-sm text-zinc-500">Cloud Computing &amp; Networking</p>
+            <p class="text-sm text-zinc-500">System Audits &amp; Consultancy</p>
           </div>
         </div>
 
@@ -975,7 +1038,7 @@
             <p class="text-zinc-400 text-sm leading-relaxed mb-6">Reach out anytime. We're happy to answer any questions before you commit to working together.</p>
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-zinc-200 shrink-0">
-                <img src="images/denis.jpg" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <img src="images/image%201.png" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
               </div>
               <div>
                 <p class="font-semibold text-zinc-900 text-sm">Denis Meritei Luke</p>
@@ -999,7 +1062,7 @@
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">We offer Web App Design & Development, Mobile App Development (iOS, Android & Hybrid), Salesforce Implementation, Integration & Development, E-commerce Solutions, SEO, Multimedia, Database Management, and Software Development.</div>
+            <div class="faq-answer">We offer IT Infrastructure Maintenance, Computer Maintenance &amp; Repair, Website Maintenance, Consultancy, Web Design &amp; Development, Networking, Software &amp; Mobile App Development, Cloud Computing, System Audits, and Computers &amp; Peripherals sales. Our Institution Package bundles managed IT services for schools and organisations at Ksh 20,000 per 3-month term.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="150" data-once="true">
@@ -1011,6 +1074,17 @@
               </span>
             </button>
             <div class="faq-answer">Yes. CoverCloud Limited is East African based but operates globally. We deliver Web, Mobile, and Cloud solutions to clients across the world through our global network of solution experts and architects.</div>
+          </div>
+
+          <div class="faq-item scroll-reveal" data-delay="215" data-once="true">
+            <button type="button" class="faq-question">
+              What is the Institution Package?
+              <span class="faq-icon" aria-hidden="true">
+                <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer">Our Institution Package is a 3-month managed IT bundle designed specifically for schools, colleges, and organisations. At Ksh 20,000 (ex. VAT) per term, it covers IT Infrastructure Maintenance (network troubleshooting, upgrades &amp; security), Computer Maintenance &amp; Repair (routine hardware/software checkups), Website Maintenance (including SEO), and IT Consultancy. Contact us at sales@covercloudlimited.com to get started.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="220" data-once="true">
@@ -1102,7 +1176,7 @@
             <!-- Article 1: tall portrait (starts at top) -->
             <a href="#" class="block group scroll-reveal slide-left" data-delay="120" data-once="true">
               <div class="insight-img-tall rounded-2xl overflow-hidden insight-img-scale">
-                <img src="articles/article-1.jpg" alt="Brand Identity" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Bespoke Web Apps" class="w-full h-full object-cover">
               </div>
               <h3 class="font-bold text-zinc-900 text-base mt-4 leading-snug group-hover:text-[#29ABE2] transition-colors">
                 Why Bespoke Web Apps Outperform Off-the-Shelf Solutions
@@ -1112,7 +1186,7 @@
             <!-- Article 2: shorter, offset down -->
             <a href="#" class="block group pt-14 lg:pt-20 scroll-reveal slide-right" data-delay="240" data-once="true">
               <div class="insight-img-short rounded-2xl overflow-hidden insight-img-scale">
-                <img src="articles/article-2.jpg" alt="Storytelling in Branding" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Salesforce Integration" class="w-full h-full object-cover">
               </div>
               <h3 class="font-bold text-zinc-900 text-base mt-4 leading-snug group-hover:text-[#29ABE2] transition-colors">
                 How Salesforce Integration Transforms Business Operations
@@ -1134,7 +1208,7 @@
 
         <!-- "Contact" label -->
         <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-2">
-          <span class="inline-flex items-center gap-2 text-sm font-semibold" style="color: var(--blue)">
+          <span class="inline-flex items-center gap-2 text-sm font-semibold scroll-reveal" data-delay="0" data-once="true" style="color: var(--blue)">
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 10l9-7 9 7v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10z"/>
               <polyline stroke-linecap="round" stroke-linejoin="round" points="9 22 9 12 15 12 15 22"/>
@@ -1146,9 +1220,9 @@
         <!-- Heading + description -->
         <div class="flex-1">
           <h2 id="contact-headline" data-word-dark class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black text-white leading-tight mb-8">
-            Whether you need a web app, a mobile solution, Salesforce expertise, or a full-service IT partner, CoverCloud is ready.
+            Whether you need managed IT, a web or mobile solution, or a full-service IT partner, CoverCloud is ready.
           </h2>
-          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl">
+          <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl scroll-reveal" data-delay="120" data-once="true">
             Reach out today and you'll get a clear plan, honest advice, and a team that cares about your outcome as much as you do. Getting started is easy and we're with you every step of the way.
           </p>
         </div>
@@ -1160,32 +1234,81 @@
       <!-- Form (aligned to right column) -->
       <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 lg:gap-20">
         <div class="sm:w-36 lg:w-44 shrink-0"></div>
-        <form class="flex-1 space-y-10" onsubmit="return false">
 
-          <!-- Name -->
-          <div class="contact-field">
-            <label class="contact-label" for="cf-name">Name *</label>
-            <input id="cf-name" type="text" placeholder="Jane Foster" class="contact-input" required />
+        <div class="flex-1">
+          <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+            <input type="hidden" name="subject" value="New enquiry from CoverCloud website">
+            <input type="hidden" name="redirect" value="">
+            <input type="checkbox" name="botcheck" class="cf-honeypot" tabindex="-1" aria-hidden="true">
+
+            <!-- Name -->
+            <div class="cf-wrap scroll-reveal" data-delay="80" data-once="true">
+              <div class="cf-field">
+                <input id="cf-name" name="name" type="text" class="cf-input" placeholder=" "
+                       required autocomplete="name" maxlength="100" />
+                <label for="cf-name" class="cf-label">Your name</label>
+                <span class="cf-line"></span>
+                <span class="cf-icon" id="cf-name-icon" aria-hidden="true"></span>
+              </div>
+              <p class="cf-hint" id="cf-name-hint"></p>
+            </div>
+
+            <!-- Email -->
+            <div class="cf-wrap scroll-reveal" data-delay="180" data-once="true">
+              <div class="cf-field">
+                <input id="cf-email" name="email" type="email" class="cf-input" placeholder=" "
+                       required autocomplete="email" maxlength="254" />
+                <label for="cf-email" class="cf-label">Email address</label>
+                <span class="cf-line"></span>
+                <span class="cf-icon" id="cf-email-icon" aria-hidden="true"></span>
+              </div>
+              <p class="cf-hint" id="cf-email-hint"></p>
+            </div>
+
+            <!-- Message -->
+            <div class="cf-wrap scroll-reveal" data-delay="280" data-once="true">
+              <div class="cf-field">
+                <textarea id="cf-project" name="message" class="cf-input cf-textarea" placeholder=" "
+                          required maxlength="2000" rows="1"></textarea>
+                <label for="cf-project" class="cf-label">Project &amp; goals</label>
+                <span class="cf-line"></span>
+              </div>
+              <div class="flex justify-between items-start">
+                <p class="cf-hint" id="cf-project-hint"></p>
+                <span class="cf-counter" id="cf-counter">0 / 2000</span>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="scroll-reveal" data-delay="380" data-once="true" style="margin-top:3rem">
+              <button type="submit" id="contact-submit-btn" class="contact-submit cf-btn">
+                <span class="cf-btn-label">Send message</span>
+                <span class="cf-btn-arrow" aria-hidden="true">→</span>
+                <span class="cf-btn-spinner" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="9" stroke-dasharray="56" stroke-dashoffset="14" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+              <p id="contact-error" class="cf-form-error hidden" role="alert"></p>
+            </div>
+
+          </form>
+
+          <!-- Success state (shown after send) -->
+          <div id="cf-success" class="cf-success" aria-live="polite">
+            <div class="cf-success__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <p class="cf-success__title">Message sent!</p>
+            <p class="cf-success__body">We'll review your project and get back to you within 24 hours.</p>
+            <button type="button" id="cf-send-another" class="cf-success__reset">Send another message</button>
           </div>
-
-          <!-- Email -->
-          <div class="contact-field">
-            <label class="contact-label" for="cf-email">E-mail *</label>
-            <input id="cf-email" type="email" placeholder="you@example.com" class="contact-input" required />
-          </div>
-
-          <!-- Project -->
-          <div class="contact-field">
-            <label class="contact-label" for="cf-project">Project and goals *</label>
-            <input id="cf-project" type="text" placeholder="Tell us more" class="contact-input" required />
-          </div>
-
-          <!-- Submit -->
-          <button type="submit" class="contact-submit">
-            Send message <span aria-hidden="true">→</span>
-          </button>
-
-        </form>
+        </div>
       </div>
 
     </div>
@@ -1201,7 +1324,7 @@
         <!-- Brand -->
         <div class="lg:col-span-1 scroll-reveal" data-delay="0" data-once="true">
           <img src="images/logo.png" alt="CoverCloud Limited" class="h-10 w-auto object-contain mb-4">
-          <p class="text-zinc-400 text-sm leading-relaxed">Growing with you. Award-winning IT development & consulting. Web, Mobile, Cloud & Salesforce solutions for businesses worldwide.</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Growing with you. IT development &amp; consulting company based in Nairobi, Kenya. Managed IT, Web, Mobile, Cloud, Networking &amp; Software solutions for institutions and businesses worldwide.</p>
         </div>
 
         <!-- Navigation -->
@@ -1220,8 +1343,10 @@
         <div class="scroll-reveal" data-delay="200" data-once="true">
           <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Get in touch</p>
           <ul class="space-y-3">
-            <li><a href="mailto:hello@covercloud.com" class="footer-link">hello@covercloud.com</a></li>
-            <li><a href="tel:+1234567890" class="footer-link">+1 234 567 890</a></li>
+            <li><a href="mailto:info@covercloudlimited.com" class="footer-link">info@covercloudlimited.com</a></li>
+            <li><a href="mailto:sales@covercloudlimited.com" class="footer-link">sales@covercloudlimited.com</a></li>
+            <li><a href="tel:+254701998579" class="footer-link">+254 701 998 579</a></li>
+            <li><span class="footer-link" style="cursor:default">Nairobi, Kenya</span></li>
           </ul>
         </div>
 
@@ -1286,7 +1411,7 @@
     // ── Testimonial switcher ────────────────────────────────
     (function () {
       const testimonials = [
-        { quote: '"Working with CoverCloud felt effortless. The final result wasn\'t just a website, it was a solution we\'re proud to show off."', name: 'Denis Meritei Luke', title: 'CEO at CoverCloud Limited', photo: 'images/denis.jpg' },
+        { quote: '"Working with CoverCloud felt effortless. The final result wasn\'t just a website, it was a solution we\'re proud to show off."', name: 'Denis Meritei Luke', title: 'CEO at CoverCloud Limited', photo: 'images/image%201.png' },
         { quote: '"CoverCloud delivered a brand system that exceeded every expectation. Our conversion rate jumped 40% within the first month of launch."', name: 'James Korten', title: 'Founder at Korten Studio', photo: '' },
         { quote: '"The team at CoverCloud understood our vision immediately. Smooth process, sharp results, and genuinely great people to work with."', name: 'Priya Everly', title: 'CMO at Everly', photo: '' },
         { quote: '"Best investment we made this year. Our new brand identity opened doors with enterprise clients that felt out of reach before."', name: 'Marcus Peni', title: 'CEO at Peni Labs', photo: '' },
@@ -1352,7 +1477,7 @@
         const min = +slider.min, max = +slider.max, val = +slider.value;
         const pct = ((val - min) / (max - min) * 100).toFixed(1) + '%';
         slider.style.setProperty('--fill', pct);
-        const label = slider.closest('.benefit-card').querySelector('.text-3xl');
+        const label = slider.closest('.benefit-card').querySelector('.text-3xl.font-black');
         if (label) label.textContent = 'KSh ' + Number(val).toLocaleString();
       }
       slider.addEventListener('input', updateFill);
@@ -1385,14 +1510,10 @@
       }
 
       function originalHeaderVisible() {
-        // Desktop: check the hero inline nav
-        if (heroDesktopNav && window.getComputedStyle(heroDesktopNav).display !== 'none') {
-          return heroDesktopNav.getBoundingClientRect().bottom > 0;
-        }
-        // Mobile: check the hamburger button in the hero
-        if (heroHamburger) {
-          return heroHamburger.getBoundingClientRect().bottom > 0;
-        }
+        // Hero is position:sticky so getBoundingClientRect always returns positive —
+        // use scrollY vs hero height instead
+        const hero = document.querySelector('.hero-section');
+        if (hero) return window.scrollY < hero.offsetHeight * 0.5;
         return window.scrollY < 80;
       }
 
@@ -1705,6 +1826,247 @@
 
       tickClock();
       setInterval(tickClock, 1000);
+    }());
+
+    // ── Contact form: UX + anti-spam ─────────────────────────────────
+    (function(){
+      var form    = document.getElementById('contact-form');
+      var btn     = document.getElementById('contact-submit-btn');
+      var errEl   = document.getElementById('contact-error');
+      var successEl = document.getElementById('cf-success');
+      var sendAnother = document.getElementById('cf-send-another');
+      if (!form) return;
+
+      var loadedAt = Date.now();
+      var RATE_KEY = 'cc_cf_times', COOLDOWN = 5*60*1000, MAX_SENDS = 3;
+      function getLog(){ try{ return JSON.parse(sessionStorage.getItem(RATE_KEY)||'[]'); }catch(e){ return []; } }
+      function saveLog(a){ try{ sessionStorage.setItem(RATE_KEY,JSON.stringify(a)); }catch(e){} }
+
+      // ── Helpers ───────────────────────────────────────────────────
+      function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+      function isSpammy(t){
+        if(/https?:\/\//i.test(t)) return true;
+        if(/\b(viagra|casino|crypto invest|binary option|make money fast|free prize|click here|buy followers|OnlyFans)\b/i.test(t)) return true;
+        if(t.length>8 && (t.match(/[A-Z]/g)||[]).length > t.length*0.65) return true;
+        return false;
+      }
+
+      // ── Field refs ────────────────────────────────────────────────
+      var fName    = document.getElementById('cf-name');
+      var fEmail   = document.getElementById('cf-email');
+      var fMsg     = document.getElementById('cf-project');
+      var nameIcon = document.getElementById('cf-name-icon');
+      var emailIcon= document.getElementById('cf-email-icon');
+      var nameHint = document.getElementById('cf-name-hint');
+      var emailHint= document.getElementById('cf-email-hint');
+      var msgHint  = document.getElementById('cf-project-hint');
+      var counter  = document.getElementById('cf-counter');
+
+      // ── Field state helpers ───────────────────────────────────────
+      function setValid(input, icon){
+        input.classList.add('cf-valid');
+        input.classList.remove('cf-invalid');
+        if(icon){ icon.textContent = '✓'; }
+      }
+      function setInvalid(input, icon, hintEl, msg){
+        input.classList.add('cf-invalid');
+        input.classList.remove('cf-valid');
+        if(icon){ icon.textContent = '!'; }
+        if(hintEl){ hintEl.textContent = msg; hintEl.classList.add('show'); }
+      }
+      function clearState(input, icon, hintEl){
+        input.classList.remove('cf-valid','cf-invalid');
+        if(icon){ icon.textContent = ''; }
+        if(hintEl){ hintEl.textContent = ''; hintEl.classList.remove('show'); }
+      }
+
+      // ── Inline validation on blur ─────────────────────────────────
+      function validateName(){
+        var v = fName.value.trim();
+        if(!v){ clearState(fName,nameIcon,nameHint); return false; }
+        if(v.length<2){ setInvalid(fName,nameIcon,nameHint,'At least 2 characters required.'); return false; }
+        if(v.length>100){ setInvalid(fName,nameIcon,nameHint,'Name is too long.'); return false; }
+        if(isSpammy(v)){ setInvalid(fName,nameIcon,nameHint,'Please use a real name.'); return false; }
+        setValid(fName,nameIcon); nameHint.textContent=''; nameHint.classList.remove('show'); return true;
+      }
+      function validateEmail(){
+        var v = fEmail.value.trim();
+        if(!v){ clearState(fEmail,emailIcon,emailHint); return false; }
+        if(!validEmail(v)){ setInvalid(fEmail,emailIcon,emailHint,'Enter a valid email address.'); return false; }
+        setValid(fEmail,emailIcon); emailHint.textContent=''; emailHint.classList.remove('show'); return true;
+      }
+      function validateMsg(){
+        var v = fMsg.value.trim();
+        if(!v){ clearState(fMsg,null,msgHint); return false; }
+        if(v.length<10){ setInvalid(fMsg,null,msgHint,'Tell us a bit more (at least 10 characters).'); return false; }
+        if(v.length>2000){ setInvalid(fMsg,null,msgHint,'Too long — keep it under 2,000 characters.'); return false; }
+        if(isSpammy(v)){ setInvalid(fMsg,null,msgHint,'Please remove any links or promotional content.'); return false; }
+        fMsg.classList.add('cf-valid'); fMsg.classList.remove('cf-invalid');
+        msgHint.textContent=''; msgHint.classList.remove('show'); return true;
+      }
+
+      fName.addEventListener('blur',  validateName);
+      fEmail.addEventListener('blur', validateEmail);
+      fMsg.addEventListener('blur',   validateMsg);
+      fName.addEventListener('focus',  function(){ clearState(fName,nameIcon,nameHint); });
+      fEmail.addEventListener('focus', function(){ clearState(fEmail,emailIcon,emailHint); });
+      fMsg.addEventListener('focus',   function(){ fMsg.classList.remove('cf-valid','cf-invalid'); msgHint.classList.remove('show'); });
+
+      // ── Character counter + textarea auto-resize ──────────────────
+      fMsg.addEventListener('input', function(){
+        var len = fMsg.value.length;
+        counter.textContent = len + ' / 2000';
+        counter.className = 'cf-counter' + (len>1800?' near':'') + (len>2000?' over':'');
+        fMsg.style.height = 'auto';
+        fMsg.style.height = fMsg.scrollHeight + 'px';
+      });
+
+      // ── Error display ─────────────────────────────────────────────
+      function showFormErr(msg){
+        errEl.textContent = msg;
+        errEl.classList.remove('hidden');
+        form.classList.add('cf-shake');
+        form.addEventListener('animationend', function(){ form.classList.remove('cf-shake'); }, { once: true });
+      }
+
+      // ── Submit ────────────────────────────────────────────────────
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        errEl.classList.add('hidden');
+
+        var okName  = validateName();
+        var okEmail = validateEmail();
+        var okMsg   = validateMsg();
+        if(!okName || !okEmail || !okMsg){
+          showFormErr('Please fix the highlighted fields before sending.');
+          return;
+        }
+
+        // Bot-speed guard
+        if(Date.now()-loadedAt < 3000) return;
+
+        // Spam check
+        if(isSpammy(fName.value)||isSpammy(fEmail.value)||isSpammy(fMsg.value)){
+          showFormErr('Your message was flagged. Please remove links or unusual content.');
+          return;
+        }
+
+        // Rate limit
+        var now = Date.now();
+        var log = getLog().filter(function(t){ return now-t < COOLDOWN; });
+        if(log.length >= MAX_SENDS){
+          var wait = Math.ceil((COOLDOWN-(now-Math.min.apply(null,log)))/60000);
+          showFormErr('You\'ve sent several messages recently. Please wait '+wait+' minute(s).');
+          return;
+        }
+
+        // Loading state
+        btn.disabled = true;
+        btn.classList.add('loading');
+
+        fetch('https://api.web3forms.com/submit',{ method:'POST', body:new FormData(form) })
+          .then(function(r){ return r.json(); })
+          .then(function(j){
+            if(j.success){
+              log.push(now); saveLog(log);
+              // Show success
+              form.style.transition = 'opacity 0.3s';
+              form.style.opacity = '0';
+              setTimeout(function(){
+                form.style.display = 'none';
+                successEl.classList.add('visible');
+                requestAnimationFrame(function(){
+                  requestAnimationFrame(function(){
+                    successEl.classList.add('animate');
+                  });
+                });
+              }, 300);
+              loadedAt = Date.now();
+            } else {
+              showFormErr('Something went wrong. Please try again in a moment.');
+            }
+          })
+          .catch(function(){ showFormErr('Network error — check your connection and try again.'); })
+          .finally(function(){
+            btn.disabled = false;
+            btn.classList.remove('loading');
+          });
+      });
+
+      // ── "Send another message" reset ─────────────────────────────
+      if(sendAnother){
+        sendAnother.addEventListener('click', function(){
+          successEl.classList.remove('animate');
+          setTimeout(function(){
+            successEl.classList.remove('visible');
+            form.reset();
+            form.style.display = '';
+            form.style.opacity = '';
+            [fName,fEmail,fMsg].forEach(function(f){ f.classList.remove('cf-valid','cf-invalid'); });
+            [nameIcon,emailIcon].forEach(function(i){ if(i) i.textContent=''; });
+            [nameHint,emailHint,msgHint].forEach(function(h){ if(h){ h.textContent=''; h.classList.remove('show'); } });
+            counter.textContent = '0 / 2000';
+            fMsg.style.height = '';
+            loadedAt = Date.now();
+          }, 300);
+        });
+      }
+    }());
+  </script>
+
+  <!-- ── Atmosphere.TV Floating Partner Badge ──────────────────────── -->
+  <div class="atv-float">
+    <div class="atv-bubble" id="atv-bubble">
+      <button class="atv-bubble__close" id="atv-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="atv-bubble__header">
+        <div class="atv-bubble__icon">
+          <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+        </div>
+        <div>
+          <span class="atv-bubble__brand">ATMOSPHERE<span>TV</span></span>
+          <span class="atv-bubble__partner">Proud Partner</span>
+        </div>
+      </div>
+      <p class="atv-bubble__title">Atmosphere TV Improves the Way Businesses Connect with Customers</p>
+      <p class="atv-bubble__body">We believe in spreading positivity and empowerment through entertainment.</p>
+      <a href="https://www.atmosphere.tv/partner/cover-cloud-limited/" target="_blank" rel="noopener noreferrer" class="atv-bubble__cta">Get started as a partner →</a>
+    </div>
+    <span class="atv-label">Featured Partner</span>
+    <a class="atv-badge" id="atv-badge"
+       href="https://www.atmosphere.tv/partner/cover-cloud-limited/"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Atmosphere.TV — CoverCloud Partner">
+      <div class="atv-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+      </div>
+      <div class="atv-text">
+        <span class="atv-text-top">ATMOSPHERE<span>TV</span></span>
+        <span class="atv-text-bottom">Proud Partner</span>
+      </div>
+    </a>
+  </div>
+  <script>
+    (function(){
+      var floatEl = document.querySelector('.atv-float');
+      var badge   = document.getElementById('atv-badge');
+      var bubble  = document.getElementById('atv-bubble');
+      if (!floatEl || !badge || !bubble) return;
+      var timer = null;
+      var closeBtn = document.getElementById('atv-close');
+      function closeBubble(){ bubble.classList.remove('open'); }
+      function startTimer(){ clearTimeout(timer); timer = setTimeout(closeBubble, 5000); }
+      function openBubble(e){ if (e) e.preventDefault(); bubble.classList.add('open'); startTimer(); }
+      if (closeBtn){ closeBtn.addEventListener('click', function(e){ e.stopPropagation(); clearTimeout(timer); closeBubble(); }); }
+      bubble.addEventListener('mouseenter', function(){ clearTimeout(timer); });
+      bubble.addEventListener('mouseleave', startTimer);
+      floatEl.addEventListener('mouseenter', openBubble);
+      badge.addEventListener('click', openBubble);
+      document.addEventListener('click', function(e){
+        if (!e.target.closest('.atv-float')){ clearTimeout(timer); closeBubble(); }
+      });
     }());
   </script>
 </body>
