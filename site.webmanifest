@@ -1,0 +1,22 @@
+{
+  "name": "CoverCloud Limited",
+  "short_name": "CoverCloud",
+  "description": "Award-winning IT development & consulting — Web, Mobile, Cloud & Salesforce solutions.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#070e18",
+  "theme_color": "#070e18",
+  "icons": [
+    {
+      "src": "images/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "images/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
