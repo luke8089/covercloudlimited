@@ -1484,3 +1484,57 @@ body {
   color: rgba(255,255,255,0.4);
   margin-top: 0.05rem;
 }
+
+/* ── Inline style replacements ───────────────────────────── */
+.no-decoration { text-decoration: none; }
+.display-inline-block { display: inline-block; }
+.color-blue { color: var(--blue); }
+.cursor-default { cursor: default; }
+.mt-3rem { margin-top: 3rem; }
+
+/* Hero nav pill animation delays */
+.hero-nav-delay-1 { animation-delay: 0.2s; }
+.hero-nav-delay-2 { animation-delay: 0.32s; }
+.hero-nav-delay-3 { animation-delay: 0.44s; }
+.hero-nav-delay-4 { animation-delay: 0.56s; }
+
+/* Articles hero sub-text animation delay */
+.hero-fade-up-delay-04 { animation-delay: 0.4s; }
+
+/* Projects title letter animation delays (nth-child of h3) */
+.projects-title > .proj-letter:nth-child(1) { animation-delay: 0.50s; }
+.projects-title > .proj-letter:nth-child(2) { animation-delay: 0.57s; }
+.projects-title > .proj-letter:nth-child(3) { animation-delay: 0.64s; }
+.projects-title > .proj-letter:nth-child(4) { animation-delay: 0.71s; }
+.projects-title > .proj-letter:nth-child(5) { animation-delay: 0.78s; }
+.projects-title > .proj-letter:nth-child(6) { animation-delay: 0.85s; }
+.projects-title > .proj-letter:nth-child(7) { animation-delay: 0.92s; }
+.projects-title > .proj-letter:nth-child(8) { animation-delay: 0.99s; }
+
+/* "made easy." accent letter delays */
+.projects-accent > .proj-letter:nth-child(1) { animation-delay: 1.06s; }
+.projects-accent > .proj-letter:nth-child(2) { animation-delay: 1.13s; }
+.projects-accent > .proj-letter:nth-child(3) { animation-delay: 1.20s; }
+.projects-accent > .proj-letter:nth-child(4) { animation-delay: 1.27s; }
+.projects-accent > .proj-letter:nth-child(5) { animation-delay: 1.34s; }
+.projects-accent > .proj-letter:nth-child(6) { animation-delay: 1.41s; }
+.projects-accent > .proj-letter:nth-child(7) { animation-delay: 1.48s; }
+.projects-accent > .proj-letter:nth-child(8) { animation-delay: 1.55s; }
+.projects-accent > .proj-letter:nth-child(9) { animation-delay: 1.62s; }
+
+/* Testimonial avatar stagger via nth-child instead of --i inline */
+.testi-avatar:nth-child(1) { --i: 0; }
+.testi-avatar:nth-child(2) { --i: 1; }
+.testi-avatar:nth-child(3) { --i: 2; }
+.testi-avatar:nth-child(4) { --i: 3; }
+.testi-avatar:nth-child(5) { --i: 4; }
+
+/* Testimonial rating number color */
+.testi-rating-num-wrap { color: var(--blue); }
+
+/* Article "LATEST" featured tag */
+.art-card__tag--latest {
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 800;
+}
