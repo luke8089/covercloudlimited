@@ -1,6 +1,43 @@
 [build]
   publish = "."
 
+# ── Redirect .html URLs to clean URLs (301) ───────────────────
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/projects"
+  status = 301
+
+[[redirects]]
+  from = "/articles.html"
+  to = "/articles"
+  status = 301
+
+# ── Serve .html files for clean URL requests (200 rewrite) ────
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/articles"
+  to = "/articles.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
