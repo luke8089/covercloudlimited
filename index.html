@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- ── SEO ─────────────────────────────────────────────── -->
   <!-- IMPORTANT: Replace "https://covercloudlimited.com" below with your real domain before going live -->
-  <title>CoverCloud Limited | Award-Winning IT Development &amp; Consulting</title>
-  <meta name="description" content="CoverCloud Limited is an award-winning East African IT development &amp; consulting company. Web, Mobile, Cloud &amp; Salesforce solutions delivered globally. Book a meeting today." />
-  <meta name="keywords" content="IT development, IT consulting, web development Kenya, mobile app development, Salesforce consulting, cloud solutions, East Africa, CoverCloud" />
+  <title>CoverCloud Limited | Premium Processing Potatoes &amp; Contract Farming</title>
+  <meta name="description" content="CoverCloud Limited is a Kenyan agribusiness producing, aggregating &amp; supplying premium processing potatoes — Markies, Manitou &amp; Java — to leading processors year-round. Partner with us." />
+  <meta name="keywords" content="processing potatoes Kenya, Markies potatoes, Manitou potatoes, Java potatoes, contract farming, potato aggregation, agribusiness East Africa, potato supply, agro-inputs, CoverCloud" />
   <meta name="author" content="CoverCloud Limited" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#070e18" />
@@ -16,17 +16,17 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CoverCloud Limited" />
-  <meta property="og:title" content="CoverCloud Limited | Award-Winning IT Development &amp; Consulting" />
-  <meta property="og:description" content="Award-winning East African IT development &amp; consulting company delivering Web, Mobile, Cloud &amp; Salesforce solutions globally." />
+  <meta property="og:title" content="CoverCloud Limited | Premium Processing Potatoes &amp; Contract Farming" />
+  <meta property="og:description" content="Kenyan agribusiness producing, aggregating &amp; supplying premium processing potatoes — Markies, Manitou &amp; Java — to leading processors year-round." />
   <meta property="og:url" content="https://covercloudlimited.com/" />
-  <meta property="og:image" content="https://covercloudlimited.com/images/hero_section.png" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1600&q=80" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CoverCloud Limited | Award-Winning IT Development &amp; Consulting" />
-  <meta name="twitter:description" content="Award-winning East African IT development &amp; consulting company delivering Web, Mobile, Cloud &amp; Salesforce solutions globally." />
-  <meta name="twitter:image" content="https://covercloudlimited.com/images/hero_section.png" />
+  <meta name="twitter:title" content="CoverCloud Limited | Premium Processing Potatoes &amp; Contract Farming" />
+  <meta name="twitter:description" content="Kenyan agribusiness producing, aggregating &amp; supplying premium processing potatoes — Markies, Manitou &amp; Java — to leading processors year-round." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1600&q=80" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -36,7 +36,7 @@
     "name": "CoverCloud Limited",
     "url": "https://covercloudlimited.com",
     "logo": "https://covercloudlimited.com/images/logo.png",
-    "description": "Award-winning East African IT development and consulting company with a global network of solution experts and architects.",
+    "description": "Kenyan agribusiness specialising in the production, aggregation and supply of premium processing potatoes — Markies, Manitou and Java — to leading potato processors, alongside contract farming and agronomic support.",
     "email": "info@covercloudlimited.com",
     "telephone": "+254701998579",
     "address": {
@@ -64,6 +64,144 @@
   <meta name="msapplication-TileColor" content="#070e18" />
   <style>
     * { font-family: 'Inter', sans-serif; }
+
+    /* ── Hero slideshow (auto-rotating potato images) ─────── */
+    .hero-slideshow { overflow: hidden; }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: scale(1.06);
+      transition: opacity 1.6s ease-in-out;
+      will-change: opacity, transform;
+    }
+    .hero-slide.is-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 1.6s ease-in-out, transform 7s ease-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition: opacity 0.6s ease-in-out; transform: none; }
+      .hero-slide.is-active { transform: none; transition: opacity 0.6s ease-in-out; }
+    }
+
+    /* ── Projects card slideshow (auto-rotating potato images) ─── */
+    .card-slideshow { overflow: hidden; }
+    .card-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 0.9s ease-in-out;
+      will-change: opacity;
+    }
+    .card-slide.is-active { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .card-slide { transition: opacity 0.4s ease-in-out; }
+    }
+
+    /* ── Scroll promo modal ─────────────────────────────── */
+    .promo-modal {
+      position: fixed; inset: 0; z-index: 800;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.25rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .promo-modal.open { opacity: 1; pointer-events: auto; }
+    .promo-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(6,10,18,0.6);
+      -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    }
+    .promo-card {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 860px;
+      background: #fff; border-radius: 1.5rem; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      transform: translateY(24px) scale(0.96);
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+      max-height: calc(100vh - 2.5rem);
+    }
+    .promo-modal.open .promo-card { transform: translateY(0) scale(1); }
+    @media (min-width: 720px) { .promo-card { flex-direction: row; } }
+
+    .promo-media { position: relative; overflow: hidden; background: #e5e7eb; height: 200px; }
+    @media (min-width: 720px) { .promo-media { flex: 0 0 44%; height: auto; } }
+    .promo-slides { position: absolute; inset: 0; }
+    .promo-slide {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0; transition: opacity 0.9s ease-in-out;
+    }
+    .promo-slide.is-active { opacity: 1; }
+    .promo-dots {
+      position: absolute; bottom: 0.9rem; left: 0; right: 0;
+      display: flex; gap: 0.35rem; justify-content: center; z-index: 2;
+    }
+    .promo-dots span {
+      width: 6px; height: 6px; border-radius: 9999px;
+      background: rgba(255,255,255,0.55); transition: background 0.25s, width 0.25s;
+    }
+    .promo-dots span.active { background: #F5C200; width: 16px; }
+
+    .promo-body {
+      flex: 1; padding: 1.75rem 1.75rem 1.5rem;
+      display: flex; flex-direction: column; overflow-y: auto;
+    }
+    .promo-eyebrow {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #29ABE2; margin-bottom: 0.6rem;
+    }
+    .promo-title {
+      font-size: 1.35rem; font-weight: 900; letter-spacing: -0.02em;
+      color: #0d0d0d; line-height: 1.15; margin-bottom: 0.6rem;
+    }
+    .promo-text { font-size: 0.85rem; color: #6b7280; line-height: 1.6; margin-bottom: 0.9rem; }
+    .promo-list { list-style: none; margin: 0 0 1.1rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .promo-list li { position: relative; padding-left: 1.4rem; font-size: 0.8rem; color: #374151; }
+    .promo-list li::before { content: '✓'; position: absolute; left: 0; top: 0; color: #F5C200; font-weight: 800; }
+    .promo-form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .promo-input {
+      flex: 1; min-width: 0; background: #f3f4f6; border: 1px solid #e5e7eb;
+      border-radius: 9999px; padding: 0.7rem 1.1rem; font-size: 0.85rem;
+      color: #0d0d0d; outline: none; transition: border-color 0.2s;
+    }
+    .promo-input:focus { border-color: #29ABE2; }
+    .promo-btn {
+      background: #0d0d0d; color: #fff; font-weight: 700; font-size: 0.85rem;
+      border: none; border-radius: 9999px; padding: 0.7rem 1.4rem;
+      cursor: pointer; white-space: nowrap; transition: background 0.2s;
+    }
+    .promo-btn:hover { background: #333; }
+    .promo-fineprint { font-size: 0.68rem; color: #9ca3af; margin-top: 0.7rem; }
+    .promo-error { font-size: 0.72rem; color: #dc2626; margin-top: 0.5rem; display: none; }
+    .promo-error.show { display: block; }
+    .promo-success { font-size: 0.85rem; font-weight: 600; color: #16a34a; margin: 0; }
+    .promo-close {
+      position: absolute; top: 0.85rem; right: 0.85rem; z-index: 5;
+      width: 2.1rem; height: 2.1rem; border-radius: 9999px; border: none;
+      background: rgba(13,13,13,0.55); color: #fff; font-size: 1.3rem; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    }
+    .promo-close:hover { background: rgba(13,13,13,0.85); }
+    .promo-timer { height: 3px; background: #f3f4f6; border-radius: 9999px; overflow: hidden; margin-top: 1rem; }
+    .promo-timer span { display: block; height: 100%; width: 100%; background: #F5C200; transform-origin: left center; }
+    .promo-modal.open .promo-timer span { animation: promoCountdown 15s linear forwards; }
+    @keyframes promoCountdown { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .promo-slide { transition: opacity 0.4s ease-in-out; }
+      .promo-card  { transition: opacity 0.3s ease; }
+    }
 
     /* Full-screen mobile overlay */
     .mobile-overlay {
@@ -218,7 +356,7 @@
       </a>
       <nav class="sticky-nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="#projects">Programmes</a>
         <a href="/articles">Articles</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -242,13 +380,14 @@
 
     <!-- Background -->
     <div class="absolute inset-0 hero-gradient-bg">
-      <img
-        src="images/hero_section.png"
-        alt=""
-        class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center"
-        fetchpriority="high"
-        onerror="this.style.display='none'"
-      />
+      <!-- Auto-rotating potato slideshow -->
+      <div id="hero-slideshow" class="hero-slideshow absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1600&q=80" alt="Potato farm at sunset" class="hero-slide is-active" fetchpriority="high" onerror="this.style.display='none'" />
+        <img src="https://images.unsplash.com/photo-1744659751904-3b2e5c095323?auto=format&fit=crop&w=1600&q=80" alt="Freshly harvested golden potatoes" class="hero-slide" loading="lazy" onerror="this.style.display='none'" />
+        <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=1600&q=80" alt="Processing-grade potatoes" class="hero-slide" loading="lazy" onerror="this.style.display='none'" />
+        <img src="https://images.unsplash.com/photo-1561635741-c416a5193b6e?auto=format&fit=crop&w=1600&q=80" alt="A bunch of potatoes" class="hero-slide" loading="lazy" onerror="this.style.display='none'" />
+        <img src="https://images.unsplash.com/photo-1625324455604-d75faf4b119b?auto=format&fit=crop&w=1600&q=80" alt="Potato crop in the field" class="hero-slide" loading="lazy" onerror="this.style.display='none'" />
+      </div>
       <!-- Horizontal vignette -->
       <div class="hero-vignette-h absolute inset-0"></div>
       <!-- Bottom vignette -->
@@ -258,7 +397,7 @@
     <!-- ── Desktop nav (sm+) ─────────────────────────────────────── -->
     <nav class="absolute top-5 right-5 z-30 hidden sm:flex items-center gap-2">
       <a href="#about"    class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up hero-nav-delay-1">About</a>
-      <a href="#projects" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up hero-nav-delay-2">Projects</a>
+      <a href="#projects" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up hero-nav-delay-2">Programmes</a>
       <a href="/articles" class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up hero-nav-delay-3">Articles</a>
       <a href="#contact"  class="nav-pill text-white px-4 py-2 rounded-full text-sm font-medium hero-fade-up hero-nav-delay-4">Contact</a>
     </nav>
@@ -304,39 +443,39 @@
       <!-- Left: hero copy + CTA -->
       <div class="w-full max-w-[340px]">
         <h2 class="text-base sm:text-[1.2rem] lg:text-[1.35rem] font-bold leading-snug text-white mb-2 sm:mb-3">
-          <span class="hero-line-wrap"><span class="hero-line hero-line--1">Award-winning IT.</span></span>
-          <span class="hero-line-wrap"><span class="hero-line hero-line--2">East African roots. Global reach.</span></span>
+          <span class="hero-line-wrap"><span class="hero-line hero-line--1">Premium processing potatoes.</span></span>
+          <span class="hero-line-wrap"><span class="hero-line hero-line--2">Grown in Kenya. Supplied year-round.</span></span>
         </h2>
         <p class="text-zinc-300 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6 hero-fade-up hero-fade-up--3">
-          CoverCloud Limited is an IT development & consulting company with a global network of solution experts and architects.
+          CoverCloud Limited produces, aggregates and supplies Markies, Manitou &amp; Java potatoes — consistent, processor-grade raw material, backed by contract farming and agronomic support.
         </p>
         <a href="#contact"
           class="cta-btn px-6 py-2.5 sm:py-3 rounded-full font-semibold text-sm hero-fade-up hero-fade-up--4 no-decoration display-inline-block"
         >
-          Book a meeting
+          Partner with us
         </a>
       </div>
 
       <!-- Right: projects card — hidden below lg -->
       <div class="hidden lg:block w-[360px] xl:w-[400px]">
         <h3 class="projects-title font-bold leading-tight text-white mb-4">
-          <span class="proj-letter">P</span><span class="proj-letter">r</span><span class="proj-letter">o</span><span class="proj-letter">j</span><span class="proj-letter">e</span><span class="proj-letter">c</span><span class="proj-letter">t</span><span class="proj-letter">s</span><br /><span class="projects-accent"><span class="proj-letter">m</span><span class="proj-letter">a</span><span class="proj-letter">d</span><span class="proj-letter">e</span> <span class="proj-letter">e</span><span class="proj-letter">a</span><span class="proj-letter">s</span><span class="proj-letter">y</span><span class="proj-letter">.</span></span>
+          <span class="proj-letter">H</span><span class="proj-letter">a</span><span class="proj-letter">r</span><span class="proj-letter">v</span><span class="proj-letter">e</span><span class="proj-letter">s</span><span class="proj-letter">t</span><span class="proj-letter">s</span><br /><span class="projects-accent"><span class="proj-letter">m</span><span class="proj-letter">a</span><span class="proj-letter">d</span><span class="proj-letter">e</span> <span class="proj-letter">r</span><span class="proj-letter">e</span><span class="proj-letter">l</span><span class="proj-letter">i</span><span class="proj-letter">a</span><span class="proj-letter">b</span><span class="proj-letter">l</span><span class="proj-letter">e</span><span class="proj-letter">.</span></span>
         </h3>
 
         <!-- Card -->
         <div class="project-card relative rounded-2xl overflow-hidden">
           <div class="w-full h-full project-card-gradient">
-            <img
-              src="images/hero projects card.png"
-              alt="Hectic x CoverCloud"
-              class="w-full h-full object-cover object-center"
-              onerror="this.style.display='none'"
-            />
+            <div id="card-slideshow" class="card-slideshow absolute inset-0">
+              <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80" alt="Markies processing potatoes" class="card-slide is-active" onerror="this.style.display='none'" />
+              <img src="https://images.unsplash.com/photo-1744659751904-3b2e5c095323?auto=format&fit=crop&w=800&q=80" alt="Freshly harvested golden potatoes" class="card-slide" loading="lazy" onerror="this.style.display='none'" />
+              <img src="https://images.unsplash.com/photo-1561635741-c416a5193b6e?auto=format&fit=crop&w=800&q=80" alt="A bunch of potatoes" class="card-slide" loading="lazy" onerror="this.style.display='none'" />
+              <img src="https://images.unsplash.com/photo-1590165482129-1b8b27698780?auto=format&fit=crop&w=800&q=80" alt="Graded potatoes ready for processors" class="card-slide" loading="lazy" onerror="this.style.display='none'" />
+            </div>
           </div>
           <div class="card-overlay absolute inset-0"></div>
           <div class="absolute bottom-0 left-0 right-0 p-4">
-            <p class="font-bold text-white text-[0.9rem] leading-tight">Hectic x CoverCloud</p>
-            <p class="text-zinc-300 text-xs mt-0.5">A brand built to grow</p>
+            <p class="font-bold text-white text-[0.9rem] leading-tight">Markies × CoverCloud</p>
+            <p class="text-zinc-300 text-xs mt-0.5">Processor-grade, every season</p>
           </div>
         </div>
       </div>
@@ -363,7 +502,7 @@
     <nav class="px-5">
       <a href="#" class="mobile-nav-link" id="mnav-home">Home</a>
       <a href="#about" class="mobile-nav-link" id="mnav-about">About</a>
-      <a href="#projects" class="mobile-nav-link" id="mnav-projects">Projects</a>
+      <a href="#projects" class="mobile-nav-link" id="mnav-projects">Programmes</a>
       <a href="/articles" class="mobile-nav-link" id="mnav-articles">Articles</a>
       <a href="#contact" class="mobile-nav-link" id="mnav-contact">Contact</a>
     </nav>
@@ -401,7 +540,7 @@
           <p
             id="about-headline"
             class="text-xl sm:text-2xl lg:text-[1.65rem] xl:text-3xl font-bold leading-snug mb-8"
-            aria-label="We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations."
+            aria-label="We are a Kenyan agribusiness producing and aggregating premium processing potatoes for leading processors. Combining commercial farming with contract farming, we build a sustainable supply chain that delivers consistent, processor-grade quality while empowering smallholder farmers."
           ></p>
           <a href="/about" class="about-link inline-flex items-center gap-2 text-sm sm:text-base scroll-reveal" data-delay="150">
             More About Us <span aria-hidden="true">→</span>
@@ -422,7 +561,7 @@
                   <svg class="w-5 h-5" fill="#F5C200" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                 </div>
                 <blockquote class="text-base leading-relaxed">
-                  <span class="font-bold italic text-zinc-800">"Working with CoverCloud felt effortless. The final result wasn't just a website, </span><span class="italic text-zinc-400 font-normal">it was a brand we're proud to show off."</span>
+                  <span class="font-bold italic text-zinc-800">"We built CoverCloud to deliver processor-grade potatoes every season </span><span class="italic text-zinc-400 font-normal">— while giving farmers a guaranteed market and real agronomic support."</span>
                 </blockquote>
               </div>
               <!-- Author -->
@@ -442,14 +581,14 @@
             <div class="about-card about-card--project flex flex-col h-full">
               <div class="flex justify-between items-start">
                 <div class="w-44 h-44 sm:w-48 sm:h-44 rounded-2xl overflow-hidden bg-zinc-100 shrink-0">
-                  <img src="images/hero projects card.png" alt="Hectic x CoverCloud" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
+                  <img src="https://images.unsplash.com/photo-1625324455604-d75faf4b119b?auto=format&fit=crop&w=800&q=80" alt="Potato crop in the field" class="w-full h-full object-cover object-center" onerror="this.style.display='none'">
                 </div>
                 <span class="text-zinc-300 text-lg font-light" aria-hidden="true">+</span>
               </div>
               <div class="flex justify-between items-end mt-auto pt-6">
                 <div>
-                  <p class="font-bold text-zinc-900 text-sm">Hectic x CoverCloud</p>
-                  <p class="text-zinc-400 text-xs mt-0.5">A brand built to grow</p>
+                  <p class="font-bold text-zinc-900 text-sm">Markies Harvest</p>
+                  <p class="text-zinc-400 text-xs mt-0.5">Processor-grade supply</p>
                 </div>
                 <a href="/about" class="about-arrow" aria-label="View project">
                   <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -484,10 +623,10 @@
         <!-- Heading + subtext -->
         <div class="flex-1">
           <h2 id="benefits-headline" class="text-2xl sm:text-3xl lg:text-[2rem] xl:text-4xl font-bold leading-snug mb-6">
-            <span class="text-zinc-900">We deliver exceptional Managed IT, Web, Mobile, and Cloud solutions built for growth,</span><span class="text-zinc-300"> embracing the latest technologies and industry trends.</span>
+            <span class="text-zinc-900">We deliver reliable, processor-grade potatoes and a supply chain built for growth,</span><span class="text-zinc-300"> combining modern farming with a network of contracted growers.</span>
           </h2>
           <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-lg">
-            From IT infrastructure maintenance for institutions to bespoke software and web development — our clients choose CoverCloud for reliable, credible solutions that deliver real value.
+            From our own commercial farms to a growing network of contract farmers — processors choose CoverCloud for consistent quality, traceable produce and dependable year-round supply.
           </p>
         </div>
       </div>
@@ -502,23 +641,23 @@
               <div class="benefit-icon-box">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
               </div>
-              <h3 class="font-bold text-zinc-900 text-sm">Flexible pricing</h3>
+              <h3 class="font-bold text-zinc-900 text-sm">Guaranteed market</h3>
             </div>
-            <p class="benefit-desc">Clear packages for institutions and businesses at every stage of growth.</p>
+            <p class="benefit-desc">A ready buyer for every kilo you grow — clear contracts for farms at every scale.</p>
           </div>
           <!-- Stat + slider -->
           <div class="mt-auto">
-            <p class="text-xs text-zinc-400 mb-1">Starting from</p>
-            <p class="text-3xl font-black text-zinc-900 mb-1">KSh 20,000</p>
+            <p class="text-xs text-zinc-400 mb-1">Contracted volume from</p>
+            <p class="text-3xl font-black text-zinc-900 mb-1">5 tonnes</p>
             <input
               type="range"
               class="benefit-slider"
-              min="20000" max="1500000" value="20000"
-              aria-label="Pricing range"
+              min="5" max="5000" value="5"
+              aria-label="Contract volume in tonnes"
             />
             <div class="flex justify-between text-xs text-zinc-400 mt-2">
-              <span>Start simple</span>
-              <span>Expand as you go</span>
+              <span>Start small</span>
+              <span>Scale each season</span>
             </div>
           </div>
         </div>
@@ -530,9 +669,9 @@
               <div class="benefit-icon-box">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
               </div>
-              <h3 class="font-bold text-zinc-900 text-sm">Priority support</h3>
+              <h3 class="font-bold text-zinc-900 text-sm">Agronomic support</h3>
             </div>
-            <p class="benefit-desc">Fast communication and quick turnaround on feedback.</p>
+            <p class="benefit-desc">Experienced field officers with you from land preparation to harvest.</p>
           </div>
         </div>
 
@@ -543,15 +682,15 @@
               <div class="benefit-icon-box">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
-              <h3 class="font-bold text-zinc-900 text-sm">Fast turnarounds</h3>
+              <h3 class="font-bold text-zinc-900 text-sm">Fresh aggregation</h3>
             </div>
-            <p class="benefit-desc">Streamlined development approach that guarantees quality and optimum client satisfaction.</p>
+            <p class="benefit-desc">Coordinated grading and logistics that move produce from field to processor while it's at its best.</p>
           </div>
           <!-- Stat -->
           <div class="mt-auto">
-            <p class="text-xs text-zinc-400 mb-1">Time to complete</p>
+            <p class="text-xs text-zinc-400 mb-1">Field to processor</p>
             <p class="text-3xl font-black leading-none">
-              <span class="text-zinc-900">24</span><span class="text-zinc-300">–36h</span>
+              <span class="text-zinc-900">24</span><span class="text-zinc-300">–48h</span>
             </p>
           </div>
           <!-- Clock illustration -->
@@ -605,22 +744,22 @@
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h3.172a1 1 0 01.707.293l1.414 1.414A1 1 0 0011.172 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>
             </svg>
-            Work
+            Operations
           </span>
         </div>
 
         <!-- Right content -->
         <div class="flex-1 min-w-0">
           <h2 id="work-headline" class="work-case-title font-black text-zinc-900 leading-none tracking-tight mb-4">
-            Case Studies
+            In the field
           </h2>
           <p class="text-zinc-400 text-base sm:text-lg font-medium mb-6 scroll-reveal" data-delay="80" data-once="true">
-            Featured work between ©2024–25
+            Farms &amp; programmes 2024–25
           </p>
           <p class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-sm mb-10 scroll-reveal" data-delay="180" data-once="true">
-            From bespoke web apps and mobile solutions to Salesforce implementations. Explore the work that's helped our clients grow, scale, and stand out across industries.
+            From company-owned commercial farms to contract farming and aggregation. Explore the work that keeps processor-grade potatoes flowing all year round.
           </p>
-          <a href="/projects" class="work-discover-btn scroll-reveal" data-delay="280" data-once="true">Discover all projects</a>
+          <a href="/projects" class="work-discover-btn scroll-reveal" data-delay="280" data-once="true">See all programmes</a>
 
           <!-- Decorative plus markers -->
           <div class="hidden lg:flex justify-between mt-16 text-zinc-300 font-light select-none text-xl" aria-hidden="true">
@@ -634,57 +773,57 @@
       <!-- Cards row — staggered heights -->
       <div id="work-cards" class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
 
-        <!-- Card 1: St Anne's Girls School (tallest) -->
+        <!-- Card 1: Commercial farms (tallest) -->
         <div class="work-proj-item block group cursor-pointer"
-          data-title="St Anne's Girls Secondary School"
-          data-tags="Web Development · Design"
-          data-desc="A fully custom school website built to connect students, parents, and staff — developed on Laravel 4.2 (PHP) with a responsive Bootstrap frontend. Live at stannesgirlsschool.sc.ke.">
+          data-title="Markies Commercial Farms"
+          data-tags="Commercial Farming · Markies"
+          data-desc="Company-owned commercial farms producing Markies potatoes using modern agricultural practices — efficient irrigation, proper fertilisation, integrated pest and disease management, and quality control from planting to harvest.">
           <div class="work-img-korten relative rounded-2xl overflow-hidden work-card-bg-1">
-            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="St Anne's Girls Secondary School" class="w-full h-full object-cover object-center" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80" alt="Markies commercial potato farm" class="w-full h-full object-cover object-center" loading="lazy">
             <div class="absolute top-3 left-3 flex gap-1.5">
-              <span class="work-tag">Web Development</span>
-              <span class="work-tag">Design</span>
+              <span class="work-tag">Commercial Farming</span>
+              <span class="work-tag">Markies</span>
             </div>
           </div>
           <div class="mt-4">
-            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">St Anne's Girls School</h3>
-            <p class="text-zinc-400 text-sm mt-0.5">A school website built to serve the community</p>
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Commercial Farms</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">Modern potato production from planting to harvest</p>
           </div>
         </div>
 
-        <!-- Card 2: Chill Sport (offset down) -->
+        <!-- Card 2: Contract farming (offset down) -->
         <div class="work-proj-item block group cursor-pointer md:pt-20 lg:pt-28"
-          data-title="Chill Sport — Online Food Ordering"
-          data-tags="Mobile App · Web App"
-          data-desc="A complete online food ordering platform for Chill Sport Restaurant — Android and iOS apps with real-time delivery tracking, Mpesa/card payments, and a full restaurant management web panel.">
+          data-title="Contract Farming Programme"
+          data-tags="Contract Farming · Manitou"
+          data-desc="A network of independent farmers contracted to grow potatoes under agreed production standards. We identify suitable farmers, sign production agreements, provide technical guidelines, conduct regular field visits, and purchase produce upon harvest.">
           <div class="work-img-everly relative rounded-2xl overflow-hidden work-card-bg-2">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Chill Sport Online Ordering" class="w-full h-full object-cover object-center" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1621459557554-60a70d3d61ce?auto=format&fit=crop&w=800&q=80" alt="Contract farming potato field" class="w-full h-full object-cover object-center" loading="lazy">
             <div class="absolute top-3 left-3 flex gap-1.5">
-              <span class="work-tag">Mobile App</span>
-              <span class="work-tag">Web App</span>
+              <span class="work-tag">Contract Farming</span>
+              <span class="work-tag">Manitou</span>
             </div>
           </div>
           <div class="mt-4">
-            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Chill Sport</h3>
-            <p class="text-zinc-400 text-sm mt-0.5">Online food ordering with real-time delivery tracking</p>
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Contract Farming</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">A guaranteed market for partner farmers</p>
           </div>
         </div>
 
-        <!-- Card 3: Hospital HMIS (slight offset) -->
+        <!-- Card 3: Aggregation & QA (slight offset) -->
         <div class="work-proj-item block group cursor-pointer md:pt-10 lg:pt-14"
-          data-title="Hospital Management Information System"
-          data-tags="Software Development · Web App"
-          data-desc="A comprehensive web-based Hospital Management Information System spanning OPD, pharmacy, laboratory, billing, radiology, and more — unifying an entire multi-specialist hospital's operations in one platform.">
+          data-title="Aggregation &amp; Quality Assurance"
+          data-tags="Aggregation · Java"
+          data-desc="Produce aggregation with rigorous quality assurance — every batch inspected for variety purity, tuber size, dry matter content, maturity, freedom from disease, and minimal mechanical damage before delivery to processors.">
           <div class="work-img-peni relative rounded-2xl overflow-hidden work-card-bg-3">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Hospital Management Information System" class="w-full h-full object-cover object-center" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1744659751904-3b2e5c095323?auto=format&fit=crop&w=800&q=80" alt="Graded potatoes ready for processors" class="w-full h-full object-cover object-center" loading="lazy">
             <div class="absolute top-3 left-3 flex gap-1.5">
-              <span class="work-tag">Software Dev</span>
-              <span class="work-tag">Web App</span>
+              <span class="work-tag">Aggregation</span>
+              <span class="work-tag">Java</span>
             </div>
           </div>
           <div class="mt-4">
-            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Hospital HMIS</h3>
-            <p class="text-zinc-400 text-sm mt-0.5">A full hospital management system from OPD to billing</p>
+            <h3 class="font-bold text-zinc-900 text-base group-hover:text-[#F5C200] transition-colors">Aggregation &amp; QA</h3>
+            <p class="text-zinc-400 text-sm mt-0.5">Grading and quality checks, batch by batch</p>
           </div>
         </div>
 
@@ -713,12 +852,12 @@
         <div class="flex-1">
           <!-- Big heading (word-by-word already wired) -->
           <h2 id="process-headline" data-word-dark class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white leading-tight mb-8 max-w-3xl">
-            The best solutions don't come from guesswork. They come from a streamlined, proven process.
+            Great potatoes don't come from guesswork. They come from an agronomy-led, proven process.
           </h2>
 
           <!-- Description -->
           <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-lg mb-12 scroll-reveal" data-delay="100">
-            Our consultants make a unique integration of experience and expertise, tailored to the process and system of each client. From discovery to deployment, we ascertain quality and optimum satisfaction at every step.
+            Our agronomists work hand in hand with every farm, tailored to its soil, climate and variety. From land preparation to delivery, we safeguard quality and processor-grade consistency at every step.
           </p>
 
           <!-- Text link list -->
@@ -728,38 +867,38 @@
               <span class="text-base">→</span>
             </a>
             <a href="#pricing" class="method-link scroll-reveal" data-delay="300">
-              <span>Explore our services</span>
+              <span>Explore our partnerships</span>
               <span class="text-base">→</span>
             </a>
             <button type="button" id="methodology-toggle" class="method-link scroll-reveal w-full text-left" data-delay="400" aria-expanded="false" aria-controls="methodology-dropdown">
-              <span>Discover our methodology</span>
+              <span>Discover our production cycle</span>
               <span id="methodology-arrow" class="text-base transition-transform duration-300">→</span>
             </button>
             <div id="methodology-dropdown" class="methodology-dropdown" aria-hidden="true">
               <div class="methodology-grid">
                 <div class="methodology-step">
                   <span class="methodology-step__num">01</span>
-                  <div><p class="methodology-step__title">Discovery</p><p class="methodology-step__desc">Goals, users &amp; constraints before a line is written.</p></div>
+                  <div><p class="methodology-step__title">Land &amp; Soil</p><p class="methodology-step__desc">Soil fertility testing and thorough land preparation.</p></div>
                 </div>
                 <div class="methodology-step">
                   <span class="methodology-step__num">02</span>
-                  <div><p class="methodology-step__title">Strategy</p><p class="methodology-step__desc">Roadmap, tech stack, timeline &amp; success criteria.</p></div>
+                  <div><p class="methodology-step__title">Seed &amp; Planting</p><p class="methodology-step__desc">Certified seed potatoes planted at the right spacing.</p></div>
                 </div>
                 <div class="methodology-step">
                   <span class="methodology-step__num">03</span>
-                  <div><p class="methodology-step__title">Design</p><p class="methodology-step__desc">Wireframes &amp; high-fidelity visuals around your brand.</p></div>
+                  <div><p class="methodology-step__title">Agronomy</p><p class="methodology-step__desc">Fertiliser programmes, irrigation &amp; pest/disease control.</p></div>
                 </div>
                 <div class="methodology-step">
                   <span class="methodology-step__num">04</span>
-                  <div><p class="methodology-step__title">Development</p><p class="methodology-step__desc">Iterative sprints with continuous client feedback.</p></div>
+                  <div><p class="methodology-step__title">Crop Monitoring</p><p class="methodology-step__desc">Regular field visits &amp; inspections through the season.</p></div>
                 </div>
                 <div class="methodology-step">
                   <span class="methodology-step__num">05</span>
-                  <div><p class="methodology-step__title">Testing &amp; QA</p><p class="methodology-step__desc">Across devices, edge cases &amp; real-world scenarios.</p></div>
+                  <div><p class="methodology-step__title">Harvest &amp; Grading</p><p class="methodology-step__desc">Correct timing and grading to processor specifications.</p></div>
                 </div>
                 <div class="methodology-step">
                   <span class="methodology-step__num">06</span>
-                  <div><p class="methodology-step__title">Deployment</p><p class="methodology-step__desc">Live launch with post-deployment support.</p></div>
+                  <div><p class="methodology-step__title">Aggregation &amp; Delivery</p><p class="methodology-step__desc">Quality assurance and logistics to processors.</p></div>
                 </div>
               </div>
             </div>
@@ -776,14 +915,14 @@
 
       <!-- Partner / client logo strip -->
       <div class="border-t border-white/10 pt-12">
-        <p class="text-xs font-semibold text-zinc-600 uppercase tracking-widest mb-8 scroll-reveal" data-delay="0">Trusted partners</p>
+        <p class="text-xs font-semibold text-zinc-600 uppercase tracking-widest mb-8 scroll-reveal" data-delay="0">Key partners</p>
         <div class="flex items-center justify-between gap-6 flex-wrap">
-          <a href="https://www.atmosphere.tv" target="_blank" rel="noopener noreferrer" class="method-logo scroll-reveal" data-delay="60">ATMOSPHERE.TV</a>
-          <a href="https://www.starnabula.tech" target="_blank" rel="noopener noreferrer" class="method-logo scroll-reveal" data-delay="120">STARNABULA.TECH</a>
-          <span class="method-logo scroll-reveal" data-delay="180">EVERLY</span>
-          <span class="method-logo scroll-reveal" data-delay="240">PENI&nbsp;LABS</span>
-          <span class="method-logo scroll-reveal" data-delay="300">HECTIC</span>
-          <span class="method-logo scroll-reveal" data-delay="360">VANTAGE</span>
+          <span class="method-logo scroll-reveal" data-delay="60">POTATO&nbsp;PROCESSORS</span>
+          <span class="method-logo scroll-reveal" data-delay="120">CERTIFIED&nbsp;SEED</span>
+          <span class="method-logo scroll-reveal" data-delay="180">FERTILISER&nbsp;SUPPLIERS</span>
+          <span class="method-logo scroll-reveal" data-delay="240">CROP&nbsp;PROTECTION</span>
+          <span class="method-logo scroll-reveal" data-delay="300">COUNTY&nbsp;GOVTS</span>
+          <span class="method-logo scroll-reveal" data-delay="360">LOGISTICS</span>
         </div>
       </div>
 
@@ -810,7 +949,7 @@
         <!-- Heading -->
         <div class="flex-1">
           <h2 id="testimonials-headline" class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black leading-tight">
-            <span class="text-zinc-900">Our solutions speak through the value they deliver. But here's what our clients say about</span>
+            <span class="text-zinc-900">Our potatoes speak through the value they deliver. But here's what processors and farmers say about</span>
             <span class="text-zinc-300"> working with us.</span>
           </h2>
         </div>
@@ -830,7 +969,7 @@
           <!-- Rating number -->
           <div class="text-center py-6">
             <p class="text-5xl lg:text-6xl font-black testi-rating-num-wrap"><span id="testi-rating-num">0</span><span class="text-2xl text-zinc-300">/5</span></p>
-            <p class="text-zinc-400 text-sm mt-2">Average rating from our clients</p>
+            <p class="text-zinc-400 text-sm mt-2">Average rating from processors &amp; farmers</p>
           </div>
 
           <!-- Avatar cluster -->
@@ -842,7 +981,7 @@
               <div class="w-9 h-9 rounded-full border-2 border-white bg-zinc-600 flex items-center justify-center text-white text-xs font-bold testi-avatar">MP</div>
               <div class="w-9 h-9 rounded-full border-2 border-white bg-zinc-300 flex items-center justify-center text-white text-xs font-bold testi-avatar">+</div>
             </div>
-            <p class="text-zinc-400 text-sm">Trusted by 30+ teams</p>
+            <p class="text-zinc-400 text-sm">Trusted by 30+ processors &amp; farmer groups</p>
           </div>
 
           <!-- CTA -->
@@ -858,17 +997,17 @@
 
           <!-- Quote -->
           <blockquote id="testi-quote" class="text-xl sm:text-2xl font-black italic text-zinc-900 leading-tight mb-8 transition-opacity duration-300 scroll-reveal" data-delay="220" data-once="true">
-            "Working with CoverCloud felt effortless. The final result wasn't just a website, it was a solution we're proud to show off."
+            "CoverCloud gives us dependable, processor-grade potatoes all year round — consistent variety, size and dry matter, exactly to spec."
           </blockquote>
 
           <!-- Author -->
           <div id="testi-author" class="flex items-center gap-3 mb-10 transition-opacity duration-300 scroll-reveal" data-delay="300" data-once="true">
             <div class="w-12 h-12 rounded-xl bg-zinc-200 overflow-hidden shrink-0">
-              <img id="testi-photo" src="images/image%201.png" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+              <img id="testi-photo" src="" alt="" class="w-full h-full object-cover" onerror="this.style.display='none'">
             </div>
             <div>
-              <p id="testi-name" class="font-semibold text-zinc-900">Denis Meritei Luke</p>
-              <p id="testi-title" class="text-zinc-400 text-sm">CEO at CoverCloud Limited</p>
+              <p id="testi-name" class="font-semibold text-zinc-900">Procurement Manager</p>
+              <p id="testi-title" class="text-zinc-400 text-sm">Leading potato processor</p>
             </div>
           </div>
 
@@ -889,16 +1028,16 @@
       <!-- Stats strip -->
       <div id="testi-stats" class="border-t border-zinc-200 mt-20 pt-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
         <div class="scroll-reveal" data-delay="0" data-once="true">
-          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3"><span class="testi-stat-num" data-target="60" data-suffix="+">0</span></p>
-          <p class="text-zinc-500 text-sm leading-relaxed">brands and websites<br>built across industries</p>
+          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3"><span class="testi-stat-num" data-target="120" data-suffix="+">0</span></p>
+          <p class="text-zinc-500 text-sm leading-relaxed">contracted farmers<br>across Kenya</p>
         </div>
         <div class="scroll-reveal" data-delay="120" data-once="true">
-          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3">2x faster</p>
-          <p class="text-zinc-500 text-sm leading-relaxed">project delivery compared<br>to traditional agencies</p>
+          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3">Year-round</p>
+          <p class="text-zinc-500 text-sm leading-relaxed">processor-grade supply<br>across the seasons</p>
         </div>
         <div class="scroll-reveal" data-delay="240" data-once="true">
-          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3"><span class="testi-stat-num" data-target="90" data-suffix="%">0</span></p>
-          <p class="text-zinc-500 text-sm leading-relaxed">of clients return<br>for ongoing work</p>
+          <p class="text-4xl lg:text-5xl font-black text-zinc-900 mb-3"><span class="testi-stat-num" data-target="95" data-suffix="%">0</span></p>
+          <p class="text-zinc-500 text-sm leading-relaxed">of farmers rejoin<br>each season</p>
         </div>
       </div>
 
@@ -916,20 +1055,20 @@
         <div class="sm:w-36 lg:w-44 shrink-0 sm:pt-3">
           <span class="section-label scroll-reveal" data-delay="0" data-once="true">
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 14H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v3m-7 11h7m-7 0v-7m0 7H8m4-7h3a2 2 0 012 2v3a2 2 0 01-2 2h-3"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            Pricing
+            Partnerships
           </span>
         </div>
 
         <!-- Right content -->
         <div class="flex-1 min-w-0">
           <h2 class="pricing-display-title font-black text-zinc-900 leading-none tracking-tight mb-4 scroll-reveal" data-delay="60" data-once="true">
-            Pricing
+            Work with us
           </h2>
-          <p class="text-zinc-400 text-lg font-medium mb-6 scroll-reveal" data-delay="120" data-once="true">Plans that fit your stage</p>
+          <p class="text-zinc-400 text-lg font-medium mb-6 scroll-reveal" data-delay="120" data-once="true">Ways to partner with CoverCloud</p>
           <p class="text-zinc-500 text-sm sm:text-base leading-relaxed max-w-sm mb-10 scroll-reveal" data-delay="180" data-once="true">
-            No vague quotes. No surprises. Clear options for Managed IT Institution Packages, Web &amp; Mobile Development, and custom full-service IT solutions — designed to match where you are and where you're going.
+            Whether you grow potatoes, process them, or supply the farms that do — there's a place for you. Clear, structured partnerships for contract farmers, processors, and the wider agricultural community.
           </p>
           <!-- Decorative plus markers -->
           <div class="hidden lg:flex justify-between mt-4 text-zinc-300 text-xl select-none" aria-hidden="true">
@@ -941,66 +1080,66 @@
       <!-- 3 pricing columns -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
 
-        <!-- Institution Package -->
+        <!-- For Contract Farmers -->
         <div class="pricing-tier-card scroll-reveal slide-left" data-delay="80" data-once="true">
           <div class="pb-6">
-            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">Institution Package</p></div>
+            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">For Contract Farmers</p></div>
             <div class="pricing-row">
-              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Managed IT for schools &amp; institutions.</h3>
-              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We handle it all.</p>
+              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Grow with a guaranteed market.</h3>
+              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We buy your harvest.</p>
             </div>
             <div class="pricing-row">
               <p class="mb-1 flex items-baseline gap-1">
-                <span class="text-zinc-400 text-sm font-medium">KSh</span>
-                <span class="text-4xl font-black text-zinc-900 tracking-tight">20,000</span>
+                <span class="text-4xl font-black text-zinc-900 tracking-tight">Join</span>
+                <span class="text-zinc-400 text-sm font-medium">the programme</span>
               </p>
-              <p class="text-xs text-zinc-400 mb-4">per 3 months · ex. VAT</p>
+              <p class="text-xs text-zinc-400 mb-4">from 5 tonnes per season</p>
             </div>
-            <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Get the package</a></div>
+            <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Join as a farmer</a></div>
           </div>
           <div class="border-t border-zinc-200 pt-6 space-y-3 pricing-row">
-            <p class="text-sm text-zinc-500">IT Infrastructure Maintenance</p>
-            <p class="text-sm text-zinc-500">Computer Maintenance &amp; Repair</p>
-            <p class="text-sm text-zinc-500">Website Maintenance + SEO</p>
-            <p class="text-sm text-zinc-500">Consultancy</p>
+            <p class="text-sm text-zinc-500">Guaranteed market for your produce</p>
+            <p class="text-sm text-zinc-500">High-value seed &amp; agro-inputs</p>
+            <p class="text-sm text-zinc-500">Continuous agronomic support</p>
+            <p class="text-sm text-zinc-500">Payment on harvest</p>
           </div>
         </div>
 
-        <!-- Development -->
+        <!-- For Processors -->
         <div class="pricing-tier-card scroll-reveal" data-delay="200" data-once="true">
           <div class="pb-6">
-            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">Development</p></div>
+            <div class="pricing-row"><p class="text-sm text-zinc-400 font-medium mb-4">For Processors</p></div>
             <div class="pricing-row">
-              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Ready to build something great?</h3>
-              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll make it happen.</p>
+              <h3 class="text-2xl font-black text-zinc-900 leading-snug">Need reliable, graded supply?</h3>
+              <p class="text-2xl font-black text-zinc-400 leading-snug mb-8">We'll deliver it.</p>
             </div>
             <div class="pricing-row">
               <p class="mb-5 flex items-baseline gap-1">
-                <span class="text-zinc-400 text-sm font-medium">From KSh</span>
-                <span class="text-4xl font-black text-zinc-900 tracking-tight">80,000</span>
+                <span class="text-4xl font-black text-zinc-900 tracking-tight">Year-round</span>
+                <span class="text-zinc-400 text-sm font-medium">supply</span>
               </p>
             </div>
-            <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Start your project</a></div>
+            <div class="pricing-row"><a href="#contact" class="pricing-tier-btn">Request supply</a></div>
           </div>
           <div class="border-t border-zinc-200 pt-6 space-y-3 pricing-row">
-            <p class="text-sm text-zinc-500">Web Design, Development &amp; Maintenance</p>
-            <p class="text-sm text-zinc-500">Software &amp; Mobile App Development</p>
-            <p class="text-sm text-zinc-500">Cloud Computing &amp; Networking</p>
-            <p class="text-sm text-zinc-500">System Audits &amp; Consultancy</p>
+            <p class="text-sm text-zinc-500">Markies, Manitou &amp; Java varieties</p>
+            <p class="text-sm text-zinc-500">Consistent, processor-grade quality</p>
+            <p class="text-sm text-zinc-500">Traceable, professionally managed farms</p>
+            <p class="text-sm text-zinc-500">Aggregation &amp; logistics coordination</p>
           </div>
         </div>
 
-        <!-- Custom (dark photo card — spans full height) -->
+        <!-- Agro-inputs & Advisory (dark card — spans full height) -->
         <div class="pricing-alacarte scroll-reveal slide-right" data-delay="320" data-once="true">
           <div>
-            <div class="pricing-row"><p class="text-sm text-white/50 font-medium mb-4">Custom</p></div>
+            <div class="pricing-row"><p class="text-sm text-white/50 font-medium mb-4">Agro-inputs &amp; Advisory</p></div>
             <div class="pricing-row">
               <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
-                Got big goals?<br>We'll build them.
+                Need inputs or<br>agronomy support?
               </h3>
             </div>
           </div>
-          <div class="pricing-row"><a href="#contact" class="pricing-alacarte-btn">Book a meeting</a></div>
+          <div class="pricing-row"><a href="#contact" class="pricing-alacarte-btn">Talk to us</a></div>
         </div>
 
       </div>
@@ -1039,7 +1178,7 @@
             <p class="text-zinc-400 text-sm leading-relaxed mb-6">Reach out anytime. We're happy to answer any questions before you commit to working together.</p>
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-zinc-200 shrink-0">
-                <img src="images/image%201.png" alt="Denis Meritei Luke" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <img src="images/logo.png" alt="CoverCloud Limited" class="w-full h-full object-contain p-1.5" onerror="this.style.display='none'">
               </div>
               <div>
                 <p class="font-semibold text-zinc-900 text-sm">Denis Meritei Luke</p>
@@ -1057,79 +1196,79 @@
 
           <div class="faq-item scroll-reveal" data-delay="80" data-once="true">
             <button type="button" class="faq-question">
-              What services does CoverCloud Limited offer?
+              What does CoverCloud Limited do?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">We offer IT Infrastructure Maintenance, Computer Maintenance &amp; Repair, Website Maintenance, Consultancy, Web Design &amp; Development, Networking, Software &amp; Mobile App Development, Cloud Computing, System Audits, and Computers &amp; Peripherals sales. Our Institution Package bundles managed IT services for schools and organisations at Ksh 20,000 per 3-month term.</div>
+            <div class="faq-answer">We are a Kenyan agribusiness that produces, aggregates and supplies premium processing potatoes — Markies, Manitou and Java — to leading processors. We also run a contract farming programme, provide agronomic advisory, crop monitoring, quality assurance and grading, logistics coordination, and the supply of agro-inputs to farmers.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="150" data-once="true">
             <button type="button" class="faq-question">
-              Do you work with international clients?
+              Which potato varieties do you supply?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">Yes. CoverCloud Limited is East African based but operates globally. We deliver Web, Mobile, and Cloud solutions to clients across the world through our global network of solution experts and architects.</div>
+            <div class="faq-answer">We specialise in premium processing varieties — Markies, Manitou and Java. These are the varieties preferred by frozen chips and crisps manufacturers for their dry matter content, tuber size and consistency. Every batch is graded to processor specifications before delivery.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="215" data-once="true">
             <button type="button" class="faq-question">
-              What is the Institution Package?
+              How does the contract farming programme work?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">Our Institution Package is a 3-month managed IT bundle designed specifically for schools, colleges, and organisations. At Ksh 20,000 (ex. VAT) per term, it covers IT Infrastructure Maintenance (network troubleshooting, upgrades &amp; security), Computer Maintenance &amp; Repair (routine hardware/software checkups), Website Maintenance (including SEO), and IT Consultancy. Contact us at sales@covercloudlimited.com to get started.</div>
+            <div class="faq-answer">We identify suitable farmers, sign production agreements, and provide technical production guidelines, certified seed and agro-inputs. Our field officers conduct regular visits and monitor crop performance throughout the season, and we purchase the potatoes upon harvest at an agreed price. It gives farmers a guaranteed market and lets us scale supply without owning all the land. Contact us at sales@covercloudlimited.com to join.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="220" data-once="true">
             <button type="button" class="faq-question">
-              Can you handle Salesforce implementation from scratch?
+              How do you ensure quality and traceability?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">Absolutely. We provide Salesforce Implementation, Consulting, and Integration with ERP systems. Whether you're starting fresh or migrating existing data, our certified consultants guide you through every step.</div>
+            <div class="faq-answer">Every batch undergoes inspection for variety purity, tuber size, dry matter content, maturity, freedom from disease, and minimal mechanical damage. Because produce comes from professionally managed farms with production data on record, we offer end-to-end traceability from farm to processor.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="290" data-once="true">
             <button type="button" class="faq-question">
-              How long does a typical project take?
+              Can you supply potatoes all year round?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">Timelines vary depending on scope. A bespoke web app can take 4–8 weeks; mobile apps and Salesforce implementations typically range from 6–16 weeks. We follow a streamlined approach to keep projects on track.</div>
+            <div class="faq-answer">Yes. By combining our own commercial farms with a network of contract farmers staggered across different regions and growing seasons, we maintain a consistent, year-round supply of processing-grade potatoes — reducing procurement risk for processors.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="360" data-once="true">
             <button type="button" class="faq-question">
-              What's your development approach?
+              What agronomic support do farmers receive?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">We follow a streamlined development process: Discovery → Strategy → Design → Development → Testing → Launch. Our consultants integrate their expertise with each client's unique process and system, ensuring quality at every stage.</div>
+            <div class="faq-answer">Our agronomists provide soil fertility recommendations, fertiliser programmes, pest and disease management, irrigation guidance, harvest timing advice, and post-harvest handling training. The goal is simple: help every farmer achieve processor-grade quality and better profitability through modern farming practices.</div>
           </div>
 
           <div class="faq-item scroll-reveal" data-delay="430" data-once="true">
             <button type="button" class="faq-question">
-              Do you offer post-launch support?
+              Do you sell agricultural inputs?
               <span class="faq-icon" aria-hidden="true">
                 <svg class="faq-icon-plus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
                 <svg class="faq-icon-minus w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 12h16"/></svg>
               </span>
             </button>
-            <div class="faq-answer">Yes. We are a reliable long-term business partner. We offer ongoing maintenance, updates, and consulting support. Most clients continue working with us well beyond initial project delivery.</div>
+            <div class="faq-answer">Yes. We supply certified seed, fertilisers and crop protection products (agro-inputs) to our contracted farmers and other commercial growers, alongside agronomy and consultancy services. We're a reliable long-term partner — most farmers rejoin the programme season after season.</div>
           </div>
 
         </div>
@@ -1159,7 +1298,7 @@
           </div>
           <div class="mt-auto">
             <p class="text-zinc-500 text-sm leading-relaxed mb-8 scroll-reveal" data-delay="100" data-once="true">
-              From practical advice on Salesforce best practices to honest takes on common mistakes in web and mobile app development.
+              From practical agronomy advice to honest takes on getting the best out of processing potato varieties and contract farming.
             </p>
             <a href="/articles" class="insight-discover-btn scroll-reveal" data-delay="180" data-once="true">Discover all articles</a>
           </div>
@@ -1168,29 +1307,29 @@
         <!-- Right: heading + staggered article cards -->
         <div class="flex-1 min-w-0">
           <h2 id="blog-headline" class="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 leading-tight mb-10 lg:mb-14">
-            Our blog shares insights on web development, mobile solutions, cloud technology, and digital strategy.
+            Our blog shares insights on potato agronomy, processing varieties, contract farming, and post-harvest handling.
           </h2>
 
           <!-- Two staggered article image cards -->
           <div class="grid grid-cols-2 gap-4 items-start">
 
             <!-- Article 1: tall portrait (starts at top) -->
-            <a href="#" class="block group scroll-reveal slide-left" data-delay="120" data-once="true">
+            <a href="/articles" class="block group scroll-reveal slide-left" data-delay="120" data-once="true">
               <div class="insight-img-tall rounded-2xl overflow-hidden insight-img-scale">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Bespoke Web Apps" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1621459557554-60a70d3d61ce?auto=format&fit=crop&w=800&q=80" alt="Potato crop in the field" class="w-full h-full object-cover">
               </div>
               <h3 class="font-bold text-zinc-900 text-base mt-4 leading-snug group-hover:text-[#29ABE2] transition-colors">
-                Why Bespoke Web Apps Outperform Off-the-Shelf Solutions
+                Choosing the Right Processing Variety: Markies, Manitou or Java
               </h3>
             </a>
 
             <!-- Article 2: shorter, offset down -->
-            <a href="#" class="block group pt-14 lg:pt-20 scroll-reveal slide-right" data-delay="240" data-once="true">
+            <a href="/articles" class="block group pt-14 lg:pt-20 scroll-reveal slide-right" data-delay="240" data-once="true">
               <div class="insight-img-short rounded-2xl overflow-hidden insight-img-scale">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Salesforce Integration" class="w-full h-full object-cover">
+                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80" alt="Freshly harvested potatoes" class="w-full h-full object-cover">
               </div>
               <h3 class="font-bold text-zinc-900 text-base mt-4 leading-snug group-hover:text-[#29ABE2] transition-colors">
-                How Salesforce Integration Transforms Business Operations
+                How Contract Farming Guarantees Farmers a Market
               </h3>
             </a>
 
@@ -1221,10 +1360,10 @@
         <!-- Heading + description -->
         <div class="flex-1">
           <h2 id="contact-headline" data-word-dark class="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-black text-white leading-tight mb-8">
-            Whether you need managed IT, a web or mobile solution, or a full-service IT partner, CoverCloud is ready.
+            Whether you're a processor seeking reliable supply or a farmer ready to grow with us, CoverCloud is ready.
           </h2>
           <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-2xl scroll-reveal" data-delay="120" data-once="true">
-            Reach out today and you'll get a clear plan, honest advice, and a team that cares about your outcome as much as you do. Getting started is easy and we're with you every step of the way.
+            Reach out today and you'll get a clear plan, honest advice, and a team that cares about your harvest and your business as much as you do. Getting started is easy and we're with you every step of the way.
           </p>
         </div>
       </div>
@@ -1325,7 +1464,7 @@
         <!-- Brand -->
         <div class="lg:col-span-1 scroll-reveal" data-delay="0" data-once="true">
           <img src="images/logo.png" alt="CoverCloud Limited" class="h-10 w-auto object-contain mb-4">
-          <p class="text-zinc-400 text-sm leading-relaxed">Growing with you. IT development &amp; consulting company based in Nairobi, Kenya. Managed IT, Web, Mobile, Cloud, Networking &amp; Software solutions for institutions and businesses worldwide.</p>
+          <p class="text-zinc-400 text-sm leading-relaxed">Growing with you. Kenyan agribusiness producing, aggregating &amp; supplying premium processing potatoes — Markies, Manitou &amp; Java — to leading processors, with contract farming, agronomic support &amp; agro-inputs.</p>
         </div>
 
         <!-- Navigation -->
@@ -1333,7 +1472,7 @@
           <p class="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-5">Navigate</p>
           <ul class="space-y-3">
             <li><a href="#about" class="footer-link">About</a></li>
-            <li><a href="#projects" class="footer-link">Projects</a></li>
+            <li><a href="#projects" class="footer-link">Programmes</a></li>
             <li><a href="/articles" class="footer-link">Articles</a></li>
             <li><a href="#pricing" class="footer-link">Pricing</a></li>
             <li><a href="#contact" class="footer-link">Contact</a></li>
@@ -1412,11 +1551,11 @@
     // ── Testimonial switcher ────────────────────────────────
     (function () {
       const testimonials = [
-        { quote: '"Working with CoverCloud felt effortless. The final result wasn\'t just a website, it was a solution we\'re proud to show off."', name: 'Denis Meritei Luke', title: 'CEO at CoverCloud Limited', photo: 'images/image%201.png' },
-        { quote: '"CoverCloud delivered a brand system that exceeded every expectation. Our conversion rate jumped 40% within the first month of launch."', name: 'James Korten', title: 'Founder at Korten Studio', photo: '' },
-        { quote: '"The team at CoverCloud understood our vision immediately. Smooth process, sharp results, and genuinely great people to work with."', name: 'Priya Everly', title: 'CMO at Everly', photo: '' },
-        { quote: '"Best investment we made this year. Our new brand identity opened doors with enterprise clients that felt out of reach before."', name: 'Marcus Peni', title: 'CEO at Peni Labs', photo: '' },
-        { quote: '"Precise, fast, and ahead of schedule. CoverCloud integrated with our team like they\'d always been part of it."', name: 'Edwin SaLaton', title: 'CTO at Starnabula Technologies', photo: '' }
+        { quote: '"CoverCloud gives us dependable, processor-grade potatoes all year round — consistent variety, size and dry matter, exactly to spec."', name: 'Procurement Manager', title: 'Leading potato processor', photo: '' },
+        { quote: '"Since joining the contract farming programme, I have a guaranteed market for my harvest and real agronomic support in the field."', name: 'James Kariuki', title: 'Contract farmer, Nyandarua', photo: '' },
+        { quote: '"The agronomists helped us lift yields and cut disease losses. Every season our tubers meet the grade we are paid for."', name: 'Priya Wanjiru', title: 'Contract farmer, Meru', photo: '' },
+        { quote: '"Traceable produce from professionally managed farms took the risk out of our procurement. Supply is finally predictable."', name: 'Marcus Otieno', title: 'Supply chain lead, food manufacturer', photo: '' },
+        { quote: '"Grading and logistics are handled end to end. Our potatoes reach the processor fresh and on time, batch after batch."', name: 'Esther Chelangat', title: 'Aggregation partner, Rift Valley', photo: '' }
       ];
 
       const countEl = document.getElementById('testi-count');
@@ -1479,10 +1618,34 @@
         const pct = ((val - min) / (max - min) * 100).toFixed(1) + '%';
         slider.style.setProperty('--fill', pct);
         const label = slider.closest('.benefit-card').querySelector('.text-3xl.font-black');
-        if (label) label.textContent = 'KSh ' + Number(val).toLocaleString();
+        if (label) label.textContent = Number(val).toLocaleString() + ' tonnes';
       }
       slider.addEventListener('input', updateFill);
       updateFill();
+    }());
+
+    // ── Hero slideshow: crossfade through potato images ────
+    (function () {
+      var slides = document.querySelectorAll('#hero-slideshow .hero-slide');
+      if (slides.length < 2) return;
+      var i = 0;
+      setInterval(function () {
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+      }, 5000);
+    }());
+
+    // ── Projects card slideshow: crossfade every 3 seconds ──
+    (function () {
+      var slides = document.querySelectorAll('#card-slideshow .card-slide');
+      if (slides.length < 2) return;
+      var i = 0;
+      setInterval(function () {
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+      }, 3000);
     }());
 
     // ── Hero fade-out + scale on scroll ────────────────────
@@ -1589,7 +1752,7 @@
     (function () {
       var aboutEl = document.getElementById('about-headline');
       if (aboutEl) {
-        var aboutText = 'We are an award-winning East African IT development and consulting company with a global network of solution experts and architects. Our expertise spans Web Development, Mobile Development, Web Design, and Salesforce services, delivering credible solutions that exceed client expectations.';
+        var aboutText = 'We are a Kenyan agribusiness producing and aggregating premium processing potatoes for leading processors. Combining commercial farming with contract farming, we build a sustainable supply chain that delivers consistent, processor-grade quality while empowering smallholder farmers.';
         aboutEl.innerHTML = aboutText.split(' ').map(function (w) {
           return '<span class="aword">' + w + '</span>';
         }).join(' ');
@@ -2015,60 +2178,164 @@
     }());
   </script>
 
-  <!-- ── Atmosphere.TV Floating Partner Badge ──────────────────────── -->
-  <div class="atv-float">
-    <div class="atv-bubble" id="atv-bubble">
-      <button class="atv-bubble__close" id="atv-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <div class="atv-bubble__header">
-        <div class="atv-bubble__icon">
-          <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+  <!-- ── Scroll-triggered promo modal ──────────────────────────────── -->
+  <div id="promo-modal" class="promo-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="promo-title">
+    <div class="promo-backdrop" data-promo-close></div>
+    <div class="promo-card">
+      <button type="button" class="promo-close" data-promo-close aria-label="Close">&times;</button>
+
+      <!-- Sliding images -->
+      <div class="promo-media">
+        <div id="promo-slides" class="promo-slides">
+          <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80" alt="Processing-grade potatoes" class="promo-slide is-active" onerror="this.style.display='none'" />
+          <img src="https://images.unsplash.com/photo-1744659751904-3b2e5c095323?auto=format&fit=crop&w=800&q=80" alt="Freshly harvested golden potatoes" class="promo-slide" loading="lazy" onerror="this.style.display='none'" />
+          <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80" alt="Potato farm at sunset" class="promo-slide" loading="lazy" onerror="this.style.display='none'" />
+          <img src="https://images.unsplash.com/photo-1625324455604-d75faf4b119b?auto=format&fit=crop&w=800&q=80" alt="Potato crop in the field" class="promo-slide" loading="lazy" onerror="this.style.display='none'" />
         </div>
-        <div>
-          <span class="atv-bubble__brand">ATMOSPHERE<span>TV</span></span>
-          <span class="atv-bubble__partner">Proud Partner</span>
-        </div>
+        <div id="promo-dots" class="promo-dots"></div>
       </div>
-      <p class="atv-bubble__title">Atmosphere TV Improves the Way Businesses Connect with Customers</p>
-      <p class="atv-bubble__body">We believe in spreading positivity and empowerment through entertainment.</p>
-      <a href="https://www.atmosphere.tv/partner/cover-cloud-limited/" target="_blank" rel="noopener noreferrer" class="atv-bubble__cta">Get started as a partner →</a>
+
+      <!-- Info + subscribe -->
+      <div class="promo-body">
+        <span class="promo-eyebrow">CoverCloud Limited</span>
+        <h3 id="promo-title" class="promo-title">Premium processing potatoes, grown in Kenya.</h3>
+        <p class="promo-text">We produce, aggregate and supply Markies, Manitou &amp; Java potatoes to leading processors — combining our own commercial farms with a network of contract farmers for consistent, processor-grade supply all year round.</p>
+        <ul class="promo-list">
+          <li>Reliable, year-round processor-grade supply</li>
+          <li>Guaranteed market for contract farmers</li>
+          <li>Agronomic support from planting to harvest</li>
+        </ul>
+        <form id="promo-form" class="promo-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+          <input type="hidden" name="subject" value="New newsletter subscriber — CoverCloud website">
+          <input type="hidden" name="from_name" value="CoverCloud Website">
+          <input type="checkbox" name="botcheck" class="cf-honeypot" tabindex="-1" aria-hidden="true">
+          <input type="email" name="email" class="promo-input" placeholder="your@email.com" aria-label="Email address" required autocomplete="email" maxlength="254" />
+          <button type="submit" class="promo-btn">Subscribe →</button>
+        </form>
+        <p class="promo-error" id="promo-error" role="alert"></p>
+        <p class="promo-fineprint">Get seasonal supply updates &amp; agronomy tips. No spam — unsubscribe anytime.</p>
+        <div class="promo-timer" aria-hidden="true"><span></span></div>
+      </div>
     </div>
-    <span class="atv-label">Featured Partner</span>
-    <a class="atv-badge" id="atv-badge"
-       href="https://www.atmosphere.tv/partner/cover-cloud-limited/"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Atmosphere.TV — CoverCloud Partner">
-      <div class="atv-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
-      </div>
-      <div class="atv-text">
-        <span class="atv-text-top">ATMOSPHERE<span>TV</span></span>
-        <span class="atv-text-bottom">Proud Partner</span>
-      </div>
-    </a>
   </div>
+
   <script>
-    (function(){
-      var floatEl = document.querySelector('.atv-float');
-      var badge   = document.getElementById('atv-badge');
-      var bubble  = document.getElementById('atv-bubble');
-      if (!floatEl || !badge || !bubble) return;
-      var timer = null;
-      var closeBtn = document.getElementById('atv-close');
-      function closeBubble(){ bubble.classList.remove('open'); }
-      function startTimer(){ clearTimeout(timer); timer = setTimeout(closeBubble, 5000); }
-      function openBubble(e){ if (e) e.preventDefault(); bubble.classList.add('open'); startTimer(); }
-      if (closeBtn){ closeBtn.addEventListener('click', function(e){ e.stopPropagation(); clearTimeout(timer); closeBubble(); }); }
-      bubble.addEventListener('mouseenter', function(){ clearTimeout(timer); });
-      bubble.addEventListener('mouseleave', startTimer);
-      floatEl.addEventListener('mouseenter', openBubble);
-      badge.addEventListener('click', openBubble);
-      document.addEventListener('click', function(e){
-        if (!e.target.closest('.atv-float')){ clearTimeout(timer); closeBubble(); }
+    // ── Scroll-triggered promo modal ───────────────────────────────
+    (function () {
+      var modal = document.getElementById('promo-modal');
+      if (!modal) return;
+
+      var KEY      = 'cc_promo_shown';
+      var slides   = modal.querySelectorAll('.promo-slide');
+      var dotsWrap = document.getElementById('promo-dots');
+      var form     = document.getElementById('promo-form');
+      var input    = modal.querySelector('.promo-input');
+      var bar      = modal.querySelector('.promo-timer span');
+      var closeEls = modal.querySelectorAll('[data-promo-close]');
+
+      var shown = false;
+      try { shown = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+
+      var si = 0, slideTimer = null, autoTimer = null;
+
+      // Build dots
+      var dots = [];
+      slides.forEach(function (_, idx) {
+        var d = document.createElement('span');
+        if (idx === 0) d.className = 'active';
+        dotsWrap.appendChild(d);
+        dots.push(d);
       });
+
+      function setSlide(n) {
+        slides[si].classList.remove('is-active');
+        if (dots[si]) dots[si].classList.remove('active');
+        si = (n + slides.length) % slides.length;
+        slides[si].classList.add('is-active');
+        if (dots[si]) dots[si].classList.add('active');
+      }
+
+      function open() {
+        if (shown) return;
+        shown = true;
+        try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        slideTimer = setInterval(function () { setSlide(si + 1); }, 2500);
+        autoTimer  = setTimeout(close, 15000); // auto-close after 15s
+      }
+
+      function close() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        clearInterval(slideTimer);
+        clearTimeout(autoTimer);
+      }
+
+      closeEls.forEach(function (el) { el.addEventListener('click', close); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('open')) close();
+      });
+
+      // Pause auto-close while the user is subscribing
+      if (input) {
+        input.addEventListener('focus', function () {
+          clearTimeout(autoTimer);
+          if (bar) bar.style.animationPlayState = 'paused';
+        });
+      }
+
+      var errEl = document.getElementById('promo-error');
+      function showErr(msg) { if (errEl) { errEl.textContent = msg; errEl.classList.add('show'); } }
+      function clearErr() { if (errEl) { errEl.textContent = ''; errEl.classList.remove('show'); } }
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          clearErr();
+
+          var emailVal = input ? input.value.trim() : '';
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailVal)) {
+            showErr('Please enter a valid email address.');
+            if (input) input.focus();
+            return;
+          }
+
+          var btn = form.querySelector('.promo-btn');
+          if (btn) { btn.disabled = true; btn.textContent = 'Subscribing…'; }
+          clearTimeout(autoTimer); // don't auto-close mid-request
+
+          fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
+            .then(function (r) { return r.json(); })
+            .then(function (j) {
+              if (j.success) {
+                clearInterval(slideTimer);
+                form.innerHTML = '<p class="promo-success">✓ Thanks — you\'re subscribed. We\'ll be in touch.</p>';
+                setTimeout(close, 2500);
+              } else {
+                if (btn) { btn.disabled = false; btn.textContent = 'Subscribe →'; }
+                showErr('Something went wrong. Please try again in a moment.');
+              }
+            })
+            .catch(function () {
+              if (btn) { btn.disabled = false; btn.textContent = 'Subscribe →'; }
+              showErr('Network error — check your connection and try again.');
+            });
+        });
+      }
+
+      // Reveal once the user scrolls past ~60% of the first screen
+      function onScroll() {
+        if (shown) { window.removeEventListener('scroll', onScroll); return; }
+        if (window.scrollY > window.innerHeight * 0.6) {
+          open();
+          window.removeEventListener('scroll', onScroll);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
     }());
   </script>
+
 </body>
 </html>
